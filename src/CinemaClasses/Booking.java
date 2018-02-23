@@ -16,9 +16,43 @@ public class Booking {
 		bookingNum++;
 	}
 	
+	public int getBookingNumber()
+	{
+		return bookingNum;
+	}
+	
+	public int getNumberOfTickets()
+	{
+		return numOfTickets;
+	}
+	public int getScreeningNum()
+	{
+		return screeningNum;
+	}
+		
 	public double getCost()
 	{
+		cost = numOfTickets * 4.50;
 		return cost;
+	}
+	
+	public void addBookingToDB()
+	{
+		String booking = "INSERT INTO booking VALUES ('" + bookingNum +"', " +
+					  "'" + numOfTickets + "' ," +
+					  "'" + screeningNum + "' ," +
+					  "'" + getCost() + "') " +
+					  "ON DUPLICATE KEY UPDATE Booking_Number='" + bookingNum + "', " +
+					  "Number_of_Tickets=' " + numOfTickets + "', " +
+					  "Screening_Number=' " + screeningNum + "', " +
+					  "Cost=' " + getCost() + "'";
+		JDBCcinema database = new JDBCcinema();
+		database.insertIntoDatabase(booking);
+	}
+	public void getBookingDB() {
+		JDBCcinema database = new JDBCcinema();
+		//System.out.println("\n" + database.getFromDB("film"));
+		database.getInfoFromDB("booking");
 	}
 
 }
