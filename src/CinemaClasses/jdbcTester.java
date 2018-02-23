@@ -3,13 +3,13 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.Statement;
 
 public class jdbcTester {
 	
 	public static void main(String[] args) throws Exception{
 		
-		
+		//reading from database
 		Class.forName("com.mysql.jdbc.Driver");
 		
 		java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Cinema", "root", "password");
@@ -22,6 +22,20 @@ public class jdbcTester {
 		{
 			System.out.println(result.getString(1) + " " + result.getString(2));
 		}
+		
+		
+		//inserting into database
+		Class.forName("com.mysql.jdbc.Driver");
+		
+		java.sql.Statement myStmt = con.createStatement(); 
+		
+		String sql = "insert into film "
+				   + "(Name, PG_Rating, Genre, Duration)"
+				   + "values ('Good Film', 'U', 'Drama', '145')";
+		
+		myStmt.executeUpdate(sql);
+		
+		System.out.println("Insert complete");
 		
 	//tonight	JDBCcinema database= new JDBCcinema();
 		

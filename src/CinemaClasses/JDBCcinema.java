@@ -33,7 +33,7 @@ public class JDBCcinema {
 	}
 	
 	// createDatabase() - Calls createConnection(), creates a database called facebook with a table called user
-	   public void createDatabase(){
+/*	   public void createDatabase(){
 	      try{
 	         // createConnection() to localhost
 	         createConnection("jdbc:mysql://localhost/");
@@ -53,7 +53,7 @@ public class JDBCcinema {
 	      catch (SQLException e){
 	         System.out.println("Problem with SQL.\n" + e.getMessage());
 	      }
-	   }
+	   }*/
 
 	   // closeConnection() - Closes the connection
 	   public void closeConnection(){   
