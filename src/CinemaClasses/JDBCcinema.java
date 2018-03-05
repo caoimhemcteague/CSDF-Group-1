@@ -28,7 +28,7 @@ public class JDBCcinema implements JDBCDB{
 			System.out.println("Step 1 Complete - Driver Registered ...");
 			
 			//2
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Cinema", USER_NAME, PASSWORD);
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema", USER_NAME, PASSWORD);
 			System.out.print("Step 2 Complete - Connection obtained");
 		}
 		catch (ClassNotFoundException e) {
