@@ -1,9 +1,10 @@
 package CinemaClasses;
 
-public class Booking {
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+public class Booking extends JDBCcinema{
 	
-	
-	public int bookingNum=1; 
+	public int bookingNum=0; 
 	public int numOfTickets; 
 	public int screeningNum;
 	public double cost;
@@ -20,7 +21,30 @@ public class Booking {
 	
 	public int getBookingNumber()
 	{
-		return bookingNum;
+ 			 try{ 
+          createConnection();
+          PreparedStatement statement = conn.prepareStatement("SELECT MAX(Booking_Number) FROM booking");
+		  ResultSet rs = statement.executeQuery();
+          
+		  while(rs.next())
+		  {  
+			  bookingNum = rs.getInt("MAX(Booking_Number)");
+		  }
+			  bookingNum++;
+          closeConnection();
+      //    System.out.println(bookingNum);
+          
+          return bookingNum;
+          
+          }
+  			catch (Exception e){
+ 			System.out.println("Failed to return booking Number.\n" + e.getMessage());
+       
+         return bookingNum;
+ 			}
+
+		   
+		 
 	}
 	
 	public int getNumberOfTickets()
@@ -40,14 +64,11 @@ public class Booking {
 	
 	public void addBookingToDB()
 	{
+		getBookingNumber();
 		String booking = "INSERT INTO booking VALUES ('" + bookingNum +"', " +
 					  "'" + numOfTickets + "' ," +
 					  "'" + screeningNum + "' ," +
-					  "'" + getCost() + "') " +
-					  "ON DUPLICATE KEY UPDATE Booking_Number='" + bookingNum + "', " +
-					  "Number_of_Tickets=' " + numOfTickets + "', " +
-					  "Screening_Number=' " + screeningNum + "', " +
-					  "Cost=' " + getCost() + "'";
+					  "'" + getCost() + "') "; 
 		JDBCcinema database = new JDBCcinema();
 		database.insertIntoDatabase(booking);
 	}

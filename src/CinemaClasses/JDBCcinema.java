@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.Objects;
 
 public class JDBCcinema implements JDBCDB{
 
@@ -16,8 +15,8 @@ public class JDBCcinema implements JDBCDB{
 	private int length = 0;
 	
 	
-	private Connection conn;
-	private Statement stmt;
+	protected Connection conn;
+	protected Statement stmt;
 	
 	public JDBCcinema() {
 		
@@ -91,18 +90,18 @@ public class JDBCcinema implements JDBCDB{
 		 
 			while(result.next())
 			{	
-				if(length ==1) {
-					 data = result.getString(1);
-						System.out.println(data);
-				}
-				else if(length ==2) {
+	//			if(length ==1) {
+	//				 data = result.getString(1);
+	//					System.out.println(data);
+	//			}
+			   if(length ==2) {
 					 data = result.getString(1) + ", " + result.getString(2);
 						System.out.println(data);
 				}
-				else if(length ==3) {
-					 data = result.getString(1) + ", " + result.getString(2) + ", " + result.getString(3); 
-					 	System.out.println(data);
-				}
+//				else if(length ==3) {
+//					 data = result.getString(1) + ", " + result.getString(2) + ", " + result.getString(3); 
+//					 	System.out.println(data);
+//				}
 					 else {
 					data = result.getString(1) + ", " + result.getString(2) + ", " + result.getString(3) + ", " + result.getInt(4);
 					System.out.println(data);
@@ -116,7 +115,7 @@ public class JDBCcinema implements JDBCDB{
 		         System.out.println(fail);
 
 			}
-		   System.out.println("length ====" + length);
+		  
 	   }
 
 	   
