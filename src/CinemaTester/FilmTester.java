@@ -8,7 +8,7 @@ public class FilmTester {
 		String name = "maze";
 		String rating = "15A";
 		String genre = "Thriller";
-		int duration = 56;
+		int duration = 90;
 		
 		Film newFilm = new Film(name, rating, genre, duration); 
 		

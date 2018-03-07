@@ -9,6 +9,8 @@ public class Booking {
 	public double cost;
 	
 	
+	
+	
 	public Booking(int numOfTickets, int screeningNum)
 	{
 		this.numOfTickets=numOfTickets;
