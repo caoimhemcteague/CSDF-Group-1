@@ -5,7 +5,7 @@ import CinemaClasses.*;
 public class TheatreTester {
 	public static void main(String[] args) {
 		
-		int capacity = 9;
+		int capacity = 40;
 		
 		Theatre newTheatre = new Theatre(capacity); 
 		

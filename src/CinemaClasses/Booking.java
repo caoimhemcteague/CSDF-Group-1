@@ -2,6 +2,7 @@ package CinemaClasses;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
 public class Booking extends JDBCcinema{
 	
 	public int bookingNum=0; 

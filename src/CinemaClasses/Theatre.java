@@ -1,8 +1,11 @@
 package CinemaClasses;
 
-public class Theatre {
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+public class Theatre extends JDBCcinema{
 	
-	public int theatreNum=1;
+	public int theatreNum=0;
 	public int capacity;
 	
 	public Theatre(int capacity)
@@ -13,7 +16,27 @@ public class Theatre {
 	
 	public int getTheatreNum()
 	{
-		return theatreNum;
+		 try{ 
+	          createConnection();
+	          PreparedStatement statement = conn.prepareStatement("SELECT MAX(Theatre_Num) FROM theatre");
+			  ResultSet rs = statement.executeQuery();
+	          
+			  while(rs.next())
+			  {  
+				  theatreNum = rs.getInt("MAX(Theatre_Num)");
+			  }
+			  theatreNum++;
+	          closeConnection();
+	      //    System.out.println(bookingNum);
+	          
+	          return theatreNum;
+	          
+	          }
+	  			catch (Exception e){
+	 			System.out.println("Failed to return booking Number.\n" + e.getMessage());
+	       
+	         return theatreNum;
+	 			}
 	}
 	
 	public int getCapacity()
@@ -23,6 +46,7 @@ public class Theatre {
 	
 	public void addTheatreToDB()
 	{
+		getTheatreNum();
 		String theatre = "INSERT INTO theatre VALUES ('" + theatreNum +"', " +
 					  "'" + capacity + "') " +
 					  "ON DUPLICATE KEY UPDATE Theatre_Num='" + theatreNum + "', " +
