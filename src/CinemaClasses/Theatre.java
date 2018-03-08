@@ -14,6 +14,13 @@ public class Theatre extends JDBCcinema{
 		theatreNum++;
 	}
 	
+	
+	public int returnTheatreNum()
+	{
+		return theatreNum;
+	}
+	
+	
 	public int getTheatreNum()
 	{
 		 try{ 

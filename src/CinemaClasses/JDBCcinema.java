@@ -118,30 +118,5 @@ public class JDBCcinema implements JDBCDB{
 		  
 	   }
 
-	   
-	   /*public String getUserPasswordFromDatabase(String eMail)
-	   {
-	      try 
-	      {
-	         String password = "";
-	         String query ="SELECT password FROM user WHERE emailaddress =  '"+eMail+" '";
-	         ResultSet rs = stmt.executeQuery(query);
-	         
-	         if (rs.next())
-	         {
-	            password = rs.getString("password");
-	         }
-	         closeConnection();
-	         
-	         return password;
-	         
-	      }
-	      catch (SQLException e)
-	      {
-	         return "Email address error";
-	      
-	      }
-	   
-	   }*/
 
 }
