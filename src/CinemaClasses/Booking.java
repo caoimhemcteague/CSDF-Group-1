@@ -130,6 +130,9 @@ public class Booking extends JDBCcinema{
 					  "'" + getCost() + "') "; 
 		JDBCcinema database = new JDBCcinema();
 		database.insertIntoDatabase(booking);
+		
+		
+		
 	}
 	public void getBookingDB() {
 		JDBCcinema database = new JDBCcinema();
