@@ -18,6 +18,11 @@ public class Film {
 		this.duration=duration;
 	}
 	
+	public Film()
+	{
+		
+	}
+	
 	public String getFilmName()
 	{
 		return name;
