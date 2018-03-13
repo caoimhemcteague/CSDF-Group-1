@@ -6,21 +6,32 @@
 
 package cinemasystem;
 import java.sql.*;
-import javax.swing.JOptionPane;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 /**
  *
  * @author christophermclaughlin
  */
 public class StartFrame extends javax.swing.JFrame {
 
-    
+	private final String USER_NAME = "root";
+	private final String PASSWORD = "password";
+    Connection conn;
+    Statement st;
+    ResultSet rs;
+   
+	
     /**
      * Creates new form StartFrame
      */
     public StartFrame() {
         initComponents();
         
-    }
+    		
+    	}
+        
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,9 +49,9 @@ public class StartFrame extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        filmNameBox = new javax.swing.JComboBox<>();
+        dateBox = new javax.swing.JComboBox<>();
+        timeBox = new JComboBox<String>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 255, 255));
@@ -84,6 +95,19 @@ public class StartFrame extends javax.swing.JFrame {
                 jButton5MouseClicked(evt);
             }
         });
+        
+        
+        filmNameBox.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		filmNameBoxActionPerformed(e);
+        	}
+        });
+        
+        dateBox.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dateBoxActionPerformed(e);
+        	}
+        });
 
         jButton6.setText("Admin Login");
         jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -91,12 +115,38 @@ public class StartFrame extends javax.swing.JFrame {
                 jButton6MouseClicked(evt);
             }
         });
+       
+        
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        filmNameBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Select Film"}));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        try {
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema", USER_NAME, PASSWORD);
+			st = conn.createStatement();
+			String s = "Select Name from film";
+			rs = st.executeQuery(s);
+			while(rs.next()) {
+				filmNameBox.addItem(rs.getString(1));
+			}
+		}
+		catch (Exception b) {
+		JOptionPane.showMessageDialog(null,  "Error");
+		}finally {
+			try {
+				st.close();
+				rs.close();
+				conn.close();
+				
+			}catch(Exception b) {
+	    		JOptionPane.showMessageDialog(null,  "Error Close");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+			}
+		}
+
+        dateBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Date"}));
+
+        timeBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Time"}));
+
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,9 +161,9 @@ public class StartFrame extends javax.swing.JFrame {
                         .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(filmNameBox, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(dateBox, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jButton6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -121,7 +171,7 @@ public class StartFrame extends javax.swing.JFrame {
                                 .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(timeBox, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -134,9 +184,9 @@ public class StartFrame extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(filmNameBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dateBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(timeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addGap(18, 18, 18)
@@ -185,6 +235,85 @@ public class StartFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void filmNameBoxActionPerformed(ActionEvent e) {
+    	 //Fill the JComboBox1 with Film Names
+        
+        
+    	String value=(String)filmNameBox.getSelectedItem();
+    	if(value.equals("Select Film")) {
+    		dateBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Date"}));
+    		timeBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Time"}));
+    	}
+    	else {
+    		dateBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Date"}));
+    		timeBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Time"}));
+    	//Fill the JComboBox2 with Film Dates    
+        try {
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema", USER_NAME, PASSWORD);
+			st = conn.createStatement();
+			String s = "Select Distinct Date from screening where FilmName = '" + value + "'";
+			rs = st.executeQuery(s);
+			while(rs.next()) {
+				dateBox.addItem(rs.getString(1));
+			}
+		}
+		catch (Exception a) {
+		JOptionPane.showMessageDialog(null,  "Error");
+		}finally {
+			try {
+				st.close();
+				rs.close();
+				conn.close();
+				
+			}catch(Exception a) {
+	    		JOptionPane.showMessageDialog(null,  "Error Close");
+
+			}
+		}
+    	}
+    }
+    
+    private void dateBoxActionPerformed(ActionEvent e) {
+    
+    	String value=(String)dateBox.getSelectedItem();
+    	if(value.equals("Select Date")) {
+    		 timeBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Time"}));
+    	}
+    	else {    		
+    		timeBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Time"}));
+        	//Fill the JComboBox3 with Film Times    
+            try {
+    			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema", USER_NAME, PASSWORD);
+    			st = conn.createStatement();
+    			String s = "Select Time from screening where FilmName = '" + (String)filmNameBox.getSelectedItem() + 
+    						"' AND Date = '" + value + "'";
+    			rs = st.executeQuery(s);
+    			while(rs.next()) {
+    				double timeDouble = rs.getDouble("Time");
+    				//System.out.print("????????????" + timeDouble);
+    				String timeString = String.valueOf(timeDouble);
+    				timeBox.addItem(timeString);
+    			}
+    		}
+    		catch (Exception a) {
+    			System.out.println("\n" + a);
+    			JOptionPane.showMessageDialog(null,  "Error here");
+    			System.out.println("\n" + a);
+    		}finally {
+    			try {
+    				st.close();
+    				rs.close();
+    				conn.close();
+    				
+    			}catch(Exception a) {
+    	    		JOptionPane.showMessageDialog(null,  "Error Close");
+
+    			}
+    		}
+    	}
+    
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -227,9 +356,9 @@ public class StartFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> filmNameBox;
+    private javax.swing.JComboBox<String> dateBox;
+    private javax.swing.JComboBox<String> timeBox;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
