@@ -75,6 +75,8 @@ public class JDBCcinema implements JDBCDB{
 	   {
 		   if(tableName.equals("theatre") || tableName.equals("type"))
 			   length = 2;
+		   else if(tableName.equals("ticket"))
+			   length = 3;
 		   else
 			   length = 4;
 		   try {
@@ -98,10 +100,10 @@ public class JDBCcinema implements JDBCDB{
 					 data = result.getString(1) + ", " + result.getString(2);
 						System.out.println(data);
 				}
-//				else if(length ==3) {
-//					 data = result.getString(1) + ", " + result.getString(2) + ", " + result.getString(3); 
-//					 	System.out.println(data);
-//				}
+				else if(length ==3) {
+					 data = result.getString(1) + ", " + result.getString(2) + ", " + result.getString(3); 
+					 	System.out.println(data);
+				}
 					 else {
 					data = result.getString(1) + ", " + result.getString(2) + ", " + result.getString(3) + ", " + result.getInt(4);
 					System.out.println(data);

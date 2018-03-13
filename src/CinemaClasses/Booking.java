@@ -130,6 +130,20 @@ public class Booking extends JDBCcinema{
 					  "'" + getCost() + "') "; 
 		JDBCcinema database = new JDBCcinema();
 		database.insertIntoDatabase(booking);
+		Ticket ticket = new Ticket();
+		for(int i =0; i<numOfAdults;  i++) {
+			
+			ticket.addTicketToDB("Adult", bookingNum, screeningNum);
+			
+		}
+		for(int i =0; i<numOfChildren;  i++) {
+			
+			ticket.addTicketToDB("Child", bookingNum, screeningNum);	
+		}
+		for(int i =0; i<numOfStudents;  i++) {
+			
+			ticket.addTicketToDB("Student", bookingNum, screeningNum);	
+		}
 		
 		
 		
