@@ -6,8 +6,20 @@
 package cinemasystem;
 
 import java.awt.Window;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -15,7 +27,11 @@ import javax.swing.SwingUtilities;
  */
 public class ViewSchedule extends javax.swing.JFrame {
 
-    
+	private final String USER_NAME = "root";
+	private final String PASSWORD = "password";
+    Connection conn;
+    Statement st;
+    ResultSet rs;
         
         
         
@@ -38,27 +54,28 @@ public class ViewSchedule extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        closeButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Film Schedule");
 
-        jButton1.setText("close");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        closeButton.setText("close");
+        closeButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        closeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -66,7 +83,27 @@ public class ViewSchedule extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        
+        
+        table.addFocusListener(new FocusListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		tableActionPerformed(e);
+        	}
+
+			@Override
+			public void focusGained(FocusEvent e) {
+				// TODO Auto-generated method stub
+				fetch();
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				// TODO Auto-generated method stub
+				fetch();
+			}
+        });
+          
+        jScrollPane1.setViewportView(table);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -80,7 +117,7 @@ public class ViewSchedule extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(closeButton)
                         .addGap(27, 27, 27))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -94,12 +131,41 @@ public class ViewSchedule extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(closeButton)
                 .addGap(19, 19, 19))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void fetch() {
+   	 
+    	try {
+    		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema", USER_NAME, PASSWORD);
+ 			st = conn.createStatement();
+ 			String s = "Select * from film";
+ 			rs = st.executeQuery(s);
+ 			
+ 			table.setModel(DbUtils.resultSetToTableModel(rs));
+ 			//while(rs.next()) {
+ 			//	dateBox.addItem(rs.getString(1));
+ 			//}
+ 		}
+ 		catch (Exception a) {
+ 		JOptionPane.showMessageDialog(null,  "Error");
+ 		}finally {
+ 			try {
+ 				st.close();
+ 				rs.close();
+ 				conn.close();
+ 				
+ 			}catch(Exception a) {
+ 	    		JOptionPane.showMessageDialog(null,  "Error Close");
+
+ 			}
+ 		}
+    }
+    	
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
        
@@ -114,6 +180,12 @@ public class ViewSchedule extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+    
+    private void tableActionPerformed(ActionEvent e) {
+        
+    	fetch();
+    		
+    }
 
     /**
      * @param args the command line arguments
@@ -124,6 +196,7 @@ public class ViewSchedule extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+    	
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -151,9 +224,9 @@ public class ViewSchedule extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton closeButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }
