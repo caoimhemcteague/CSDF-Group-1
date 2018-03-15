@@ -47,7 +47,7 @@ public class StartFrame extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+       // cancelButton = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         filmNameBox = new javax.swing.JComboBox<>();
         dateBox = new javax.swing.JComboBox<>();
@@ -89,12 +89,12 @@ public class StartFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("Cancel Ticket");
-        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton5MouseClicked(evt);
-            }
-        });
+      //  cancelButton.setText("Cancel Ticket");
+      //  cancelButton.addMouseListener(new java.awt.event.MouseAdapter() {
+       //     public void mouseClicked(java.awt.event.MouseEvent evt) {
+        //        jButton5MouseClicked(evt);
+        //    }
+       // });
         
         
         filmNameBox.addActionListener(new ActionListener() {
@@ -118,10 +118,10 @@ public class StartFrame extends javax.swing.JFrame {
        
         
 
-        filmNameBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Select Film"}));
+        filmNameBox.setModel(new DefaultComboBoxModel<>(new String[] {"Select Film"}));
 
         try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema", USER_NAME, PASSWORD);
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema?autoReconnect=true&useSSL=false", USER_NAME, PASSWORD);
 			st = conn.createStatement();
 			String s = "Select Name from film";
 			rs = st.executeQuery(s);
@@ -166,7 +166,7 @@ public class StartFrame extends javax.swing.JFrame {
                                 .addComponent(dateBox, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jButton6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                               // .addComponent(cancelButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -194,7 +194,7 @@ public class StartFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5)
+              //  .addComponent(cancelButton)
                 .addGap(18, 18, 18)
                 .addComponent(jButton6)
                 .addGap(47, 47, 47))
@@ -221,10 +221,10 @@ public class StartFrame extends javax.swing.JFrame {
        Info.setVisible(true);// TODO add your handling code here:  // TODO add your handling code here:
     }//GEN-LAST:event_jButton4MouseClicked
 
-    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
-        CancelTicket Cancel = new CancelTicket();
-       Cancel.setVisible(true);  // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5MouseClicked
+ //   private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+ //       CancelTicket Cancel = new CancelTicket();
+ //      Cancel.setVisible(true);  // TODO add your handling code here:
+ //   }//GEN-LAST:event_jButton5MouseClicked
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
         AdminLogIn Admin = new AdminLogIn();
@@ -354,7 +354,7 @@ public class StartFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton cancelButton;
     private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> filmNameBox;
     private javax.swing.JComboBox<String> dateBox;
