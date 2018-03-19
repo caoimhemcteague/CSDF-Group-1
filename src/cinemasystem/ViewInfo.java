@@ -5,9 +5,13 @@
  */
 package cinemasystem;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Window;
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
+import javax.swing.border.Border;
+import javax.swing.BorderFactory;
 
 /**
  *
@@ -32,17 +36,25 @@ public class ViewInfo extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        closeJButton = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        
+        //Border border = BorderFactory.createLineBorder(Color.BLACK, 5);
+        //Border border = BorderFactory.createBevelBorder(5, Color.BLACK, Color.GREEN);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("View Film Info");
+        jLabel1.setFont(new Font("sansserif", Font.BOLD, 24));
+        jLabel1.setForeground(Color.PINK);
+        //jLabel1.setBorder(border);
 
-        jButton1.setText("Close");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        closeJButton.setText("Close");
+        closeJButton.setBackground(Color.RED);
+        closeJButton.setFont(new Font("sansserif", Font.BOLD, 16));
+        closeJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
@@ -65,6 +77,7 @@ public class ViewInfo extends javax.swing.JFrame {
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
+        getContentPane().setBackground(Color.GRAY);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -80,7 +93,7 @@ public class ViewInfo extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                        .addComponent(closeJButton)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 60, Short.MAX_VALUE)
@@ -97,7 +110,7 @@ public class ViewInfo extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(closeJButton)
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -146,7 +159,7 @@ public class ViewInfo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton closeJButton;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

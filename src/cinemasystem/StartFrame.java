@@ -57,13 +57,19 @@ public class StartFrame extends javax.swing.JFrame {
         setBackground(new java.awt.Color(153, 255, 255));
         setForeground(new java.awt.Color(153, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
+        //jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        //jLabel1.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel1.setFont(new Font("sansserif", Font.BOLD, 20));
+        jLabel1.setForeground(Color.PINK);
         jLabel1.setText("Cinema System");
 
         makeBookingJB.setText("Make Booking");
+        makeBookingJB.setBackground(Color.CYAN);
+        makeBookingJB.setFont(new Font("sansserif", Font.BOLD, 16));
 
         viewScheduleJB.setText("View Schedule");
+        viewScheduleJB.setBackground(Color.CYAN);
+        viewScheduleJB.setFont(new Font("sansserif", Font.BOLD, 16));
         viewScheduleJB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton2MouseClicked(evt);
@@ -76,6 +82,8 @@ public class StartFrame extends javax.swing.JFrame {
         });
 
         viewTrailersJB.setText("View Trailers");
+        viewTrailersJB.setBackground(Color.CYAN);
+        viewTrailersJB.setFont(new Font("sansserif", Font.BOLD, 16));
         viewTrailersJB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton3MouseClicked(evt);
@@ -83,6 +91,8 @@ public class StartFrame extends javax.swing.JFrame {
         });
 
         viewInfoJB.setText("View Info");
+        viewInfoJB.setBackground(Color.CYAN);
+        viewInfoJB.setFont(new Font("sansserif", Font.BOLD, 16));
         viewInfoJB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton4MouseClicked(evt);
@@ -110,6 +120,8 @@ public class StartFrame extends javax.swing.JFrame {
         });
 
         adminLogin.setText("Admin Login");
+        adminLogin.setBackground(Color.CYAN);
+        adminLogin.setFont(new Font("sansserif", Font.BOLD, 16));
         adminLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton6MouseClicked(evt);
@@ -150,6 +162,7 @@ public class StartFrame extends javax.swing.JFrame {
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
+        getContentPane().setBackground(Color.GRAY);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()

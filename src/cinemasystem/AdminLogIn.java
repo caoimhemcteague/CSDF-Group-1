@@ -5,6 +5,8 @@
  */
 package cinemasystem;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Window;
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
@@ -34,12 +36,14 @@ public class AdminLogIn extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         TextUserName = new javax.swing.JTextField();
         TextPassword = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        closeJButton = new javax.swing.JButton();
+        loginJButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
+        
         jLabel1.setText("Admin Log In");
+        jLabel1.setFont(new Font("sansserif", Font.BOLD, 24));
+        jLabel1.setForeground(Color.PINK);
 
         TextUserName.setText("Username");
         TextUserName.addActionListener(new java.awt.event.ActionListener() {
@@ -50,15 +54,19 @@ public class AdminLogIn extends javax.swing.JFrame {
 
         TextPassword.setText("jPasswordField1");
 
-        jButton1.setText("Close");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        closeJButton.setText("Close");
+        closeJButton.setBackground(Color.RED);
+        closeJButton.setFont(new Font("sansserif", Font.BOLD, 16));
+        closeJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Log In");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        loginJButton.setText("Log In");
+        loginJButton.setBackground(Color.GREEN);
+        loginJButton.setFont(new Font("sansserif", Font.BOLD, 16));
+        loginJButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton2MouseClicked(evt);
             }
@@ -66,6 +74,7 @@ public class AdminLogIn extends javax.swing.JFrame {
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
+        getContentPane().setBackground(Color.GRAY);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -76,14 +85,14 @@ public class AdminLogIn extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(48, 48, 48)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton2)
+                            .addComponent(loginJButton)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(TextUserName)
                                 .addComponent(TextPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)))))
                 .addContainerGap(156, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(closeJButton)
                 .addGap(28, 28, 28))
         );
         layout.setVerticalGroup(
@@ -96,9 +105,9 @@ public class AdminLogIn extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(TextPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(loginJButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(closeJButton)
                 .addGap(14, 14, 14))
         );
 
@@ -167,8 +176,8 @@ public class AdminLogIn extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField TextPassword;
     private javax.swing.JTextField TextUserName;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton closeJButton;
+    private javax.swing.JButton loginJButton;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
