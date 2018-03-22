@@ -15,19 +15,34 @@ import javax.swing.SwingUtilities;
  */
 public class TicketBooking extends javax.swing.JFrame{
 
+		static String AdultPrice = "7.00";
+		static String ChildPrice = "5.00";
+		static String OAPPrice = "3.00";
+        static double AdultPrice1 = Double.parseDouble(AdultPrice);
+        static double ChildPrice1 = Double.parseDouble(ChildPrice);
+        static double OAPPrice1= Double.parseDouble(OAPPrice);
+        
+        static double AdultQ;
+        static double ChildQ;
+        static double OAPQ;
+        static double Price;
     
     StartFrame frame = new StartFrame();
     /**
      * Creates new form TicketBooking
      */
     public TicketBooking() {
-        
-        
         initComponents();
-       
-       
     }
-
+    		
+    public String getPrice(){
+        
+        return String.valueOf(this.Price);
+    }
+    
+       
+        
+       
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -67,25 +82,43 @@ public class TicketBooking extends javax.swing.JFrame{
         });
 
         jButton2.setText("Accept");
-
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        
+        
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 0, 0));
         jLabel3.setText("Ticket Booking");
 
-        jLabel4.setText("Theatre Adult Ticket @ X Amount");
+        jLabel4.setText("Theatre Adult Ticket @ £" + AdultPrice + " Amount");
 
-        jLabel5.setText("Theatre Child Tickets @ Y Amount");
+        jLabel5.setText("Theatre Child Tickets @ £" + ChildPrice + " Amount");
 
-        jLabel6.setText("Theatre OAP Tickets @ Z Amount");
+        jLabel6.setText("Theatre OAP Tickets @ £" + OAPPrice + " Amount");
 
         jLabel7.setText("Please Select Quantity of Tickets:");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
-
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
-
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
-
+        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox3ActionPerformed(evt);
+            }
+        });
         jLabel8.setText("You Are Viewing:");
 
         jLabel9.setText("Date:");
@@ -192,6 +225,31 @@ public class TicketBooking extends javax.swing.JFrame{
          Window win = SwingUtilities.getWindowAncestor(comp);
          win.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+    
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        Price = ((AdultQ * AdultPrice1) + (ChildQ * ChildPrice1) + (OAPQ * OAPPrice1));
+        Payment pay = new Payment();
+        pay.setVisible(true);
+        // TODO add your handling code here:
+    }   
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        String tmp = null;
+        tmp = jComboBox1.getSelectedItem().toString();
+        ChildQ = Double.parseDouble(tmp);
+    } 
+    
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        String tmp = null;
+        tmp = jComboBox1.getSelectedItem().toString();
+        OAPQ = Double.parseDouble(tmp);
+    }   
+    
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        String tmp = null;
+        tmp = jComboBox1.getSelectedItem().toString();
+        AdultQ = Double.parseDouble(tmp);
+        
+    }  
 
     /**
      * @param args the command line arguments
