@@ -94,12 +94,7 @@ public class StartFrame extends javax.swing.JFrame {
                 jButton2MouseClicked(evt);
             }
         });
-        viewScheduleJB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
+  
         viewTrailersJB.setText("View Trailers");
         viewTrailersJB.setBackground(Color.CYAN);
         viewTrailersJB.setFont(new Font("sansserif", Font.BOLD, 16));
@@ -129,6 +124,7 @@ public class StartFrame extends javax.swing.JFrame {
         filmNameBox.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		filmNameBoxActionPerformed(e);
+        
         	}
         });
         
@@ -267,11 +263,39 @@ public class StartFrame extends javax.swing.JFrame {
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
         AdminLogIn Admin = new AdminLogIn();
         Admin.setVisible(true);
-    }//GEN-LAST:event_jButton6MouseClicked
+    //GEN-LAST:event_jButton6MouseClicked
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        filmNameBox.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jComboBox1ActionPerformed(evt);
+        }
+        });
+        
+        dateBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
+        
+        timeBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox3ActionPerformed(evt);
+            }
+        });
+}
+    
+        private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        
+        film = filmNameBox.getSelectedItem().toString();
+    		}
+    
+    		private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    		       date = dateBox.getSelectedItem().toString(); 
+    		    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    		    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+    		       time = timeBox.getSelectedItem().toString();
+    		    }//
 
     private void filmNameBoxActionPerformed(ActionEvent e) {
     	 //Fill the JComboBox1 with Film Names
@@ -351,6 +375,7 @@ public class StartFrame extends javax.swing.JFrame {
     	}
     
     }
+    
     
     /**
      * @param args the command line arguments
