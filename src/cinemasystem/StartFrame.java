@@ -21,6 +21,9 @@ public class StartFrame extends javax.swing.JFrame {
     Connection conn;
     Statement st;
     ResultSet rs;
+    static String film;
+    static String time;
+    static String date;
    
 	
     /**
@@ -31,6 +34,17 @@ public class StartFrame extends javax.swing.JFrame {
         
     		
     	}
+    
+    public String getFilm(){
+        return this.film ;
+    }
+    public String getTime(){
+        return this.time;
+    }
+    public String getDate(){
+        return this.date;
+    }
+    
         
 
     /**
@@ -66,6 +80,11 @@ public class StartFrame extends javax.swing.JFrame {
         makeBookingJB.setText("Make Booking");
         makeBookingJB.setBackground(Color.CYAN);
         makeBookingJB.setFont(new Font("sansserif", Font.BOLD, 16));
+        makeBookingJB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         viewScheduleJB.setText("View Schedule");
         viewScheduleJB.setBackground(Color.CYAN);
@@ -215,6 +234,12 @@ public class StartFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        TicketBooking Ticket = new TicketBooking();
+        Ticket.setVisible(true);// TODO add your handling code here:
+    }
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
 
