@@ -38,21 +38,31 @@ public class AdminLogIn extends javax.swing.JFrame {
         TextPassword = new javax.swing.JPasswordField();
         closeJButton = new javax.swing.JButton();
         loginJButton = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         
         jLabel1.setText("Admin Log In");
         jLabel1.setFont(new Font("sansserif", Font.BOLD, 24));
         jLabel1.setForeground(Color.PINK);
+        
+        jLabel2.setText("Username:");
+        jLabel2.setFont(new Font("sansserif", Font.BOLD, 18));
+        jLabel2.setForeground(Color.PINK);
+        
+        jLabel3.setText("Password:");
+        jLabel3.setFont(new Font("sansserif", Font.BOLD, 18));
+        jLabel3.setForeground(Color.PINK);
 
-        TextUserName.setText("Username");
+        TextUserName.setText("");
         TextUserName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TextUserNameActionPerformed(evt);
             }
         });
 
-        TextPassword.setText("jPasswordField1");
+        TextPassword.setText("");
 
         closeJButton.setText("Close");
         closeJButton.setBackground(Color.RED);
@@ -85,7 +95,9 @@ public class AdminLogIn extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(48, 48, 48)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(loginJButton)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                        		.addComponent(loginJButton)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(TextUserName)
                                 .addComponent(TextPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)))))
@@ -101,6 +113,10 @@ public class AdminLogIn extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(56, 56, 56)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(TextUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(TextPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -179,5 +195,7 @@ public class AdminLogIn extends javax.swing.JFrame {
     private javax.swing.JButton closeJButton;
     private javax.swing.JButton loginJButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }
