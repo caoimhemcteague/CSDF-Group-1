@@ -36,13 +36,13 @@ public class StartFrame extends javax.swing.JFrame {
     	}
     
     public String getFilm(){
-        return this.film ;
+        return StartFrame.film ;
     }
     public String getTime(){
-        return this.time;
+        return StartFrame.time;
     }
     public String getDate(){
-        return this.date;
+        return StartFrame.date;
     }
     
         
@@ -232,7 +232,9 @@ public class StartFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+    	    film = filmNameBox.getSelectedItem().toString();
+    	    date = dateBox.getSelectedItem().toString(); 
+    	    time = timeBox.getSelectedItem().toString();
         TicketBooking Ticket = new TicketBooking();
         Ticket.setVisible(true);// TODO add your handling code here:
     }
@@ -264,38 +266,7 @@ public class StartFrame extends javax.swing.JFrame {
         AdminLogIn Admin = new AdminLogIn();
         Admin.setVisible(true);
     //GEN-LAST:event_jButton6MouseClicked
-
-        filmNameBox.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jComboBox1ActionPerformed(evt);
-        }
-        });
-        
-        dateBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
-            }
-        });
-        
-        timeBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox3ActionPerformed(evt);
-            }
-        });
-}
-    
-        private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        
-        film = filmNameBox.getSelectedItem().toString();
-    		}
-    
-    		private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-    		       date = dateBox.getSelectedItem().toString(); 
-    		    }//GEN-LAST:event_jComboBox2ActionPerformed
-
-    		    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
-    		       time = timeBox.getSelectedItem().toString();
-    		    }//
+    }  
 
     private void filmNameBoxActionPerformed(ActionEvent e) {
     	 //Fill the JComboBox1 with Film Names
