@@ -8,14 +8,31 @@ package cinemasystem;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Window;
+import java.awt.event.ActionEvent;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+
+import net.proteanit.sql.DbUtils;
 
 /**
  *
  * @author christophermclaughlin
  */
 public class AdminPage extends javax.swing.JFrame {
+	
+	private final String USER_NAME = "root";
+	private final String PASSWORD = "password";
+    Connection conn;
+    Statement st;
+    ResultSet rs;
 
     /**
      * Creates new form AdminPage
@@ -39,7 +56,7 @@ public class AdminPage extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         addFilmJButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table = new javax.swing.JTable();
         closeJButton = new javax.swing.JButton();
         editFilmJButton = new javax.swing.JButton();
 
@@ -64,7 +81,7 @@ public class AdminPage extends javax.swing.JFrame {
         addFilmJButton.setFont(new Font("sansserif", Font.BOLD, 16));
         
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -75,7 +92,25 @@ public class AdminPage extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        
+        table.addFocusListener(new FocusListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		tableActionPerformed(e);
+        	}
+
+			@Override
+			public void focusGained(FocusEvent e) {
+				// TODO Auto-generated method stub
+				fetch();
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				// TODO Auto-generated method stub
+				fetch();
+			}
+        });
+        jScrollPane1.setViewportView(table);
 
         closeJButton.setText("Close");
         closeJButton.setBackground(Color.RED);
@@ -143,6 +178,34 @@ public class AdminPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void fetch() {
+      	 
+    	try {
+    		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema", USER_NAME, PASSWORD);
+ 			st = conn.createStatement();
+ 			String s = "Select * from film";
+ 			rs = st.executeQuery(s);
+ 			
+ 			table.setModel(DbUtils.resultSetToTableModel(rs));
+ 			//while(rs.next()) {
+ 			//	dateBox.addItem(rs.getString(1));
+ 			//}
+ 		}
+ 		catch (Exception a) {
+ 		JOptionPane.showMessageDialog(null,  "Error");
+ 		}finally {
+ 			try {
+ 				st.close();
+ 				rs.close();
+ 				conn.close();
+ 				
+ 			}catch(Exception a) {
+ 	    		JOptionPane.showMessageDialog(null,  "Error Close");
+
+ 			}
+ 		}
+    }
+    
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
          JComponent comp = (JComponent) evt.getSource();
          Window win = SwingUtilities.getWindowAncestor(comp);
@@ -152,6 +215,13 @@ public class AdminPage extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    
+private void tableActionPerformed(ActionEvent e) {
+        
+    	fetch();
+    		
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -193,6 +263,6 @@ public class AdminPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }
