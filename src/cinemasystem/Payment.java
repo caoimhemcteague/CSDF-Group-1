@@ -1,8 +1,17 @@
 package cinemasystem;
 
 import java.awt.Window;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
+
+import CinemaClasses.JTextFieldLimit;
 
 
 /*
@@ -38,12 +47,12 @@ public class Payment extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        cardTF = new javax.swing.JTextField(19);
         jLabel6 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        securityCodeTF = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        cardHolderNameTF = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jToggleButton1 = new javax.swing.JToggleButton();
         jToggleButton2 = new javax.swing.JToggleButton();
@@ -58,22 +67,24 @@ public class Payment extends javax.swing.JFrame {
         jLabel4.setText("Your Order Total Is "+ TicketBooking.Price);
 
         jLabel5.setText("Card Number:");
-
-        jTextField1.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField1.setText("   Card Number");
+        
+        cardTF.setDocument(new JTextFieldLimit(19));
+        cardTF.setForeground(new java.awt.Color(204, 204, 204));
+        cardTF.setText("   Card Number");
 
         jLabel6.setText("Expiry:");
 
         jTextField2.setForeground(new java.awt.Color(204, 204, 204));
         jTextField2.setText("  MM / YY");
 
-        jTextField3.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField3.setText("  Security Code");
+        securityCodeTF.setDocument(new JTextFieldLimit(3));
+        securityCodeTF.setForeground(new java.awt.Color(204, 204, 204));
+        securityCodeTF.setText("CSC");
 
         jLabel7.setText("Security Code:");
 
-        jTextField4.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField4.setText("  Cardholer Name");
+        cardHolderNameTF.setForeground(new java.awt.Color(204, 204, 204));
+        cardHolderNameTF.setText("  Cardholer Name");
 
         jLabel8.setText("Cardholder Name");
 
@@ -87,6 +98,101 @@ public class Payment extends javax.swing.JFrame {
                 jToggleButton2ActionPerformed(evt);
             }
         });
+        
+        cardTF.addFocusListener(new FocusListener() {
+        	public void focusGained(FocusEvent e) {
+        		cardTFfocusGained(e);
+        
+        	}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				cardTFfocusLost(e);
+				
+			}
+        });
+        
+        
+        securityCodeTF.addFocusListener(new FocusListener() {
+        	public void focusGained(FocusEvent e) {
+        		securityCodeTFfocusGained(e);
+        
+        	}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				securityCodeTFfocusLost(e);
+				
+			}
+        });
+        
+        cardHolderNameTF.addFocusListener(new FocusListener() {
+        	public void focusGained(FocusEvent e) {
+        		cardHolderNameTFfocusGained(e);
+        
+        	}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				cardHolderNameTFfocusLost(e);
+				
+			}
+        });
+        
+        cardTF.addKeyListener(new KeyListener() {
+        	public void keyTyped(KeyEvent e) {
+        		cardTFkeyTyped(e);
+        	}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+        });
+        
+        securityCodeTF.addKeyListener(new KeyListener() {
+        	public void keyTyped(KeyEvent e) {
+        		securityCodeTFkeyTyped(e);
+        	}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+        });
+        
+        cardHolderNameTF.addKeyListener(new KeyListener() {
+        	public void keyTyped(KeyEvent e) {
+        		cardHolderNameTFkeyTyped(e);
+        	}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+        });
+        
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,7 +212,7 @@ public class Payment extends javax.swing.JFrame {
                                 .addComponent(jLabel3)
                                 .addComponent(jLabel5)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jTextField1)
+                                    .addComponent(cardTF)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -117,8 +223,8 @@ public class Payment extends javax.swing.JFrame {
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jLabel7)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addComponent(jTextField3)))
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                            .addComponent(securityCodeTF)))
+                                    .addComponent(cardHolderNameTF, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(158, 158, 158)
                         .addComponent(jLabel1)))
@@ -136,7 +242,7 @@ public class Payment extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cardTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -144,11 +250,11 @@ public class Payment extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(securityCodeTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
                 .addGap(3, 3, 3)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cardHolderNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jToggleButton1)
@@ -164,6 +270,73 @@ public class Payment extends javax.swing.JFrame {
          Window win = SwingUtilities.getWindowAncestor(comp);
          win.dispose();
     }//GEN-LAST:event_jToggleButton2ActionPerformed
+    
+    private void cardHolderNameTFfocusGained(FocusEvent e) {
+    	if(cardHolderNameTF.getText().equals("  Cardholer Name")) {
+    		cardHolderNameTF.setText("");
+    	}
+    	
+    }
+    
+    private void cardHolderNameTFfocusLost(FocusEvent e) {
+    	if(cardHolderNameTF.getText().equals("")) {
+    		cardHolderNameTF.setText("  Cardholer Name");
+    	}
+    	
+    }
+    
+    private void securityCodeTFfocusGained(FocusEvent e) {
+    	if(securityCodeTF.getText().equals("CSC")) {
+    			securityCodeTF.setText("");
+    	}
+    	
+    }
+    
+    private void securityCodeTFfocusLost(FocusEvent e) {
+    	if(securityCodeTF.getText().equals("")) {
+    		securityCodeTF.setText("CSC");
+    	}
+    	
+    }
+    
+    private void cardTFfocusGained(FocusEvent e) {
+    	if(cardTF.getText().equals("   Card Number")) {
+    			cardTF.setText("");
+    	}
+    	
+    }
+    
+    private void cardTFfocusLost(FocusEvent e) {
+    	if(cardTF.getText().equals("")) {
+    	cardTF.setText("   Card Number");
+    	}
+    	
+    }
+    
+    private void cardTFkeyTyped(KeyEvent e) {
+    	char c = e.getKeyChar();
+    	if(!(Character.isDigit(c)) || c==KeyEvent.VK_BACK_SPACE || c==KeyEvent.VK_DELETE) {
+    		e.consume();
+    	}
+    	
+    }
+    
+    private void securityCodeTFkeyTyped(KeyEvent e) {
+    	char c = e.getKeyChar();
+    	if(!(Character.isDigit(c)) || c==KeyEvent.VK_BACK_SPACE || c==KeyEvent.VK_DELETE) {
+    		e.consume();
+    	}
+    	
+    }
+    
+    
+    private void cardHolderNameTFkeyTyped(KeyEvent e) {
+    	char c = e.getKeyChar();
+    	if((Character.isDigit(c)) || c==KeyEvent.VK_BACK_SPACE || c==KeyEvent.VK_DELETE) {
+    		e.consume();
+    	}
+    	
+    }
 
     /**
      * @param args the command line arguments
@@ -208,10 +381,10 @@ public class Payment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField cardTF;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField securityCodeTF;
+    private javax.swing.JTextField cardHolderNameTF;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
     // End of variables declaration//GEN-END:variables
