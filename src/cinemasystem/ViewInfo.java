@@ -8,10 +8,17 @@ package cinemasystem;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Window;
+import java.sql.DriverManager;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -22,6 +29,12 @@ public class ViewInfo extends javax.swing.JFrame {
     /**
      * Creates new form ViewInfo
      */
+	private final String USER_NAME = "root";
+	private final String PASSWORD = "password";
+    Connection conn;
+    Statement st;
+    ResultSet rs;
+    
     public ViewInfo() {
         initComponents();
     }
@@ -60,8 +73,33 @@ public class ViewInfo extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        //jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new DefaultComboBoxModel<>(new String[] {"Select Film"}));
 
+        try {
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema?autoReconnect=true&useSSL=false", USER_NAME, PASSWORD);
+			st = conn.createStatement();
+			String s = "Select Name from film";
+			rs = st.executeQuery(s);
+			while(rs.next()) {
+				jComboBox1.addItem(rs.getString(1));
+			}
+		}
+		catch (Exception b) {
+		JOptionPane.showMessageDialog(null,  "Error");
+		}finally {
+			try {
+				st.close();
+				rs.close();
+				conn.close();
+				
+			}catch(Exception b) {
+	    		JOptionPane.showMessageDialog(null,  "Error Close");
+
+			}
+		}
+        
+        
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
