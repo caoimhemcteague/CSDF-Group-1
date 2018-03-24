@@ -40,6 +40,7 @@ public class AdminPage extends javax.swing.JFrame {
      */
     public AdminPage() {
         initComponents();
+        fetch();
     }
 
     /**
@@ -99,23 +100,6 @@ public class AdminPage extends javax.swing.JFrame {
             }
         ));
         
-        table.addFocusListener(new FocusListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		tableActionPerformed(e);
-        	}
-
-			@Override
-			public void focusGained(FocusEvent e) {
-				// TODO Auto-generated method stub
-				fetch();
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				// TODO Auto-generated method stub
-				fetch();
-			}
-        });
         jScrollPane1.setViewportView(table);
 
         closeJButton.setText("Close");
@@ -214,7 +198,7 @@ public class AdminPage extends javax.swing.JFrame {
     	try {
     		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema", USER_NAME, PASSWORD);
  			st = conn.createStatement();
- 			String s = "Select * from film";
+ 			String s = "Select Name, PG_Rating, Genre, Duration from film;";
  			rs = st.executeQuery(s);
  			
  			table.setModel(DbUtils.resultSetToTableModel(rs));
@@ -235,6 +219,31 @@ public class AdminPage extends javax.swing.JFrame {
 
  			}
  		}
+    	
+    	jComboBox1.setModel(new DefaultComboBoxModel<>(new String[] {"Select Film"}));
+
+        try {
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema?autoReconnect=true&useSSL=false", USER_NAME, PASSWORD);
+			st = conn.createStatement();
+			String s = "Select Name from film";
+			rs = st.executeQuery(s);
+			while(rs.next()) {
+				jComboBox1.addItem(rs.getString(1));
+			}
+		}
+		catch (Exception b) {
+		JOptionPane.showMessageDialog(null,  "Error");
+		}finally {
+			try {
+				st.close();
+				rs.close();
+				conn.close();
+				
+			}catch(Exception b) {
+	    		JOptionPane.showMessageDialog(null,  "Error Close");
+
+			}
+		}
     }
     
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -245,16 +254,15 @@ public class AdminPage extends javax.swing.JFrame {
     
     private void removeJButtonActionPerformed(java.awt.event.ActionEvent evt) 
     {
-    	jComboBox1.getSelectedItem().toString();
+    	String filmName = jComboBox1.getSelectedItem().toString();
     	
     	try {
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema", USER_NAME, PASSWORD);
 			st = conn.createStatement();
-			String s = "Delete from film where Name = '" + (String)jComboBox1.getSelectedItem();
-			rs = st.executeQuery(s);
-			while(rs.next()) {
-				
-			}
+			String s = "Delete from film where Name = '" + filmName+ "'";
+			st.executeUpdate(s);
+			fetch();
+			
 		}
 		catch (Exception a) {
 			System.out.println("\n" + a);
@@ -278,12 +286,6 @@ public class AdminPage extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
-private void tableActionPerformed(ActionEvent e) {
-        
-    	fetch();
-    		
-    }
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
