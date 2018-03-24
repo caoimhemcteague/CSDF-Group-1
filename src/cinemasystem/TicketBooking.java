@@ -34,9 +34,6 @@ public class TicketBooking extends javax.swing.JFrame{
 		static String adultPrice = null;
 		static String childPrice = null;
 		static String student_OAP_Price = null;
-    //    static double AdultPrice1 = Double.parseDouble(AdultPrice);
-   //     static double ChildPrice1 = Double.parseDouble(ChildPrice);
-      //  static double OAPPrice1= Double.parseDouble(Student_OAP_Price);
         
         static double AdultQ;
         static double ChildQ;
@@ -113,7 +110,7 @@ public class TicketBooking extends javax.swing.JFrame{
 
         jLabel5.setText("Theatre Child Tickets @ €" + childPrice + " Amount");
 
-        jLabel6.setText("Theatre OAP Tickets @ €" + student_OAP_Price + " Amount");
+        jLabel6.setText("Theatre Student/OAP Tickets @ €" + student_OAP_Price + " Amount");
 
         jLabel7.setText("Please Select Quantity of Tickets:");
 
