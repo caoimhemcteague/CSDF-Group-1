@@ -31,9 +31,9 @@ public class TicketBooking extends javax.swing.JFrame{
         static double childPrice1 = 0;
         static double student_OAP_Price1= 0;
 
-		static String adultPrice = null;
-		static String childPrice = null;
-		static String student_OAP_Price = null;
+		static String adultPrice = "";
+		static String childPrice = "";
+		static String student_OAP_Price = "";
         
         static double AdultQ;
         static double ChildQ;
@@ -45,7 +45,8 @@ public class TicketBooking extends javax.swing.JFrame{
      * Creates new form TicketBooking
      */
     public TicketBooking() {
-        initComponents();
+    	getPrices();
+    	initComponents();  
     }
     		
     public String getPrice(){
@@ -263,17 +264,9 @@ public class TicketBooking extends javax.swing.JFrame{
         AdultQ = Double.parseDouble(tmp);
         
     }  
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-    	   try {
+    
+    public static void getPrices() {
+    	try {
    			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema?autoReconnect=true&useSSL=false", USER_NAME, PASSWORD);
     	//	Connector.createConnection();
     		st = conn.createStatement();
@@ -348,6 +341,18 @@ public class TicketBooking extends javax.swing.JFrame{
 
     	   			}
     	   		}
+    }
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+    	   getPrices();
     	
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

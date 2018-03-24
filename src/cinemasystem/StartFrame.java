@@ -235,8 +235,15 @@ public class StartFrame extends javax.swing.JFrame {
     	    film = filmNameBox.getSelectedItem().toString();
     	    date = dateBox.getSelectedItem().toString(); 
     	    time = timeBox.getSelectedItem().toString();
-        TicketBooking Ticket = new TicketBooking();
-        Ticket.setVisible(true);// TODO add your handling code here:
+    	    if(time.equals("Select Time"))
+    	    {
+    			JOptionPane.showMessageDialog(null,  "Please select a vaild Film, Date & Time to make a booking");
+
+    	    }
+    	    else {
+    	    	TicketBooking Ticket = new TicketBooking();
+    	    	Ticket.setVisible(true);// TODO add your handling code here:
+    	    }
     }
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
