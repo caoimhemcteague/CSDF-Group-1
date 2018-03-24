@@ -6,7 +6,13 @@
 package cinemasystem;
 
 import java.awt.Window;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 /**
@@ -14,17 +20,27 @@ import javax.swing.SwingUtilities;
  * @author christophermclaughlin
  */
 public class TicketBooking extends javax.swing.JFrame{
+	
+		private final static String USER_NAME = "root";
+		private final static String PASSWORD = "password";
+	    static Connection conn;
+	    static Statement st;
+	    static ResultSet rs;
+	    
+	    static double adultPrice1 = 0;
+        static double childPrice1 = 0;
+        static double student_OAP_Price1= 0;
 
-		static String AdultPrice = "7.00";
-		static String ChildPrice = "5.00";
-		static String OAPPrice = "3.00";
-        static double AdultPrice1 = Double.parseDouble(AdultPrice);
-        static double ChildPrice1 = Double.parseDouble(ChildPrice);
-        static double OAPPrice1= Double.parseDouble(OAPPrice);
+		static String adultPrice = null;
+		static String childPrice = null;
+		static String student_OAP_Price = null;
+    //    static double AdultPrice1 = Double.parseDouble(AdultPrice);
+   //     static double ChildPrice1 = Double.parseDouble(ChildPrice);
+      //  static double OAPPrice1= Double.parseDouble(Student_OAP_Price);
         
         static double AdultQ;
         static double ChildQ;
-        static double OAPQ;
+        static double student_OAP_Q;
         static double Price;
     
     StartFrame frame = new StartFrame();
@@ -61,9 +77,9 @@ public class TicketBooking extends javax.swing.JFrame{
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        adultBox = new javax.swing.JComboBox<>();
+        childBox = new javax.swing.JComboBox<>();
+        student_OAP_Box = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -93,28 +109,28 @@ public class TicketBooking extends javax.swing.JFrame{
         jLabel3.setForeground(new java.awt.Color(255, 0, 0));
         jLabel3.setText("Ticket Booking");
 
-        jLabel4.setText("Theatre Adult Ticket @ Â£" + AdultPrice + " Amount");
+        jLabel4.setText("Theatre Adult Ticket @ €" + adultPrice + " Amount");
 
-        jLabel5.setText("Theatre Child Tickets @ Â£" + ChildPrice + " Amount");
+        jLabel5.setText("Theatre Child Tickets @ €" + childPrice + " Amount");
 
-        jLabel6.setText("Theatre OAP Tickets @ Â£" + OAPPrice + " Amount");
+        jLabel6.setText("Theatre OAP Tickets @ €" + student_OAP_Price + " Amount");
 
         jLabel7.setText("Please Select Quantity of Tickets:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        adultBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
+        adultBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
             }
         });
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        childBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
+        childBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);
             }
         });
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
-        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+        student_OAP_Box.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
+        student_OAP_Box.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox3ActionPerformed(evt);
             }
@@ -144,13 +160,13 @@ public class TicketBooking extends javax.swing.JFrame{
                                 .addGap(12, 12, 12)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(adultBox, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jLabel4))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jComboBox2, 0, 70, Short.MAX_VALUE)
-                                            .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addComponent(childBox, 0, 70, Short.MAX_VALUE)
+                                            .addComponent(student_OAP_Box, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addGap(12, 12, 12)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel6)
@@ -200,15 +216,15 @@ public class TicketBooking extends javax.swing.JFrame{
                 .addComponent(jLabel7)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(adultBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(childBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(student_OAP_Box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -227,26 +243,26 @@ public class TicketBooking extends javax.swing.JFrame{
     }//GEN-LAST:event_jButton1ActionPerformed
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        Price = ((AdultQ * AdultPrice1) + (ChildQ * ChildPrice1) + (OAPQ * OAPPrice1));
+        Price = ((AdultQ * adultPrice1) + (ChildQ * childPrice1) + (student_OAP_Q * student_OAP_Price1));
         Payment pay = new Payment();
         pay.setVisible(true);
         // TODO add your handling code here:
     }   
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         String tmp = null;
-        tmp = jComboBox1.getSelectedItem().toString();
+        tmp = childBox.getSelectedItem().toString();
         ChildQ = Double.parseDouble(tmp);
     } 
     
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         String tmp = null;
-        tmp = jComboBox1.getSelectedItem().toString();
-        OAPQ = Double.parseDouble(tmp);
+        tmp = student_OAP_Box.getSelectedItem().toString();
+        student_OAP_Q = Double.parseDouble(tmp);
     }   
     
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         String tmp = null;
-        tmp = jComboBox1.getSelectedItem().toString();
+        tmp = adultBox.getSelectedItem().toString();
         AdultQ = Double.parseDouble(tmp);
         
     }  
@@ -260,6 +276,82 @@ public class TicketBooking extends javax.swing.JFrame{
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+    	   try {
+   			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema?autoReconnect=true&useSSL=false", USER_NAME, PASSWORD);
+    	//	Connector.createConnection();
+    		st = conn.createStatement();
+   			String s = "Select Cost from cinema.type where name = 'Adult'";
+   			rs = st.executeQuery(s);
+   			while(rs.next()) {
+   					adultPrice1= rs.getDouble(1);
+   					adultPrice=String.valueOf(adultPrice1);
+   				}
+   			}
+   		catch (Exception b) {
+   		JOptionPane.showMessageDialog(null,  "Error");
+   		}finally {
+   			try {
+   				st.close();
+   				rs.close();
+   				conn.close();
+   				
+   			}catch(Exception b) {
+   	    		JOptionPane.showMessageDialog(null,  "Error Close");
+
+   			}
+   		}
+    	   
+    	   try {
+    	   			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema?autoReconnect=true&useSSL=false", USER_NAME, PASSWORD);
+    	    		//Connector.createConnection();
+    	    		st = conn.createStatement();
+    	   			String s = "Select Cost from cinema.type where name = 'Child'";
+    	   			rs = st.executeQuery(s);
+    	   			while(rs.next()) {
+    	   				childPrice1= rs.getDouble(1);
+    	   				childPrice=String.valueOf(childPrice1);
+    	   					
+    	   			}
+    	   		}
+    	   		catch (Exception b) {
+    	   		JOptionPane.showMessageDialog(null,  "Error");
+    	   		}finally {
+    	   			try {
+    	   				st.close();
+    	   				rs.close();
+    	   				conn.close();
+    	   				
+    	   			}catch(Exception b) {
+    	   	    		JOptionPane.showMessageDialog(null,  "Error Close");
+
+    	   			}
+    	   		}
+    	   
+    	   try {
+    	   			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema?autoReconnect=true&useSSL=false", USER_NAME, PASSWORD);
+    	    		//Connector.createConnection();
+    	    		st = conn.createStatement();
+    	   			String s = "Select Cost from cinema.type where name = 'Student/OAP'";
+    	   			rs = st.executeQuery(s);
+    	   			while(rs.next()) {
+    	   					student_OAP_Price1 = rs.getDouble(1);
+    	   					student_OAP_Price=String.valueOf(student_OAP_Price1);
+    	   				}
+    	   			}
+    	   		catch (Exception b) {
+    	   		JOptionPane.showMessageDialog(null,  "Error");
+    	   		}finally {
+    	   			try {
+    	   				st.close();
+    	   				rs.close();
+    	   				conn.close();
+    	   				
+    	   			}catch(Exception b) {
+    	   	    		JOptionPane.showMessageDialog(null,  "Error Close");
+
+    	   			}
+    	   		}
+    	
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -289,9 +381,9 @@ public class TicketBooking extends javax.swing.JFrame{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> adultBox;
+    private javax.swing.JComboBox<String> childBox;
+    private javax.swing.JComboBox<String> student_OAP_Box;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

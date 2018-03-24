@@ -8,19 +8,19 @@ public class Booking extends JDBCcinema{
 	public int bookingNum=0; 
 	public int numOfAdults = 0;
 	public int numOfChildren = 0;
-	public int numOfStudents = 0;
-	public int numOfTickets = numOfAdults + numOfChildren + numOfStudents;
+	public int numOfStudents_OAP = 0;
+	public int numOfTickets = numOfAdults + numOfChildren + numOfStudents_OAP;
 	public int screeningNum;
 	public double cost;
 	
 	
 	
 	
-	public Booking(int numOfAdults, int numOfChildren, int numOfStudents, int screeningNum)
+	public Booking(int numOfAdults, int numOfChildren, int numOfStudents_OAP, int screeningNum)
 	{
 		this.numOfAdults=numOfAdults;
 		this.numOfChildren=numOfChildren;
-		this.numOfStudents=numOfStudents;
+		this.numOfStudents_OAP=numOfStudents_OAP;
 		this.screeningNum=screeningNum;
 		bookingNum++;
 	}
@@ -55,7 +55,7 @@ public class Booking extends JDBCcinema{
 	
 	public int getNumberOfTickets()
 	{
-		numOfTickets = numOfAdults + numOfChildren + numOfStudents;
+		numOfTickets = numOfAdults + numOfChildren + numOfStudents_OAP;
 		return numOfTickets;
 	}
 	public int getScreeningNum()
@@ -102,12 +102,12 @@ public class Booking extends JDBCcinema{
 	 			}
 		 try{ 
 	          createConnection();
-	          PreparedStatement statement = conn.prepareStatement("SELECT Cost FROM type WHERE NAME = 'Student'");
+	          PreparedStatement statement = conn.prepareStatement("SELECT Cost FROM type WHERE NAME = 'Student/OAP'");
 			  ResultSet rs = statement.executeQuery();
 	          
 			  while(rs.next())
 			  {  
-				  cost = cost + (rs.getDouble("Cost") * numOfStudents);
+				  cost = cost + (rs.getDouble("Cost") * numOfStudents_OAP);
 				  System.out.println(cost);
 			  }
 			  
@@ -140,9 +140,9 @@ public class Booking extends JDBCcinema{
 			
 			ticket.addTicketToDB("Child", bookingNum, screeningNum);	
 		}
-		for(int i =0; i<numOfStudents;  i++) {
+		for(int i =0; i<numOfStudents_OAP;  i++) {
 			
-			ticket.addTicketToDB("Student", bookingNum, screeningNum);	
+			ticket.addTicketToDB("Student/OAP", bookingNum, screeningNum);	
 		}
 		
 		

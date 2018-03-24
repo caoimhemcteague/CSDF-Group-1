@@ -14,19 +14,19 @@ import java.sql.Statement;
 
 public class Connector {
 
-	private final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	private final String USER_NAME = "root";
-	private final String PASSWORD = "root";
+	private final static String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+	private final static String USER_NAME = "root";
+	private final static String PASSWORD = "password";
 	
 	
-	private Connection conn;
+	private static Connection conn;
 	private Statement stmt;
 	
 	public Connector() {
 		
 	}
 
-	public void createConnection(){
+	public static void createConnection(){
 		try {
 			//1
 			Class.forName(JDBC_DRIVER);
