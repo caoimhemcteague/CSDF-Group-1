@@ -16,6 +16,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -67,6 +68,11 @@ public class AdminPage extends javax.swing.JFrame {
         removeJButton.setText("Remove");
         removeJButton.setBackground(Color.CYAN);
         removeJButton.setFont(new Font("sansserif", Font.BOLD, 16));
+        removeJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	removeJButtonActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Administrator");
         jLabel1.setFont(new Font("sansserif", Font.BOLD, 24));
@@ -124,6 +130,31 @@ public class AdminPage extends javax.swing.JFrame {
         editFilmJButton.setText("Edit Film");
         editFilmJButton.setBackground(Color.CYAN);
         editFilmJButton.setFont(new Font("sansserif", Font.BOLD, 16));
+        
+        jComboBox1.setModel(new DefaultComboBoxModel<>(new String[] {"Select Film"}));
+
+        try {
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema?autoReconnect=true&useSSL=false", USER_NAME, PASSWORD);
+			st = conn.createStatement();
+			String s = "Select Name from film";
+			rs = st.executeQuery(s);
+			while(rs.next()) {
+				jComboBox1.addItem(rs.getString(1));
+			}
+		}
+		catch (Exception b) {
+		JOptionPane.showMessageDialog(null,  "Error");
+		}finally {
+			try {
+				st.close();
+				rs.close();
+				conn.close();
+				
+			}catch(Exception b) {
+	    		JOptionPane.showMessageDialog(null,  "Error Close");
+
+			}
+		}
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -211,6 +242,38 @@ public class AdminPage extends javax.swing.JFrame {
          Window win = SwingUtilities.getWindowAncestor(comp);
          win.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
+    
+    private void removeJButtonActionPerformed(java.awt.event.ActionEvent evt) 
+    {
+    	jComboBox1.getSelectedItem().toString();
+    	
+    	try {
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema", USER_NAME, PASSWORD);
+			st = conn.createStatement();
+			String s = "Delete from film where Name = '" + (String)jComboBox1.getSelectedItem();
+			rs = st.executeQuery(s);
+			while(rs.next()) {
+				
+			}
+		}
+		catch (Exception a) {
+			System.out.println("\n" + a);
+			JOptionPane.showMessageDialog(null,  "Error here");
+			System.out.println("\n" + a);
+		}finally {
+			try {
+				st.close();
+				rs.close();
+				conn.close();
+				
+			}catch(Exception a) {
+	    		JOptionPane.showMessageDialog(null,  "Error Close");
+
+			}
+		}
+    }
+    
+    
 
     /**
      * @param args the command line arguments
