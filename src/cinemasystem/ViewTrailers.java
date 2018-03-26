@@ -5,11 +5,26 @@
  */
 package cinemasystem;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Window;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+
+import chrriis.dj.nativeswing.swtimpl.NativeInterface;
+import chrriis.dj.nativeswing.swtimpl.components.JWebBrowser;
 
 /**
  *
@@ -17,6 +32,12 @@ import javax.swing.SwingUtilities;
  */
 public class ViewTrailers extends javax.swing.JFrame {
 
+	private final String USER_NAME = "root";
+	private final String PASSWORD = "password";
+    Connection conn;
+    Statement st;
+    ResultSet rs;
+    
     /**
      * Creates new form ViewTrailers
      */
@@ -35,6 +56,11 @@ public class ViewTrailers extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         closeButton = new javax.swing.JButton();
+        filmName = new javax.swing.JComboBox<>();
+       // table = new javax.swing.JTable();
+       // jScrollPane1 = new javax.swing.JScrollPane();
+
+
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,6 +76,51 @@ public class ViewTrailers extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        
+        
+        
+        filmName.setModel(new DefaultComboBoxModel<>(new String[] {"Select Film"}));
+        
+        filmName.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		filmNameActionPerformed(e);
+        
+        	}
+        });
+        
+
+        try {
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema?autoReconnect=true&useSSL=false", USER_NAME, PASSWORD);
+			st = conn.createStatement();
+			String s = "Select Name from film";
+			rs = st.executeQuery(s);
+			while(rs.next()) {
+				filmName.addItem(rs.getString(1));
+			}
+		}
+		catch (Exception b) {
+		JOptionPane.showMessageDialog(null,  "Error");
+		}finally {
+			try {
+				st.close();
+				rs.close();
+				conn.close();
+				
+			}catch(Exception b) {
+	    		JOptionPane.showMessageDialog(null,  "Error Close");
+
+			}
+		}
+        
+   /*     table.setModel(new javax.swing.table.DefaultTableModel(
+                new Object [][] {
+                    
+                },
+                new String [] {
+                    "Select a film to view its trailer"
+                }
+            ));
+        jScrollPane1.setViewportView(table);*/
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -62,23 +133,58 @@ public class ViewTrailers extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(159, 159, 159))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            //.addGap(40, 40, 40)
+                            .addComponent(filmName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                			.addGap(0, 0, Short.MAX_VALUE))
+            		.addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+            				.addGap(0, 60, Short.MAX_VALUE))
+            	//			.addComponent(jScrollPane1)
+            		//		.addGap(43, 43, 43))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(closeButton)
-                        .addGap(15, 15, 15))))
-        );
+                        .addGap(15, 15, 15)))
+        ;
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 221, Short.MAX_VALUE)
+                .addComponent(filmName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+               // .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+               // .addGap(18, 18, 18)
                 .addComponent(closeButton)
                 .addGap(19, 19, 19))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void filmNameActionPerformed(ActionEvent e) {
+    
+    String value=(String)filmName.getSelectedItem();
 
+   	 if(value.equals("Select Film")) {
+   		 //Do Nothing
+   	 }
+   	 else {
+     playTrailer trailer = new playTrailer(value);	
+	 
+     
+     Thread t = new Thread(new Runnable() {
+    	 public void run() {
+    		  trailer.startTrailer();
+    	 }
+     });
+     t.start();
+      
+	 
+   	 }
+    }
+
+
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JComponent comp = (JComponent) evt.getSource();
          Window win = SwingUtilities.getWindowAncestor(comp);
@@ -95,6 +201,7 @@ public class ViewTrailers extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+	
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -124,5 +231,8 @@ public class ViewTrailers extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton closeButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JComboBox<String> filmName;
+ //   private javax.swing.JScrollPane jScrollPane1;
+   // private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }

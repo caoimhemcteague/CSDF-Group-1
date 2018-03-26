@@ -395,7 +395,7 @@ public class StartFrame extends javax.swing.JFrame {
     private javax.swing.JButton viewScheduleJB;
     private javax.swing.JButton viewTrailersJB;
     private javax.swing.JButton viewInfoJB;
-    private javax.swing.JButton cancelButton;
+   // private javax.swing.JButton cancelButton;
     private javax.swing.JButton adminLogin;
     private javax.swing.JComboBox<String> filmNameBox;
     private javax.swing.JComboBox<String> dateBox;
