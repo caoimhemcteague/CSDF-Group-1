@@ -329,9 +329,13 @@ public class StartFrame extends javax.swing.JFrame {
     						"' AND Date = '" + value + "'";
     			rs = st.executeQuery(s);
     			while(rs.next()) {
+    				
     				double timeDouble = rs.getDouble("Time");
     				//System.out.print("????????????" + timeDouble);
     				String timeString = String.valueOf(timeDouble);
+    				if(timeString.length()<5) {
+    					timeString = timeString+ "0";
+    				}
     				timeBox.addItem(timeString);
     			}
     		}
