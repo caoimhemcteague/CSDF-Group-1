@@ -35,13 +35,13 @@ public class StartFrame extends javax.swing.JFrame {
     		
     	}
     
-    public String getFilm(){
+    public static String getFilm(){
         return StartFrame.film ;
     }
-    public String getTime(){
+    public static String getTime(){
         return StartFrame.time;
     }
-    public String getDate(){
+    public static String getDate(){
         return StartFrame.date;
     }
     

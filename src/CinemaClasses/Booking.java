@@ -53,6 +53,10 @@ public class Booking extends JDBCcinema{
 		 
 	}
 	
+	public int returnBookingNum() {
+		return bookingNum;
+	}
+	
 	public int getNumberOfTickets()
 	{
 		numOfTickets = numOfAdults + numOfChildren + numOfStudents_OAP;

@@ -54,6 +54,19 @@ public class TicketBooking extends javax.swing.JFrame{
         return String.valueOf(this.Price);
     }
     
+    public static int getAdultQ(){
+    	int a = (int)AdultQ;
+        return a;
+    }
+    public static int getChildQ(){
+        int c = (int)ChildQ;
+        return c;
+    }
+    public static int getStudent_OAP_Q(){
+        int s = (int) student_OAP_Q;
+    	return s;
+    }
+    
        
         
        
@@ -240,10 +253,20 @@ public class TicketBooking extends javax.swing.JFrame{
          win.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
     
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        Price = ((AdultQ * adultPrice1) + (ChildQ * childPrice1) + (student_OAP_Q * student_OAP_Price1));
-        Payment pay = new Payment();
-        pay.setVisible(true);
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {    
+    	if(AdultQ ==0 && ChildQ ==0 && student_OAP_Q == 0)
+    	{
+    		JOptionPane.showMessageDialog(null,  "Please select a minimum of 1 ticket");
+
+    	}
+    	else {
+	        Price = ((AdultQ * adultPrice1) + (ChildQ * childPrice1) + (student_OAP_Q * student_OAP_Price1));
+	        Payment pay = new Payment();
+	        pay.setVisible(true);
+	        JComponent comp = (JComponent) evt.getSource();
+	        Window win = SwingUtilities.getWindowAncestor(comp);
+	        win.dispose();
+    	}
         // TODO add your handling code here:
     }   
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {                                           

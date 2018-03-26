@@ -9,9 +9,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
+import CinemaClasses.Booking;
 import CinemaClasses.JTextFieldLimit;
+import CinemaClasses.Screening;
 
 
 /*
@@ -49,13 +52,13 @@ public class Payment extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         cardTF = new javax.swing.JTextField(19);
         jLabel6 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        dateTF = new javax.swing.JTextField();
         securityCodeTF = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         cardHolderNameTF = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
+        payBT = new javax.swing.JToggleButton();
+        cancelBT = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,8 +77,9 @@ public class Payment extends javax.swing.JFrame {
 
         jLabel6.setText("Expiry:");
 
-        jTextField2.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField2.setText("  MM / YY");
+        dateTF.setDocument(new JTextFieldLimit(5));
+        dateTF.setForeground(new java.awt.Color(204, 204, 204));
+        dateTF.setText("MM/YY");
 
         securityCodeTF.setDocument(new JTextFieldLimit(3));
         securityCodeTF.setForeground(new java.awt.Color(204, 204, 204));
@@ -88,12 +92,17 @@ public class Payment extends javax.swing.JFrame {
 
         jLabel8.setText("Cardholder Name");
 
-        jToggleButton1.setText("Pay Now");
+        payBT.setText("Pay Now");
+        payBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                payBTActionPerformed(evt);
+            }
+        });
 
-        jToggleButton2.setText("Cancel");
-        jToggleButton2.setMaximumSize(new java.awt.Dimension(97, 29));
-        jToggleButton2.setMinimumSize(new java.awt.Dimension(97, 29));
-        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
+        cancelBT.setText("Cancel");
+        cancelBT.setMaximumSize(new java.awt.Dimension(97, 29));
+        cancelBT.setMinimumSize(new java.awt.Dimension(97, 29));
+        cancelBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton2ActionPerformed(evt);
             }
@@ -112,6 +121,18 @@ public class Payment extends javax.swing.JFrame {
 			}
         });
         
+        dateTF.addFocusListener(new FocusListener() {
+        	public void focusGained(FocusEvent e) {
+        		dateTFfocusGained(e);
+        
+        	}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				dateTFfocusLost(e);
+				
+			}
+        });
         
         securityCodeTF.addFocusListener(new FocusListener() {
         	public void focusGained(FocusEvent e) {
@@ -142,6 +163,24 @@ public class Payment extends javax.swing.JFrame {
         cardTF.addKeyListener(new KeyListener() {
         	public void keyTyped(KeyEvent e) {
         		cardTFkeyTyped(e);
+        	}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+        });
+        
+        dateTF.addKeyListener(new KeyListener() {
+        	public void keyTyped(KeyEvent e) {
+        		dateTFkeyTyped(e);
         	}
 
 			@Override
@@ -204,9 +243,9 @@ public class Payment extends javax.swing.JFrame {
                         .addGap(17, 17, 17)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cancelBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jToggleButton1))
+                                .addComponent(payBT))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel4)
                                 .addComponent(jLabel3)
@@ -215,7 +254,7 @@ public class Payment extends javax.swing.JFrame {
                                     .addComponent(cardTF)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(dateTF, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel6)
                                             .addComponent(jLabel8))
                                         .addGap(18, 18, 18)
@@ -249,7 +288,7 @@ public class Payment extends javax.swing.JFrame {
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dateTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(securityCodeTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
@@ -257,30 +296,93 @@ public class Payment extends javax.swing.JFrame {
                 .addComponent(cardHolderNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jToggleButton1)
-                    .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(payBT)
+                    .addComponent(cancelBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(10, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void payBTActionPerformed(java.awt.event.ActionEvent evt) {
+    	String card, expiry, code, name;
+    	card = cardTF.getText();
+    	expiry = dateTF.getText();
+    	code = securityCodeTF.getText();
+    	name = cardHolderNameTF.getText();
+    	if(card.length() < 19) {
+			JOptionPane.showMessageDialog(null,  "Please enter a vaild Card Number");
+    	}
+    	else if(expiry.length() < 5 || !(expiry.charAt(2) == '/')) {
+    		JOptionPane.showMessageDialog(null,  "Please enter a vaild Expiry date\nin the following format -- MM/YY");
+    	}
+    	else if(code.length() < 3) {
+    		JOptionPane.showMessageDialog(null,  "Please enter a vaild CSC");
+
+    	}
+    	else if(name.equals("") || name.equals("  Cardholer Name")) {
+    		JOptionPane.showMessageDialog(null,  "Name must not be left blank");
+    	}
+    	else{
+    	String film, date, time;
+    	film = StartFrame.getFilm();
+    	date = StartFrame.getDate();
+    	time = StartFrame.getTime();
+
+    	Screening blankScreening = new Screening();
+    	int screeningNumber = blankScreening.returnScreeningNum(film, time, date);
+
+    	int adult, child, student_OAP;
+    	adult = TicketBooking.getAdultQ();
+    	child = TicketBooking.getChildQ();
+    	student_OAP = TicketBooking.getStudent_OAP_Q();
+
+    	Booking newBooking = new Booking(adult, child, student_OAP, screeningNumber);
+    	newBooking.addBookingToDB();
+    	int bookingNum = newBooking.returnBookingNum();
+    	
+		JOptionPane.showMessageDialog(null,  "Booking successful\nYour booking number is - " + bookingNum);
+
+		JComponent comp = (JComponent) evt.getSource();
+        Window win = SwingUtilities.getWindowAncestor(comp);
+        win.dispose();
+    	
+    	
+    		
+    	}
+
+     }
+    
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
          JComponent comp = (JComponent) evt.getSource();
          Window win = SwingUtilities.getWindowAncestor(comp);
          win.dispose();
     }//GEN-LAST:event_jToggleButton2ActionPerformed
     
-    private void cardHolderNameTFfocusGained(FocusEvent e) {
-    	if(cardHolderNameTF.getText().equals("  Cardholer Name")) {
-    		cardHolderNameTF.setText("");
+    private void cardTFfocusGained(FocusEvent e) {
+    	if(cardTF.getText().equals("   Card Number")) {
+    			cardTF.setText("");
     	}
     	
     }
     
-    private void cardHolderNameTFfocusLost(FocusEvent e) {
-    	if(cardHolderNameTF.getText().equals("")) {
-    		cardHolderNameTF.setText("  Cardholer Name");
+    private void cardTFfocusLost(FocusEvent e) {
+    	if(cardTF.getText().equals("")) {
+    	cardTF.setText("   Card Number");
+    	}
+    	
+    }
+    
+    private void dateTFfocusGained(FocusEvent e) {
+    	if(dateTF.getText().equals("MM/YY")) {
+    			dateTF.setText("");
+    	}
+    	
+    }
+    
+    private void dateTFfocusLost(FocusEvent e) {
+    	if(dateTF.getText().equals("")) {
+    	dateTF.setText("MM/YY");
     	}
     	
     }
@@ -299,23 +401,37 @@ public class Payment extends javax.swing.JFrame {
     	
     }
     
-    private void cardTFfocusGained(FocusEvent e) {
-    	if(cardTF.getText().equals("   Card Number")) {
-    			cardTF.setText("");
+    private void cardHolderNameTFfocusGained(FocusEvent e) {
+    	if(cardHolderNameTF.getText().equals("  Cardholer Name")) {
+    		cardHolderNameTF.setText("");
     	}
     	
     }
     
-    private void cardTFfocusLost(FocusEvent e) {
-    	if(cardTF.getText().equals("")) {
-    	cardTF.setText("   Card Number");
+    private void cardHolderNameTFfocusLost(FocusEvent e) {
+    	if(cardHolderNameTF.getText().equals("")) {
+    		cardHolderNameTF.setText("  Cardholer Name");
     	}
     	
     }
+    
+    
     
     private void cardTFkeyTyped(KeyEvent e) {
     	char c = e.getKeyChar();
     	if(!(Character.isDigit(c)) || c==KeyEvent.VK_BACK_SPACE || c==KeyEvent.VK_DELETE) {
+    		e.consume();
+    	}
+    	
+    }
+    
+    private void dateTFkeyTyped(KeyEvent e) {
+    	char c = e.getKeyChar();
+    	if(c == '/')
+    	{
+    		//Do nothing
+    	}
+    	else if(!(Character.isDigit(c)) || c==KeyEvent.VK_BACK_SPACE || c==KeyEvent.VK_DELETE) {
     		e.consume();
     	}
     	
@@ -382,10 +498,10 @@ public class Payment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField cardTF;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField dateTF;
     private javax.swing.JTextField securityCodeTF;
     private javax.swing.JTextField cardHolderNameTF;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
+    private javax.swing.JToggleButton payBT;
+    private javax.swing.JToggleButton cancelBT;
     // End of variables declaration//GEN-END:variables
 }
