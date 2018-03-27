@@ -10,6 +10,8 @@ import java.sql.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 /**
  *
  * @author christophermclaughlin
@@ -175,60 +177,77 @@ public class StartFrame extends javax.swing.JFrame {
         dateBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Date"}));
 
         timeBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Time"}));
+        
+        JLabel lblNewLabel = new JLabel("");
+        
+        lblNewLabel_1 = new JLabel("");
+        lblNewLabel_1.setIcon(new ImageIcon("/Users/christophermclaughlin/git/CSDF-Group-1-Cinema2/lib/images.jpg"));
 
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        getContentPane().setBackground(Color.GRAY);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(204, 204, 204)
-                        .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(filmNameBox, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(dateBox, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(adminLogin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                               // .addComponent(cancelButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(viewScheduleJB, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(viewInfoJB, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(viewTrailersJB, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(timeBox, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(makeBookingJB, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(layout.createSequentialGroup()
+        					.addGap(204)
+        					.addComponent(title, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE))
+        				.addGroup(layout.createSequentialGroup()
+        					.addGap(21)
+        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        						.addGroup(layout.createSequentialGroup()
+        							.addComponent(filmNameBox, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
+        							.addPreferredGap(ComponentPlacement.RELATED)
+        							.addComponent(dateBox, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
+        							.addPreferredGap(ComponentPlacement.UNRELATED)
+        							.addComponent(timeBox, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
+        							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        							.addComponent(makeBookingJB, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE))
+        						.addGroup(layout.createSequentialGroup()
+        							.addGroup(layout.createParallelGroup(Alignment.TRAILING, false)
+        								.addComponent(adminLogin, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        								.addComponent(viewScheduleJB, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        								.addComponent(viewInfoJB, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        								.addComponent(viewTrailersJB, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        							.addPreferredGap(ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+        							.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        								.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+        									.addComponent(lblNewLabel)
+        									.addGap(275))
+        								.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+        									.addComponent(lblNewLabel_1)
+        									.addGap(44)))))))
+        			.addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(makeBookingJB)
-                    .addComponent(filmNameBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dateBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(timeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addComponent(viewScheduleJB)
-                .addGap(18, 18, 18)
-                .addComponent(viewTrailersJB)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(viewInfoJB)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-              //  .addComponent(cancelButton)
-                .addGap(18, 18, 18)
-                .addComponent(adminLogin)
-                .addGap(47, 47, 47))
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(16)
+        			.addComponent(title, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+        			.addGap(20)
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(makeBookingJB)
+        				.addComponent(filmNameBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(dateBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(timeBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addPreferredGap(ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addGroup(layout.createSequentialGroup()
+        					.addComponent(viewScheduleJB)
+        					.addGap(18)
+        					.addComponent(viewTrailersJB)
+        					.addPreferredGap(ComponentPlacement.UNRELATED)
+        					.addComponent(viewInfoJB)
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addComponent(adminLogin))
+        				.addGroup(layout.createSequentialGroup()
+        					.addComponent(lblNewLabel)
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addComponent(lblNewLabel_1)))
+        			.addGap(23))
         );
+        getContentPane().setLayout(layout);
+        getContentPane().setBackground(Color.GRAY);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -407,5 +426,5 @@ public class StartFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> dateBox;
     private javax.swing.JComboBox<String> timeBox;
     private javax.swing.JLabel title;
-    // End of variables declaration//GEN-END:variables
+    private JLabel lblNewLabel_1;
 }
