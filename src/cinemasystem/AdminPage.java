@@ -86,7 +86,11 @@ public class AdminPage extends javax.swing.JFrame {
         addFilmJButton.setText("Add New Film");
         addFilmJButton.setBackground(Color.CYAN);
         addFilmJButton.setFont(new Font("sansserif", Font.BOLD, 16));
-        
+        addFilmJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	addFilmJButtonActionPerformed(evt);
+            }
+        });
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -281,6 +285,11 @@ public class AdminPage extends javax.swing.JFrame {
 		}
     }
     
+    private void addFilmJButtonActionPerformed(java.awt.event.ActionEvent evt) {                                         
+
+        AddFilm film = new AddFilm();
+        film.setVisible(true);// TODO add your handling code here:
+    } 
     
 
     /**
