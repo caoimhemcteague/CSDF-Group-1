@@ -1,5 +1,7 @@
 package cinemasystem;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -93,6 +95,8 @@ public class Payment extends javax.swing.JFrame {
         jLabel8.setText("Cardholder Name");
 
         payBT.setText("Pay Now");
+        payBT.setBackground(Color.GREEN);
+        payBT.setFont(new Font("sansserif", Font.BOLD, 16));
         payBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 payBTActionPerformed(evt);
@@ -100,6 +104,8 @@ public class Payment extends javax.swing.JFrame {
         });
 
         cancelBT.setText("Cancel");
+        cancelBT.setBackground(Color.RED);
+        cancelBT.setFont(new Font("sansserif", Font.BOLD, 16));
         cancelBT.setMaximumSize(new java.awt.Dimension(97, 29));
         cancelBT.setMinimumSize(new java.awt.Dimension(97, 29));
         cancelBT.addActionListener(new java.awt.event.ActionListener() {

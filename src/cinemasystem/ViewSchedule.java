@@ -5,7 +5,6 @@
  */
 package cinemasystem;
 
-import java.awt.Window;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -61,8 +60,12 @@ public class ViewSchedule extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Film Schedule");
+        jLabel1.setFont(new Font("sansserif", Font.BOLD, 24));
+        jLabel1.setForeground(Color.PINK);
 
         closeButton.setText("close");
+        closeButton.setBackground(Color.RED);
+        closeButton.setFont(new Font("sansserif", Font.BOLD, 16));
         closeButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
@@ -107,6 +110,7 @@ public class ViewSchedule extends javax.swing.JFrame {
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
+        getContentPane().setBackground(Color.GRAY);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -143,7 +147,7 @@ public class ViewSchedule extends javax.swing.JFrame {
     	try {
     		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema", USER_NAME, PASSWORD);
  			st = conn.createStatement();
- 			String s = "Select * from film";
+ 			String s = "Select Date, FilmName, Time from screening ORDER BY Date";
  			rs = st.executeQuery(s);
  			
  			table.setModel(DbUtils.resultSetToTableModel(rs));

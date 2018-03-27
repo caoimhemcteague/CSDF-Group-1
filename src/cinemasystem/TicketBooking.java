@@ -5,6 +5,8 @@
  */
 package cinemasystem;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Window;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -81,8 +83,8 @@ public class TicketBooking extends javax.swing.JFrame{
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        closeJButton = new javax.swing.JButton();
+        acceptJButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -100,33 +102,43 @@ public class TicketBooking extends javax.swing.JFrame{
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel2.setText(frame.getFilm());
+        
+        
 
-        jButton1.setText("Close");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        closeJButton.setText("Close");
+        closeJButton.setBackground(Color.RED);
+        closeJButton.setFont(new Font("sansserif", Font.BOLD, 16));
+        closeJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Accept");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        acceptJButton.setText("Accept");
+        acceptJButton.setBackground(Color.GREEN);
+        acceptJButton.setFont(new Font("sansserif", Font.BOLD, 16));
+        acceptJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
         
         
-        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel3.setFont(new Font("sansserif", Font.BOLD, 24)); // NOI18N
+        jLabel3.setForeground(Color.PINK);
         jLabel3.setText("Ticket Booking");
 
         jLabel4.setText("Theatre Adult Ticket @ €" + adultPrice + " Amount");
+        jLabel4.setForeground(Color.YELLOW);
 
         jLabel5.setText("Theatre Child Tickets @ €" + childPrice + " Amount");
+        jLabel5.setForeground(Color.YELLOW);
 
         jLabel6.setText("Theatre Student/OAP Tickets @ €" + student_OAP_Price + " Amount");
+        jLabel6.setForeground(Color.YELLOW);
 
         jLabel7.setText("Please Select Quantity of Tickets:");
+        jLabel7.setForeground(Color.YELLOW);
 
         adultBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
         adultBox.addActionListener(new java.awt.event.ActionListener() {
@@ -158,13 +170,14 @@ public class TicketBooking extends javax.swing.JFrame{
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
+        getContentPane().setBackground(Color.GRAY);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1))
+                        .addComponent(closeJButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -183,7 +196,7 @@ public class TicketBooking extends javax.swing.JFrame{
                                             .addComponent(jLabel6)
                                             .addComponent(jLabel5)))
                                     .addComponent(jLabel7)
-                                    .addComponent(jButton2)))
+                                    .addComponent(acceptJButton)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(147, 147, 147)
                                 .addComponent(jLabel1))
@@ -239,8 +252,8 @@ public class TicketBooking extends javax.swing.JFrame{
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(closeJButton)
+                    .addComponent(acceptJButton))
                 .addContainerGap())
         );
 
@@ -404,8 +417,8 @@ public class TicketBooking extends javax.swing.JFrame{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton closeJButton;
+    private javax.swing.JButton acceptJButton;
     private javax.swing.JComboBox<String> adultBox;
     private javax.swing.JComboBox<String> childBox;
     private javax.swing.JComboBox<String> student_OAP_Box;
