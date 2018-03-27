@@ -181,7 +181,7 @@ public class StartFrame extends javax.swing.JFrame {
         JLabel lblNewLabel = new JLabel("");
         
         lblNewLabel_1 = new JLabel("");
-        lblNewLabel_1.setIcon(new ImageIcon("/Users/christophermclaughlin/git/CSDF-Group-1-Cinema2/lib/images.jpg"));
+        lblNewLabel_1.setIcon(new ImageIcon("/Users/christophermclaughlin/git/CSDF-Group-1-Cinema3/src/cinemasystem/images.jpg"));
 
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
