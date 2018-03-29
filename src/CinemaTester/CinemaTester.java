@@ -36,7 +36,7 @@ public class CinemaTester {
 		newBooking.addBookingToDB();
 		
 		System.out.print("Congrats, your booking is complete.\nYou are going to see - " + filmName + 
-				"\nTotal Cost comes to - €" + newBooking.getCost());
+				"\nTotal Cost comes to - ï¿½" + newBooking.getCost());
 		
 		System.out.print("");
 		

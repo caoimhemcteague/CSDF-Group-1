@@ -128,13 +128,13 @@ public class TicketBooking extends javax.swing.JFrame{
         jLabel3.setForeground(Color.PINK);
         jLabel3.setText("Ticket Booking");
 
-        jLabel4.setText("Theatre Adult Ticket @ €" + adultPrice + " Amount");
+        jLabel4.setText("Theatre Adult Ticket @ ï¿½" + adultPrice + " Amount");
         jLabel4.setForeground(Color.YELLOW);
 
-        jLabel5.setText("Theatre Child Tickets @ €" + childPrice + " Amount");
+        jLabel5.setText("Theatre Child Tickets @ ï¿½" + childPrice + " Amount");
         jLabel5.setForeground(Color.YELLOW);
 
-        jLabel6.setText("Theatre Student/OAP Tickets @ €" + student_OAP_Price + " Amount");
+        jLabel6.setText("Theatre Student/OAP Tickets @ ï¿½" + student_OAP_Price + " Amount");
         jLabel6.setForeground(Color.YELLOW);
 
         jLabel7.setText("Please Select Quantity of Tickets:");
