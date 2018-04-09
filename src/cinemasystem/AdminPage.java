@@ -271,6 +271,12 @@ public class AdminPage extends javax.swing.JFrame {
     {
     	String filmName = jComboBox1.getSelectedItem().toString();
     	
+    	if(filmName.equals("Select Film"))
+    	{
+    		JOptionPane.showMessageDialog(null,  "Select a film to be removed");
+    	}
+    	else {
+    	
     	try {
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema", USER_NAME, PASSWORD);
 			st = conn.createStatement();
@@ -294,6 +300,7 @@ public class AdminPage extends javax.swing.JFrame {
 
 			}
 		}
+    }
     }
     
     private void addFilmJButtonActionPerformed(java.awt.event.ActionEvent evt) {                                         

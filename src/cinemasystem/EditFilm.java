@@ -6,6 +6,7 @@ import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -38,7 +39,7 @@ private void initComponents() {
     Cancel = new javax.swing.JButton();
     PgRatingLabel = new javax.swing.JLabel();
     GenreLabel = new javax.swing.JLabel();
-    PgRatingTextField = new javax.swing.JTextField();
+    PgRatingCB = new javax.swing.JComboBox<>();
     GenrejTextField = new javax.swing.JTextField();
     DurationjTextField = new javax.swing.JTextField();
     DurationLabel = new javax.swing.JLabel();
@@ -78,19 +79,6 @@ private void initComponents() {
         }
     });
     
-    
-    PgRatingTextField.addFocusListener(new FocusListener() {
-    	public void focusGained(FocusEvent e) {
-    		pgTFfocusGained(e);
-    
-    	}
-
-		@Override
-		public void focusLost(FocusEvent e) {
-			pgTFfocusLost(e);
-			
-		}
-    });
     
     GenrejTextField.addFocusListener(new FocusListener() {
     	public void focusGained(FocusEvent e) {
@@ -179,8 +167,8 @@ private void initComponents() {
 
     GenreLabel.setText("Genre");
 
-    PgRatingTextField.setForeground(new java.awt.Color(204, 204, 204));
-    PgRatingTextField.setText("PG _ Rating");
+    PgRatingCB.setForeground(new java.awt.Color(204, 204, 204));
+    PgRatingCB.setModel(new DefaultComboBoxModel<>(new String[] {"Select Rating", "U", "PG", "12A", "12", "15", "18"}));
 
     GenrejTextField.setForeground(new java.awt.Color(204, 204, 204));
     GenrejTextField.setText("Genre");
@@ -234,7 +222,7 @@ private void initComponents() {
                             .addGap(22, 22, 22)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(TitleTextField1)
-                                .addComponent(PgRatingTextField)
+                                .addComponent(PgRatingCB)
                                 .addComponent(GenrejTextField)
                                 .addComponent(DurationjTextField)
                                 .addComponent(ActorjTextField)
@@ -255,7 +243,7 @@ private void initComponents() {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(PgRatingLabel)
-                .addComponent(PgRatingTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(PgRatingCB, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(GenreLabel)
@@ -298,9 +286,9 @@ private void addBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
    String title, rating, genre, durationString, actor, director, ytLink;
    int duration = 0;
    title = TitleTextField1.getText();
-   rating = PgRatingTextField.getText();
-	   genre = GenrejTextField.getText();
-	   durationString = DurationjTextField.getText();
+   rating = PgRatingCB.getSelectedItem().toString();
+   genre = GenrejTextField.getText();
+   durationString = DurationjTextField.getText();
 	   try {
 		duration = Integer.parseInt(durationString);
 	   }catch(Exception e) {
@@ -340,19 +328,7 @@ private void addBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
 }
 
 
-private void pgTFfocusGained(FocusEvent e) {
-	if(PgRatingTextField.getText().equals("PG _ Rating")) {
-		PgRatingTextField.setText("");
-	}
-	
-}
 
-private void pgTFfocusLost(FocusEvent e) {
-	if(PgRatingTextField.getText().equals("")) {
-		PgRatingTextField.setText("PG _ Rating");
-	}
-	
-}
 
 private void genreTFfocusGained(FocusEvent e) {
 	if(GenrejTextField.getText().equals("Genre")) {
@@ -481,7 +457,7 @@ private javax.swing.JTextField GenrejTextField;
 private javax.swing.JLabel LinkLabel;
 private javax.swing.JTextField LinkjTextField;
 private javax.swing.JLabel PgRatingLabel;
-private javax.swing.JTextField PgRatingTextField;
+private javax.swing.JComboBox PgRatingCB;
 private javax.swing.JLabel TitleLabel;
 public static javax.swing.JTextField TitleTextField1;
 private javax.swing.JButton editBt;
