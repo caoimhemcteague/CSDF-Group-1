@@ -6,8 +6,15 @@
 package cinemasystem;
 
 import java.awt.Window;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
+
+import CinemaClasses.JTextFieldLimit;
 
 /**
  *
@@ -34,7 +41,7 @@ public class AddFilm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         TitleTextField1 = new javax.swing.JTextField();
         TitleLabel = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        addBt = new javax.swing.JButton();
         Cancel = new javax.swing.JButton();
         PgRatingLabel = new javax.swing.JLabel();
         GenreLabel = new javax.swing.JLabel();
@@ -58,8 +65,14 @@ public class AddFilm extends javax.swing.JFrame {
 
         TitleLabel.setText("Film Title");
 
-        jButton1.setText("Add");
-        jButton1.setPreferredSize(new java.awt.Dimension(89, 29));
+        addBt.setText("Add");
+        addBt.setPreferredSize(new java.awt.Dimension(89, 29));
+        
+        addBt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBtActionPerformed(evt);
+            }
+        });
 
         Cancel.setText("Cancel");
         Cancel.addActionListener(new java.awt.event.ActionListener() {
@@ -67,7 +80,103 @@ public class AddFilm extends javax.swing.JFrame {
                 CancelActionPerformed(evt);
             }
         });
+        
+        TitleTextField1.addFocusListener(new FocusListener() {
+        	public void focusGained(FocusEvent e) {
+        		titleTFfocusGained(e);
+        
+        	}
 
+			@Override
+			public void focusLost(FocusEvent e) {
+				titleTFfocusLost(e);
+				
+			}
+        });
+        
+        PgRatingTextField.addFocusListener(new FocusListener() {
+        	public void focusGained(FocusEvent e) {
+        		pgTFfocusGained(e);
+        
+        	}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				pgTFfocusLost(e);
+				
+			}
+        });
+        
+        GenrejTextField.addFocusListener(new FocusListener() {
+        	public void focusGained(FocusEvent e) {
+        		genreTFfocusGained(e);
+        
+        	}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				genreTFfocusLost(e);
+				
+			}
+        });
+        
+        DurationjTextField.addFocusListener(new FocusListener() {
+        	public void focusGained(FocusEvent e) {
+        		durationTFfocusGained(e);
+        
+        	}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				durationTFfocusLost(e);
+				
+			}
+        });
+
+        ActorjTextField.addFocusListener(new FocusListener() {
+        	public void focusGained(FocusEvent e) {
+        		actorTFfocusGained(e);
+        
+        	}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				actorTFfocusLost(e);
+				
+			}
+        });
+        
+        LinkjTextField.addFocusListener(new FocusListener() {
+        	public void focusGained(FocusEvent e) {
+        		ytTFfocusGained(e);
+        
+        	}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				ytTFfocusLost(e);
+				
+			}
+        });
+        
+        DurationjTextField.addKeyListener(new KeyListener() {
+        	public void keyTyped(KeyEvent e) {
+        		durationTFkeyTyped(e);
+        	}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+        });
+        
         PgRatingLabel.setText("PG - Rating");
 
         GenreLabel.setText("Genre");
@@ -78,10 +187,11 @@ public class AddFilm extends javax.swing.JFrame {
         GenrejTextField.setForeground(new java.awt.Color(204, 204, 204));
         GenrejTextField.setText("  Genre");
 
+        DurationjTextField.setDocument(new JTextFieldLimit(3));
         DurationjTextField.setForeground(new java.awt.Color(204, 204, 204));
-        DurationjTextField.setText("  Duration");
+        DurationjTextField.setText("Min");
 
-        DurationLabel.setText("Duration");
+        DurationLabel.setText("Duration (mins)");
 
         ActorjTextField.setForeground(new java.awt.Color(204, 204, 204));
         ActorjTextField.setText("  Actor");
@@ -102,7 +212,7 @@ public class AddFilm extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(Cancel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(addBt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -159,7 +269,7 @@ public class AddFilm extends javax.swing.JFrame {
                     .addComponent(LinkjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addBt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Cancel))
                 .addContainerGap())
         );
@@ -172,7 +282,104 @@ public class AddFilm extends javax.swing.JFrame {
          Window win = SwingUtilities.getWindowAncestor(comp);
          win.dispose(); 
     }//GEN-LAST:event_CancelActionPerformed
+    
+    private void addBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelActionPerformed
+       
+    	
+     }
+    
+    private void titleTFfocusGained(FocusEvent e) {
+    	if(TitleTextField1.getText().equals("  Film Title")) {
+    		TitleTextField1.setText("");
+    	}
+    	
+    }
+    
+    private void titleTFfocusLost(FocusEvent e) {
+    	if(TitleTextField1.getText().equals("")) {
+    		TitleTextField1.setText("  Film Title");
+    	}
+    	
+    }
+    
+    private void pgTFfocusGained(FocusEvent e) {
+    	if(PgRatingTextField.getText().equals("  PG _ Rating")) {
+    		PgRatingTextField.setText("");
+    	}
+    	
+    }
+    
+    private void pgTFfocusLost(FocusEvent e) {
+    	if(PgRatingTextField.getText().equals("")) {
+    		PgRatingTextField.setText("  PG _ Rating");
+    	}
+    	
+    }
+    
+    private void genreTFfocusGained(FocusEvent e) {
+    	if(GenrejTextField.getText().equals("  Genre")) {
+    		GenrejTextField.setText("");
+    	}
+    	
+    }
+    
+    private void genreTFfocusLost(FocusEvent e) {
+    	if(GenrejTextField.getText().equals("")) {
+    		GenrejTextField.setText("  Genre");
+    	}
+    	
+    }
+    
+    private void durationTFfocusGained(FocusEvent e) {
+    	if(DurationjTextField.getText().equals("Min")) {
+    		DurationjTextField.setText("");
+    	}
+    	
+    }
+    
+    private void durationTFfocusLost(FocusEvent e) {
+    	if(DurationjTextField.getText().equals("")) {
+    		DurationjTextField.setText("Min");
+    	}
+    	
+    }
+    
+    private void actorTFfocusGained(FocusEvent e) {
+    	if(ActorjTextField.getText().equals("  Actor")) {
+    		ActorjTextField.setText("");
+    	}
+    	
+    }
+    
+    private void actorTFfocusLost(FocusEvent e) {
+    	if(ActorjTextField.getText().equals("")) {
+    		ActorjTextField.setText("  Actor");
+    	}
+    	
+    }
 
+    private void ytTFfocusGained(FocusEvent e) {
+    	if(LinkjTextField.getText().equals("  Youtube Link")) {
+    		LinkjTextField.setText("");
+    	}
+    	
+    }
+    
+    private void ytTFfocusLost(FocusEvent e) {
+    	if(LinkjTextField.getText().equals("")) {
+    		LinkjTextField.setText("  Youtube Link");
+    	}
+    }
+    
+    private void durationTFkeyTyped(KeyEvent e) {
+    	char c = e.getKeyChar();
+    	if(!(Character.isDigit(c)) || c==KeyEvent.VK_BACK_SPACE || c==KeyEvent.VK_DELETE) {
+    		e.consume();
+    	}
+    	
+    }
+    	
+    
     /**
      * @param args the command line arguments
      */
@@ -222,7 +429,7 @@ public class AddFilm extends javax.swing.JFrame {
     private javax.swing.JTextField PgRatingTextField;
     private javax.swing.JLabel TitleLabel;
     private javax.swing.JTextField TitleTextField1;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton addBt;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
