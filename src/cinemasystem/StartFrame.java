@@ -61,8 +61,6 @@ public class StartFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
-        title = new javax.swing.JLabel();
         makeBookingJB = new javax.swing.JButton();
         viewScheduleJB = new javax.swing.JButton();
         viewTrailersJB = new javax.swing.JButton();
@@ -70,22 +68,19 @@ public class StartFrame extends javax.swing.JFrame {
        // cancelButton = new javax.swing.JButton();
         adminLogin = new javax.swing.JButton();
         filmNameBox = new javax.swing.JComboBox<>();
+        filmNameBox.setFont(new Font("Lucida Grande", Font.PLAIN, 24));
         dateBox = new javax.swing.JComboBox<>();
+        dateBox.setFont(new Font("Lucida Grande", Font.PLAIN, 24));
         timeBox = new JComboBox<String>();
+        timeBox.setFont(new Font("Lucida Grande", Font.PLAIN, 24));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 255, 255));
         setForeground(new java.awt.Color(153, 255, 255));
 
-        //jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        //jLabel1.setForeground(new java.awt.Color(255, 0, 0));
-        title.setFont(new Font("sansserif", Font.BOLD, 20));
-        title.setForeground(Color.PINK);
-        title.setText("Cinema System");
-
         makeBookingJB.setText("Make Booking");
         makeBookingJB.setBackground(Color.CYAN);
-        makeBookingJB.setFont(new Font("sansserif", Font.BOLD, 16));
+        makeBookingJB.setFont(new Font("SansSerif", Font.BOLD, 22));
         makeBookingJB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -94,7 +89,7 @@ public class StartFrame extends javax.swing.JFrame {
 
         viewScheduleJB.setText("View Schedule");
         viewScheduleJB.setBackground(Color.CYAN);
-        viewScheduleJB.setFont(new Font("sansserif", Font.BOLD, 16));
+        viewScheduleJB.setFont(new Font("SansSerif", Font.BOLD, 22));
         viewScheduleJB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton2MouseClicked(evt);
@@ -103,7 +98,7 @@ public class StartFrame extends javax.swing.JFrame {
   
         viewTrailersJB.setText("View Trailers");
         viewTrailersJB.setBackground(Color.CYAN);
-        viewTrailersJB.setFont(new Font("sansserif", Font.BOLD, 16));
+        viewTrailersJB.setFont(new Font("SansSerif", Font.BOLD, 22));
         viewTrailersJB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton3MouseClicked(evt);
@@ -112,7 +107,7 @@ public class StartFrame extends javax.swing.JFrame {
 
         viewInfoJB.setText("View Info");
         viewInfoJB.setBackground(Color.CYAN);
-        viewInfoJB.setFont(new Font("sansserif", Font.BOLD, 16));
+        viewInfoJB.setFont(new Font("SansSerif", Font.BOLD, 22));
         viewInfoJB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton4MouseClicked(evt);
@@ -142,7 +137,7 @@ public class StartFrame extends javax.swing.JFrame {
 
         adminLogin.setText("Admin Login");
         adminLogin.setBackground(Color.CYAN);
-        adminLogin.setFont(new Font("sansserif", Font.BOLD, 16));
+        adminLogin.setFont(new Font("SansSerif", Font.BOLD, 22));
         adminLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton6MouseClicked(evt);
@@ -185,71 +180,77 @@ public class StartFrame extends javax.swing.JFrame {
         lblNewLabel_1 = new JLabel("");
         Image img = new ImageIcon(this.getClass().getResource("/images.jpg")).getImage();
         lblNewLabel_1.setIcon(new ImageIcon(img));
+        
+        JLabel label = new JLabel();
+        label.setText("Cinema System");
+        label.setForeground(Color.PINK);
+        label.setFont(new Font("SansSerif", Font.BOLD, 32));
 
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
         		.addGroup(layout.createSequentialGroup()
+        			.addGap(21)
         			.addGroup(layout.createParallelGroup(Alignment.LEADING)
         				.addGroup(layout.createSequentialGroup()
-        					.addGap(204)
-        					.addComponent(title, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE))
+        					.addComponent(filmNameBox, 0, 276, Short.MAX_VALUE)
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addComponent(dateBox, 0, 280, Short.MAX_VALUE)
+        					.addPreferredGap(ComponentPlacement.UNRELATED)
+        					.addComponent(timeBox, 0, 284, Short.MAX_VALUE)
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addComponent(makeBookingJB, GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE))
         				.addGroup(layout.createSequentialGroup()
-        					.addGap(21)
-        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+        						.addComponent(adminLogin, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 284, Short.MAX_VALUE)
+        						.addComponent(viewScheduleJB, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
+        						.addComponent(viewInfoJB, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
+        						.addComponent(viewTrailersJB, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 284, Short.MAX_VALUE))
+        					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
         						.addGroup(layout.createSequentialGroup()
-        							.addComponent(filmNameBox, 0, 133, Short.MAX_VALUE)
-        							.addPreferredGap(ComponentPlacement.RELATED)
-        							.addComponent(dateBox, 0, 133, Short.MAX_VALUE)
-        							.addPreferredGap(ComponentPlacement.UNRELATED)
-        							.addComponent(timeBox, 0, 133, Short.MAX_VALUE)
-        							.addPreferredGap(ComponentPlacement.RELATED)
-        							.addComponent(makeBookingJB, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        						.addGroup(layout.createSequentialGroup()
-        							.addGroup(layout.createParallelGroup(Alignment.TRAILING)
-        								.addComponent(adminLogin, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        								.addComponent(viewScheduleJB, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        								.addComponent(viewInfoJB, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        								.addComponent(viewTrailersJB, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         							.addGap(90)
-        							.addGroup(layout.createParallelGroup(Alignment.TRAILING)
-        								.addGroup(layout.createSequentialGroup()
-        									.addComponent(lblNewLabel)
-        									.addGap(275))
-        								.addGroup(layout.createSequentialGroup()
-        									.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        									.addGap(44)))))))
+        							.addComponent(lblNewLabel)
+        							.addGap(275))
+        						.addGroup(layout.createSequentialGroup()
+        							.addGap(112)
+        							.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        							.addGap(22)))))
         			.addContainerGap())
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(469)
+        			.addComponent(label, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        			.addGap(469))
         );
         layout.setVerticalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
         		.addGroup(layout.createSequentialGroup()
-        			.addGap(16)
-        			.addComponent(title, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
-        			.addGap(20)
+        			.addContainerGap()
+        			.addComponent(label, GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+        			.addPreferredGap(ComponentPlacement.RELATED)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(makeBookingJB, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         				.addGroup(layout.createSequentialGroup()
-        					.addGap(2)
-        					.addComponent(filmNameBox))
+        					.addGap(3)
+        					.addComponent(filmNameBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         				.addGroup(layout.createSequentialGroup()
-        					.addGap(2)
-        					.addComponent(dateBox))
+        					.addGap(3)
+        					.addComponent(dateBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         				.addGroup(layout.createSequentialGroup()
-        					.addGap(2)
-        					.addComponent(timeBox)))
+        					.addGap(3)
+        					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(timeBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(makeBookingJB, GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))))
         			.addGap(32)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
         				.addGroup(layout.createSequentialGroup()
         					.addGap(30)
-        					.addComponent(viewScheduleJB, GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+        					.addComponent(viewScheduleJB, GroupLayout.PREFERRED_SIZE, 96, Short.MAX_VALUE)
         					.addGap(18)
-        					.addComponent(viewTrailersJB, GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+        					.addComponent(viewTrailersJB, GroupLayout.PREFERRED_SIZE, 96, Short.MAX_VALUE)
         					.addPreferredGap(ComponentPlacement.UNRELATED)
-        					.addComponent(viewInfoJB, GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+        					.addComponent(viewInfoJB, GroupLayout.PREFERRED_SIZE, 96, Short.MAX_VALUE)
         					.addPreferredGap(ComponentPlacement.RELATED)
-        					.addComponent(adminLogin, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        					.addComponent(adminLogin, GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))
         				.addGroup(layout.createSequentialGroup()
         					.addComponent(lblNewLabel)
         					.addPreferredGap(ComponentPlacement.RELATED)
@@ -422,8 +423,8 @@ public class StartFrame extends javax.swing.JFrame {
             public void run() {
             	StartFrame frame = new StartFrame();
             
-            //frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
-            //frame.setUndecorated(true);
+            frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+            
             frame.setVisible(true);
                    
             }
@@ -440,6 +441,5 @@ public class StartFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> filmNameBox;
     private javax.swing.JComboBox<String> dateBox;
     private javax.swing.JComboBox<String> timeBox;
-    private javax.swing.JLabel title;
     private JLabel lblNewLabel_1;
 }
