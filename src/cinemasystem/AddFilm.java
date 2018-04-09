@@ -315,12 +315,17 @@ public class AddFilm extends javax.swing.JFrame {
     
     private void addBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelActionPerformed
        String title, rating, genre, durationString, actor, director, ytLink;
-       int duration;
+       int duration = 0;
        title = TitleTextField1.getText();
        rating = PgRatingTextField.getText();
    	   genre = GenrejTextField.getText();
    	   durationString = DurationjTextField.getText();
-   	   duration = Integer.parseInt(durationString);
+   	   try {
+   		duration = Integer.parseInt(durationString);
+   	   }catch(Exception e) {
+      
+   	   }
+   	  // duration = Integer.parseInt(durationString);
    	   actor = ActorjTextField.getText();
    	   director = DirectorjTextField.getText();
    	   ytLink = LinkjTextField.getText();
@@ -334,8 +339,8 @@ public class AddFilm extends javax.swing.JFrame {
    	   else if(genre.equals("Genre")) {
    		JOptionPane.showMessageDialog(null,  "Please enter a vaild Genre");
    	   }
-   	   else if(durationString.equals("Min") || duration < 60) {
-   		JOptionPane.showMessageDialog(null,  "Please enter a vaild Duration\nFilms are never shorter than 60 minutes");
+   	   else if(durationString.equals("Min") || duration < 60 || duration > 300) {
+   		JOptionPane.showMessageDialog(null,  "Please enter a vaild Duration\nPlease note films are never shorter than 60 minutes\nor longer than 300 minutes");
    	   }
    	   else if(actor.equals("Actor")) {
    		JOptionPane.showMessageDialog(null,  "Please enter vaild Actor/s name");
