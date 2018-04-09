@@ -10,10 +10,10 @@ public class FilmTester {
 		String genre = "Thriller";
 		int duration = 90;
 		
-		Film newFilm = new Film(name, rating, genre, duration); 
+//		Film newFilm = new Film(name, rating, genre, duration); 
 		
-	newFilm.addFilmToDB();
-	newFilm.getFilmDB();
+//	newFilm.addFilmToDB();
+//	newFilm.getFilmDB();
 		
 		
 		
