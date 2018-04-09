@@ -34,7 +34,7 @@ public class AdminPage extends javax.swing.JFrame {
     Connection conn;
     Statement st;
     ResultSet rs;
-
+    static String filmName;
     /**
      * Creates new form AdminPage
      */
@@ -42,6 +42,10 @@ public class AdminPage extends javax.swing.JFrame {
         initComponents();
         fetch();
     }
+    
+    //public static String getTitle() {
+   // 	return AdminPage.filmName;
+   // }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -118,6 +122,11 @@ public class AdminPage extends javax.swing.JFrame {
         editFilmJButton.setText("Edit Film");
         editFilmJButton.setBackground(Color.CYAN);
         editFilmJButton.setFont(new Font("sansserif", Font.BOLD, 16));
+        editFilmJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBtActionPerformed(evt);
+            }
+        });
         
         jComboBox1.setModel(new DefaultComboBoxModel<>(new String[] {"Select Film"}));
 
@@ -256,6 +265,8 @@ public class AdminPage extends javax.swing.JFrame {
          win.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
     
+
+    
     private void removeJButtonActionPerformed(java.awt.event.ActionEvent evt) 
     {
     	String filmName = jComboBox1.getSelectedItem().toString();
@@ -289,6 +300,18 @@ public class AdminPage extends javax.swing.JFrame {
 
         AddFilm film = new AddFilm();
         film.setVisible(true);// TODO add your handling code here:
+    } 
+    
+    private void editBtActionPerformed(java.awt.event.ActionEvent evt) {     
+    	String filmToBeEdited = jComboBox1.getSelectedItem().toString();
+        if(filmToBeEdited.equals("Select Film")) {
+        	JOptionPane.showMessageDialog(null,  "Select a Film to edit first");
+        }
+        else {
+    	EditFilm film = new EditFilm();
+        EditFilm.TitleTextField1.setText(filmToBeEdited);
+        film.setVisible(true);// TODO add your handling code here:
+        }
     } 
     
 
