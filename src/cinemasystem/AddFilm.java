@@ -187,7 +187,7 @@ public class AddFilm extends javax.swing.JFrame {
         GenreLabel.setText("Genre");
 
        // PgRatingCB.setForeground(new java.awt.Color(204, 204, 204));
-        PgRatingCB.setModel(new DefaultComboBoxModel<>(new String[] {"Select Rating", "U", "PG", "12A", "12", "15", "18"}));
+        PgRatingCB.setModel(new DefaultComboBoxModel<>(new String[] {"Select Rating", "U", "PG", "12A", "12", "15", "15A", "18"}));
 
         GenrejTextField.setForeground(new java.awt.Color(204, 204, 204));
         GenrejTextField.setText("Genre");

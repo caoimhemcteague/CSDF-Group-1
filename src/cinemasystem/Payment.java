@@ -9,6 +9,8 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.time.LocalDate;
+import java.util.Calendar;
 
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
@@ -311,18 +313,40 @@ public class Payment extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void payBTActionPerformed(java.awt.event.ActionEvent evt) {
-    	String card, expiry, code, name;
+    	String card, expiry, code, name, monthString = "00", yearString = "00";
+    	char monthChar1 = '0', monthChar2 = '0', yearChar1 = '0', yearChar2 = '0';
     	card = cardTF.getText();
     	expiry = dateTF.getText();
     	code = securityCodeTF.getText();
     	name = cardHolderNameTF.getText();
+    	int month = 00, year = 00;
+    	try {
+			monthChar1 = expiry.charAt(0);
+			monthChar2 = expiry.charAt(1);
+			yearChar1 = expiry.charAt(3);
+			yearChar2 = expiry.charAt(4);
+		   	monthString = ""+monthChar1+""+monthChar2;
+			yearString = ""+yearChar1+""+yearChar2;
+		    month = Integer.parseInt(monthString);
+			year = Integer.parseInt(yearString);
+    	}
+    	catch(Exception e) {
+    		
+    	}
+    	int currentYear= Calendar.getInstance().get(Calendar.YEAR);  
+    	int currentMonth= Calendar.getInstance().get(Calendar.MONTH) + 1;  //month is displayed by their index so must add 1 to get correct month
+
     	if(card.length() < 19) {
 			JOptionPane.showMessageDialog(null,  "Please enter a vaild Card Number");
     	}
-    	else if(expiry.length() < 5 || !(expiry.charAt(2) == '/')) {
-    		JOptionPane.showMessageDialog(null,  "Please enter a vaild Expiry date\nin the following format -- MM/YY");
+    	else if(expiry.length() < 5 || !(expiry.charAt(2) == '/') || month > 12 || month <1 || year > 27 || year < (currentYear -2000)) {
+    			JOptionPane.showMessageDialog(null,  "Please enter a vaild Expiry date\nin the following format -- MM/YY");
+    		
     	}
-    	else if(code.length() < 3) {
+    	else if(month < currentMonth && year <= (currentYear - 2000)) {
+			JOptionPane.showMessageDialog(null,  "This card has expired");
+		}
+    	else if(code.length() < 3 || code.equals("CSC")) {
     		JOptionPane.showMessageDialog(null,  "Please enter a vaild CSC");
 
     	}
