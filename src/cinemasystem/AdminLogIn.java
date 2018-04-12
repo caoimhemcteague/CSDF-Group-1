@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Window;
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
@@ -24,6 +25,7 @@ public class AdminLogIn extends javax.swing.JFrame {
      * Creates new form AdminLogIn
      */
     public AdminLogIn() {
+    	getContentPane().setFont(new Font("Lucida Grande", Font.PLAIN, 39));
         initComponents();
     }
 
@@ -38,7 +40,9 @@ public class AdminLogIn extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         TextUserName = new javax.swing.JTextField();
+        TextUserName.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
         TextPassword = new javax.swing.JPasswordField();
+        TextPassword.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
         closeJButton = new javax.swing.JButton();
         loginJButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -47,15 +51,15 @@ public class AdminLogIn extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         
         jLabel1.setText("Admin Log In");
-        jLabel1.setFont(new Font("sansserif", Font.BOLD, 24));
+        jLabel1.setFont(new Font("SansSerif", Font.BOLD, 32));
         jLabel1.setForeground(Color.PINK);
         
         jLabel2.setText("Username:");
-        jLabel2.setFont(new Font("sansserif", Font.BOLD, 18));
+        jLabel2.setFont(new Font("SansSerif", Font.BOLD, 39));
         jLabel2.setForeground(Color.PINK);
         
         jLabel3.setText("Password:");
-        jLabel3.setFont(new Font("sansserif", Font.BOLD, 18));
+        jLabel3.setFont(new Font("SansSerif", Font.BOLD, 39));
         jLabel3.setForeground(Color.PINK);
 
         TextUserName.setText("");
@@ -69,7 +73,7 @@ public class AdminLogIn extends javax.swing.JFrame {
 
         closeJButton.setText("Close");
         closeJButton.setBackground(Color.RED);
-        closeJButton.setFont(new Font("sansserif", Font.BOLD, 16));
+        closeJButton.setFont(new Font("SansSerif", Font.BOLD, 36));
         closeJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -78,7 +82,7 @@ public class AdminLogIn extends javax.swing.JFrame {
 
         loginJButton.setText("Log In");
         loginJButton.setBackground(Color.GREEN);
-        loginJButton.setFont(new Font("sansserif", Font.BOLD, 16));
+        loginJButton.setFont(new Font("SansSerif", Font.BOLD, 36));
         loginJButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton2MouseClicked(evt);
@@ -89,48 +93,47 @@ public class AdminLogIn extends javax.swing.JFrame {
         layout.setHorizontalGroup(
         	layout.createParallelGroup(Alignment.TRAILING)
         		.addGroup(layout.createSequentialGroup()
-        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        			.addContainerGap(966, Short.MAX_VALUE)
+        			.addComponent(closeJButton)
+        			.addGap(29))
+        		.addGroup(layout.createSequentialGroup()
+        			.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+        				.addGroup(layout.createSequentialGroup()
+        					.addContainerGap()
+        					.addComponent(loginJButton))
         				.addGroup(layout.createSequentialGroup()
         					.addGap(40)
-        					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
-        						.addGroup(layout.createSequentialGroup()
-        							.addGroup(layout.createParallelGroup(Alignment.TRAILING)
-        								.addComponent(loginJButton)
-        								.addGroup(layout.createSequentialGroup()
-        									.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        										.addComponent(jLabel3, Alignment.TRAILING)
-        										.addComponent(jLabel2, Alignment.TRAILING))
-        									.addGap(18)
-        									.addGroup(layout.createParallelGroup(Alignment.TRAILING, false)
-        										.addComponent(TextPassword)
-        										.addComponent(TextUserName, GroupLayout.PREFERRED_SIZE, 190, GroupLayout.PREFERRED_SIZE))))
-        							.addPreferredGap(ComponentPlacement.RELATED, 84, GroupLayout.PREFERRED_SIZE))
-        						.addGroup(layout.createSequentialGroup()
-        							.addPreferredGap(ComponentPlacement.RELATED, 301, GroupLayout.PREFERRED_SIZE)
-        							.addComponent(closeJButton))))
-        				.addGroup(layout.createSequentialGroup()
-        					.addGap(127)
-        					.addComponent(jLabel1)))
-        			.addContainerGap(156, Short.MAX_VALUE))
+        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        						.addComponent(jLabel2)
+        						.addComponent(jLabel3))
+        					.addGap(18)
+        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        						.addComponent(TextUserName, GroupLayout.DEFAULT_SIZE, 751, Short.MAX_VALUE)
+        						.addComponent(TextPassword, GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE))))
+        			.addGap(210))
+        		.addGroup(Alignment.LEADING, layout.createSequentialGroup()
+        			.addGap(499)
+        			.addComponent(jLabel1, GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+        			.addGap(500))
         );
         layout.setVerticalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
         		.addGroup(layout.createSequentialGroup()
-        			.addContainerGap()
+        			.addGap(18)
         			.addComponent(jLabel1)
-        			.addGap(43)
+        			.addGap(31)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
         				.addComponent(jLabel2, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
         				.addComponent(TextUserName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-        			.addGap(52)
+        			.addGap(86)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
         				.addComponent(TextPassword, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         				.addComponent(jLabel3, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE))
-        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addGap(28)
         			.addComponent(loginJButton)
-        			.addGap(18)
+        			.addPreferredGap(ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
         			.addComponent(closeJButton)
-        			.addContainerGap(127, Short.MAX_VALUE))
+        			.addGap(36))
         );
         getContentPane().setLayout(layout);
         getContentPane().setBackground(Color.GRAY);
@@ -193,7 +196,16 @@ public class AdminLogIn extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdminLogIn().setVisible(true);
+            	AdminLogIn frame = new AdminLogIn();
+                
+                frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+                
+                frame.setVisible(true);    
+            	
+            	
+            	
+            	
+           
             }
         });
     }

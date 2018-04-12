@@ -18,10 +18,14 @@ import java.sql.Statement;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 import net.proteanit.sql.DbUtils;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 /**
  *
@@ -57,12 +61,14 @@ public class AdminPage extends javax.swing.JFrame {
     private void initComponents() {
 
         jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox1.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
         removeJButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         addFilmJButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
+        table.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
         closeJButton = new javax.swing.JButton();
         editFilmJButton = new javax.swing.JButton();
 
@@ -72,7 +78,7 @@ public class AdminPage extends javax.swing.JFrame {
 
         removeJButton.setText("Remove");
         removeJButton.setBackground(Color.CYAN);
-        removeJButton.setFont(new Font("sansserif", Font.BOLD, 16));
+        removeJButton.setFont(new Font("SansSerif", Font.BOLD, 30));
         removeJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
             	removeJButtonActionPerformed(evt);
@@ -80,16 +86,16 @@ public class AdminPage extends javax.swing.JFrame {
         });
 
         jLabel1.setText("Administrator");
-        jLabel1.setFont(new Font("sansserif", Font.BOLD, 24));
+        jLabel1.setFont(new Font("SansSerif", Font.BOLD, 39));
         jLabel1.setForeground(Color.PINK);
 
         jLabel2.setText("Please select a film to remove ");
-        jLabel2.setFont(new Font("sansserif", Font.BOLD, 18));
+        jLabel2.setFont(new Font("SansSerif", Font.BOLD, 30));
         jLabel2.setForeground(Color.YELLOW);
 
         addFilmJButton.setText("Add New Film");
         addFilmJButton.setBackground(Color.CYAN);
-        addFilmJButton.setFont(new Font("sansserif", Font.BOLD, 16));
+        addFilmJButton.setFont(new Font("SansSerif", Font.BOLD, 30));
         addFilmJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
             	addFilmJButtonActionPerformed(evt);
@@ -112,7 +118,7 @@ public class AdminPage extends javax.swing.JFrame {
 
         closeJButton.setText("Close");
         closeJButton.setBackground(Color.RED);
-        closeJButton.setFont(new Font("sansserif", Font.BOLD, 16));
+        closeJButton.setFont(new Font("SansSerif", Font.BOLD, 30));
         closeJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -121,7 +127,7 @@ public class AdminPage extends javax.swing.JFrame {
 
         editFilmJButton.setText("Edit Film");
         editFilmJButton.setBackground(Color.CYAN);
-        editFilmJButton.setFont(new Font("sansserif", Font.BOLD, 16));
+        editFilmJButton.setFont(new Font("SansSerif", Font.BOLD, 30));
         editFilmJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editBtActionPerformed(evt);
@@ -154,54 +160,58 @@ public class AdminPage extends javax.swing.JFrame {
 		}
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        getContentPane().setBackground(Color.GRAY);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(addFilmJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(removeJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(editFilmJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(56, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(closeJButton)
-                .addGap(44, 44, 44))
+        	layout.createParallelGroup(Alignment.TRAILING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(83)
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addComponent(jLabel2)
+        				.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 747, GroupLayout.PREFERRED_SIZE)
+        				.addGroup(layout.createSequentialGroup()
+        					.addComponent(jComboBox1, 0, 476, Short.MAX_VALUE)
+        					.addGap(279)
+        					.addGroup(layout.createParallelGroup(Alignment.TRAILING, false)
+        						.addComponent(editFilmJButton, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        						.addComponent(addFilmJButton, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        						.addComponent(removeJButton, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE))
+        					.addPreferredGap(ComponentPlacement.RELATED, 13, Short.MAX_VALUE)))
+        			.addContainerGap())
+        		.addGroup(layout.createSequentialGroup()
+        			.addContainerGap(1109, Short.MAX_VALUE)
+        			.addComponent(closeJButton)
+        			.addGap(32))
+        		.addGroup(Alignment.LEADING, layout.createSequentialGroup()
+        			.addGap(488)
+        			.addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 295, GroupLayout.PREFERRED_SIZE)
+        			.addContainerGap(487, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(removeJButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(addFilmJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(editFilmJButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(closeJButton)
-                .addGap(12, 12, 12))
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(15)
+        			.addComponent(jLabel1)
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addComponent(jLabel2)
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(jComboBox1, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(removeJButton))
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addComponent(addFilmJButton)
+        			.addGap(12)
+        			.addComponent(editFilmJButton)
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(layout.createSequentialGroup()
+        					.addGap(62)
+        					.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 282, GroupLayout.PREFERRED_SIZE)
+        					.addContainerGap(63, Short.MAX_VALUE))
+        				.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addComponent(closeJButton)
+        					.addGap(19))))
         );
+        getContentPane().setLayout(layout);
+        getContentPane().setBackground(Color.GRAY);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -353,7 +363,15 @@ public class AdminPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdminPage().setVisible(true);
+                
+                AdminPage frame = new AdminPage();
+                
+                frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+                
+                frame.setVisible(true);  
+                
+                
+                
             }
         });
     }
