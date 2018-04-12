@@ -9,7 +9,12 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Window;
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -36,13 +41,15 @@ public class CancelTicket extends javax.swing.JFrame {
         closeJButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
+        jTextField1.setHorizontalAlignment(SwingConstants.CENTER);
+        jTextField1.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
         cancelJButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         closeJButton.setText("Close");
         closeJButton.setBackground(Color.RED);
-        closeJButton.setFont(new Font("sansserif", Font.BOLD, 16));
+        closeJButton.setFont(new Font("SansSerif", Font.BOLD, 30));
         closeJButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
@@ -55,49 +62,48 @@ public class CancelTicket extends javax.swing.JFrame {
         });
 
         jLabel1.setText("Cancel Ticket");
-        jLabel1.setFont(new Font("sansserif", Font.BOLD, 24));
+        jLabel1.setFont(new Font("SansSerif", Font.BOLD, 39));
         jLabel1.setForeground(Color.PINK);
 
-        jTextField1.setText("Please Enter Ticket ID");
+        jTextField1.setText("   Please Enter Ticket ID");
 
         cancelJButton.setText("Cancel Ticket");
         cancelJButton.setBackground(Color.RED);
-        cancelJButton.setFont(new Font("sansserif", Font.BOLD, 16));
+        cancelJButton.setFont(new Font("SansSerif", Font.BOLD, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        getContentPane().setBackground(Color.GRAY);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(closeJButton)
-                .addGap(30, 30, 30))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cancelJButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(158, 158, 158)
-                        .addComponent(jLabel1)))
-                .addContainerGap(41, Short.MAX_VALUE))
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(197)
+        			.addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, 541, GroupLayout.PREFERRED_SIZE)
+        			.addGap(50)
+        			.addComponent(cancelJButton, GroupLayout.PREFERRED_SIZE, 311, GroupLayout.PREFERRED_SIZE)
+        			.addContainerGap(198, Short.MAX_VALUE))
+        		.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+        			.addContainerGap(1107, Short.MAX_VALUE)
+        			.addComponent(closeJButton)
+        			.addGap(61))
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(508)
+        			.addComponent(jLabel1, GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+        			.addGap(509))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel1)
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelJButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
-                .addComponent(closeJButton)
-                .addGap(15, 15, 15))
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(27)
+        			.addComponent(jLabel1)
+        			.addGap(61)
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(cancelJButton))
+        			.addGap(449)
+        			.addComponent(closeJButton)
+        			.addContainerGap(17, Short.MAX_VALUE))
         );
+        getContentPane().setLayout(layout);
+        getContentPane().setBackground(Color.GRAY);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -144,7 +150,12 @@ public class CancelTicket extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CancelTicket().setVisible(true);
+                
+                CancelTicket frame = new CancelTicket();
+                
+                frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+                
+                frame.setVisible(true);    
             }
         });
     }
