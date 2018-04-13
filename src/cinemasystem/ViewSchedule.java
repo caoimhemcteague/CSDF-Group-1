@@ -13,7 +13,7 @@ import java.sql.Statement;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
-
+import javax.swing.table.JTableHeader;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -105,6 +105,11 @@ public class ViewSchedule extends javax.swing.JFrame {
 				fetch();
 			}
         });
+        table.setFont(new Font("Arial", Font.BOLD, 20));
+        JTableHeader header = table.getTableHeader();
+        header.setBackground(Color.black);
+        header.setForeground(Color.black);
+        header.setFont(new Font("Arial", Font.BOLD, 20));
           
         jScrollPane1.setViewportView(table);
 
@@ -183,6 +188,9 @@ public class ViewSchedule extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+    	JComponent comp = (JComponent) evt.getSource();
+        Window win = SwingUtilities.getWindowAncestor(comp);
+        win.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
     
     private void tableActionPerformed(ActionEvent e) {

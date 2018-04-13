@@ -21,6 +21,7 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import javax.swing.table.JTableHeader;
 
 import net.proteanit.sql.DbUtils;
 import javax.swing.GroupLayout.Alignment;
@@ -113,6 +114,11 @@ public class AdminPage extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        
+        JTableHeader header = table.getTableHeader();
+        header.setBackground(Color.black);
+        header.setForeground(Color.black);
+        header.setFont(new Font("Arial", Font.BOLD, 20));
         
         jScrollPane1.setViewportView(table);
 

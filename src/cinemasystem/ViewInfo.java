@@ -8,6 +8,8 @@ package cinemasystem;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Window;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -17,8 +19,15 @@ import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
+
+import net.proteanit.sql.DbUtils;
+
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JLabel;
 
 /**
  *
@@ -50,10 +59,37 @@ public class ViewInfo extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         closeJButton = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        filmName = new javax.swing.JComboBox<>();
+        JLabel lblDirector = new JLabel("Directed By:");
+        lblDirector.setFont(new Font("SansSerif", Font.BOLD, 20));
+        lblDirector.setForeground(Color.YELLOW);
+        JLabel lblGenre = new JLabel("Genre:");
+        lblGenre.setFont(new Font("SansSerif", Font.BOLD, 20));
+        lblGenre.setForeground(Color.YELLOW);
+        JLabel lblRun = new JLabel("Run Time:");
+        lblRun.setFont(new Font("SansSerif", Font.BOLD, 20));
+        lblRun.setForeground(Color.YELLOW);
+        lblActors = new JLabel("Actors:");
+        lblActors.setFont(new Font("SansSerif", Font.BOLD, 20));
+        lblActors.setForeground(Color.YELLOW);
+        lblDirName = new JLabel("");
+        lblDirName.setFont(new Font("SansSerif", Font.BOLD, 20));
+        lblDirName.setForeground(Color.YELLOW);
+        sqlGenre = new JLabel("");
+        sqlGenre.setFont(new Font("SansSerif", Font.BOLD, 20));
+        sqlGenre.setForeground(Color.YELLOW);
         
+        actorsLabel = new JLabel("");
+        actorsLabel.setFont(new Font("SansSerif", Font.BOLD, 20));
+        actorsLabel.setForeground(Color.YELLOW);
+        
+        lblRunTime = new JLabel("");
+        lblRunTime.setFont(new Font("SansSerif", Font.BOLD, 20));
+        lblRunTime.setForeground(Color.YELLOW);
+        
+        lblPgRating = new JLabel();
+        lblPgRating.setFont(new Font("SansSerif", Font.BOLD, 30));
+        lblPgRating.setForeground(Color.RED);
         //Border border = BorderFactory.createLineBorder(Color.BLACK, 5);
         //Border border = BorderFactory.createBevelBorder(5, Color.BLACK, Color.GREEN);
 
@@ -74,7 +110,13 @@ public class ViewInfo extends javax.swing.JFrame {
         });
 
         //jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.setModel(new DefaultComboBoxModel<>(new String[] {"Select Film"}));
+        filmName.setModel(new DefaultComboBoxModel<>(new String[] {"Select Film"}));
+        filmName.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		filmNameActionPerformed(e);
+        
+        	}
+        });
 
         try {
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema?autoReconnect=true&useSSL=false", USER_NAME, PASSWORD);
@@ -82,7 +124,7 @@ public class ViewInfo extends javax.swing.JFrame {
 			String s = "Select Name from film";
 			rs = st.executeQuery(s);
 			while(rs.next()) {
-				jComboBox1.addItem(rs.getString(1));
+				filmName.addItem(rs.getString(1));
 			}
 		}
 		catch (Exception b) {
@@ -100,65 +142,178 @@ public class ViewInfo extends javax.swing.JFrame {
 		}
         
         
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
+        
+        
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        getContentPane().setBackground(Color.GRAY);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(170, 170, 170)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(40, 40, 40)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(closeJButton)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 60, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43))
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(layout.createSequentialGroup()
+        					.addGap(170)
+        					.addComponent(jLabel1))
+        				.addGroup(layout.createSequentialGroup()
+        					.addGap(40)
+        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        						.addGroup(layout.createSequentialGroup()
+        							.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        								.addGroup(layout.createSequentialGroup()
+        									.addComponent(lblActors)
+        									.addPreferredGap(ComponentPlacement.RELATED)
+        									.addComponent(actorsLabel, GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE))
+        								.addGroup(layout.createSequentialGroup()
+        									.addComponent(lblDirector, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
+        									.addPreferredGap(ComponentPlacement.RELATED)
+        									.addComponent(lblDirName, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE))
+        								.addGroup(layout.createSequentialGroup()
+        									.addPreferredGap(ComponentPlacement.RELATED)
+        									.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        										.addGroup(layout.createSequentialGroup()
+        											.addComponent(lblRun)
+        											.addPreferredGap(ComponentPlacement.RELATED)
+        											.addComponent(lblRunTime))
+        										.addGroup(layout.createSequentialGroup()
+        											.addComponent(lblGenre)
+        											.addPreferredGap(ComponentPlacement.UNRELATED)
+        											.addComponent(sqlGenre)))))
+        							.addGap(521))
+        						.addGroup(layout.createSequentialGroup()
+        							.addComponent(filmName, GroupLayout.PREFERRED_SIZE, 214, GroupLayout.PREFERRED_SIZE)
+        							.addGap(60)
+        							.addComponent(lblPgRating, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)))
+        					.addGap(146)))
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addComponent(closeJButton, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE)
+        			.addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jLabel1)
-                .addGap(11, 11, 11)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(closeJButton)
-                .addContainerGap(15, Short.MAX_VALUE))
+        	layout.createParallelGroup(Alignment.TRAILING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(layout.createSequentialGroup()
+        					.addGap(14)
+        					.addComponent(jLabel1)
+        					.addGap(11)
+        					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(filmName, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(lblPgRating))
+        					.addGap(60)
+        					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(lblActors, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(actorsLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        					.addGap(30)
+        					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(lblDirector, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(lblDirName, GroupLayout.PREFERRED_SIZE, 23, Short.MAX_VALUE))
+        					.addGap(26)
+        					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+        						.addComponent(lblGenre, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(sqlGenre, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE))
+        					.addGap(43)
+        					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(lblRun)
+        						.addComponent(lblRunTime)))
+        				.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+        					.addContainerGap(446, Short.MAX_VALUE)
+        					.addComponent(closeJButton, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)))
+        			.addContainerGap())
         );
+        getContentPane().setLayout(layout);
+        getContentPane().setBackground(Color.GRAY);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void fetch() {
+    	
+    	filmName.setModel(new DefaultComboBoxModel<>(new String[] {"Select Film"}));
+
+        try {
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema?autoReconnect=true&useSSL=false", USER_NAME, PASSWORD);
+			st = conn.createStatement();
+			String s = "Select Name from film";
+			rs = st.executeQuery(s);
+			while(rs.next()) {
+				filmName.addItem(rs.getString(1));
+			}
+		}
+		catch (Exception b) {
+		JOptionPane.showMessageDialog(null,  "Error");
+		}finally {
+			try {
+				st.close();
+				rs.close();
+				conn.close();
+				
+			}catch(Exception b) {
+	    		JOptionPane.showMessageDialog(null,  "Error Close");
+
+			}
+		}
+    }
+    
+    private void filmNameActionPerformed(ActionEvent e) {
+    
+    String value=(String)filmName.getSelectedItem();
+
+  	 if(value.equals("Select Film")) {
+  		 //Do Nothing
+  	 }
+  	 else{
+  		 try {
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema?autoReconnect=true&useSSL=false", USER_NAME, PASSWORD);
+			st = conn.createStatement();
+			String ac = "Select Actor from film Where Name ='"+value+"'";
+			String d = "Select Director from film Where Name ='"+value+"'";
+			String g = "Select Genre from film Where Name ='"+value+"'";
+			String mins = "Select Duration from film Where Name ='"+value+"'";
+			String pgR = "Select PG_Rating from film Where Name ='"+value+"'";
+			
+			rs = st.executeQuery(d);
+			if(rs.next())
+			lblDirName.setText(rs.getString(1));
+			
+			rs = st.executeQuery(ac);
+			if(rs.next())
+			actorsLabel.setText(rs.getString(1));
+			
+			rs = st.executeQuery(g);
+			if(rs.next())
+			sqlGenre.setText(rs.getString(1));
+			
+			rs = st.executeQuery(pgR);
+			if(rs.next())
+			lblPgRating.setText(rs.getString(1));
+			
+			rs = st.executeQuery(mins);
+			if(rs.next())
+			lblRunTime.setText(rs.getString(1));
+			
+		}
+		catch (Exception b) {
+		JOptionPane.showMessageDialog(null,  b.getMessage());
+		}finally {
+			try {
+				st.close();
+				rs.close();
+				conn.close();
+				
+			}catch(Exception b) {
+	    		JOptionPane.showMessageDialog(null,  "Error Close");
+
+			}
+		}
+  		 
+  	 }
+    }
+    
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JComponent comp = (JComponent) evt.getSource();
          Window win = SwingUtilities.getWindowAncestor(comp);
          win.dispose();
+         
+         
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -198,9 +353,12 @@ public class ViewInfo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton closeJButton;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    // End of variables declaration//GEN-END:variables
+    private javax.swing.JComboBox<String> filmName;
+    private javax.swing.JLabel jLabel1,lblDirName;
+    private JLabel sqlGenre;
+    private JLabel lblActors;
+    private JLabel actorsLabel;
+    private JLabel lblRunTime;
+    private JLabel lblPgRating;
+
 }
