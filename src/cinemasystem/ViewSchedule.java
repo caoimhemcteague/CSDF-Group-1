@@ -19,6 +19,8 @@ import java.awt.*;
 import java.awt.event.*;
 
 import net.proteanit.sql.DbUtils;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 /**
  *
@@ -60,7 +62,7 @@ public class ViewSchedule extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Film Schedule");
-        jLabel1.setFont(new Font("sansserif", Font.BOLD, 24));
+        jLabel1.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
         jLabel1.setForeground(Color.PINK);
 
         closeButton.setText("close");
@@ -114,35 +116,34 @@ public class ViewSchedule extends javax.swing.JFrame {
         jScrollPane1.setViewportView(table);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        getContentPane().setBackground(Color.GRAY);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(209, 209, 209)
-                .addComponent(jLabel1)
-                .addContainerGap(274, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(closeButton)
-                        .addGap(27, 27, 27))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50))))
+        	layout.createParallelGroup(Alignment.TRAILING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(546)
+        			.addComponent(jLabel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        			.addContainerGap())
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(92)
+        			.addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 648, Short.MAX_VALUE)
+        			.addGap(67))
+        		.addGroup(Alignment.LEADING, layout.createSequentialGroup()
+        			.addContainerGap(689, Short.MAX_VALUE)
+        			.addComponent(closeButton, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)
+        			.addGap(27))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel1)
-                .addGap(34, 34, 34)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                .addComponent(closeButton)
-                .addGap(19, 19, 19))
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addContainerGap()
+        			.addComponent(jLabel1)
+        			.addGap(39)
+        			.addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+        			.addGap(36)
+        			.addComponent(closeButton, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+        			.addGap(19))
         );
+        getContentPane().setLayout(layout);
+        getContentPane().setBackground(Color.GRAY);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

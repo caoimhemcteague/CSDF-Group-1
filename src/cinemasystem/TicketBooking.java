@@ -18,6 +18,9 @@ import java.text.NumberFormat;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 /**
  *
@@ -126,138 +129,147 @@ public class TicketBooking extends javax.swing.JFrame{
         });
         
         
-        jLabel3.setFont(new Font("sansserif", Font.BOLD, 24)); // NOI18N
+        jLabel3.setFont(new Font("Lucida Grande", Font.PLAIN, 39)); // NOI18N
         jLabel3.setForeground(Color.PINK);
         jLabel3.setText("Ticket Booking");
 
         jLabel4.setText("Theatre Adult Ticket @ €" + adultPrice + " Amount");
+        jLabel4.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
         jLabel4.setForeground(Color.YELLOW);
 
         jLabel5.setText("Theatre Child Tickets @ €" + childPrice + " Amount");
+        jLabel5.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
         jLabel5.setForeground(Color.YELLOW);
 
         jLabel6.setText("Theatre Student/OAP Tickets @ €" + student_OAP_Price + " Amount");
+        jLabel6.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
         jLabel6.setForeground(Color.YELLOW);
 
         jLabel7.setText("Please Select Quantity of Tickets:");
+        jLabel7.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
         jLabel7.setForeground(Color.YELLOW);
 
         adultBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
+        adultBox.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
         adultBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
             }
         });
         childBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
+        childBox.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
         childBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);
             }
         });
         student_OAP_Box.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
+        student_OAP_Box.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
         student_OAP_Box.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox3ActionPerformed(evt);
             }
         });
         jLabel8.setText("You Are Viewing:");
+        jLabel8.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
 
         jLabel9.setText("Date:");
+        jLabel9.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
 
         jLabel10.setText(frame.getDate());
 
-        jLabel11.setText("Time");
+        jLabel11.setText("Time:");
+        jLabel11.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
 
         jLabel12.setText(frame.getTime());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        getContentPane().setBackground(Color.GRAY);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(closeJButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(adultBox, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel4))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(childBox, 0, 70, Short.MAX_VALUE)
-                                            .addComponent(student_OAP_Box, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGap(12, 12, 12)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel6)
-                                            .addComponent(jLabel5)))
-                                    .addComponent(jLabel7)
-                                    .addComponent(acceptJButton)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(147, 147, 147)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(154, 154, 154)
-                                .addComponent(jLabel3))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel11))
-                                .addGap(26, 26, 26)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel10)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel12))))
-                        .addGap(0, 85, Short.MAX_VALUE)))
-                .addContainerGap())
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(layout.createSequentialGroup()
+        					.addGap(147)
+        					.addComponent(jLabel1))
+        				.addGroup(layout.createSequentialGroup()
+        					.addGap(20)
+        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        						.addComponent(jLabel9)
+        						.addComponent(jLabel8)
+        						.addComponent(jLabel11))
+        					.addGap(26)
+        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        						.addComponent(jLabel10)
+        						.addComponent(jLabel2)
+        						.addComponent(jLabel12)))
+        				.addGroup(layout.createSequentialGroup()
+        					.addGap(12)
+        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        						.addGroup(layout.createSequentialGroup()
+        							.addGap(10)
+        							.addComponent(acceptJButton, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+        							.addPreferredGap(ComponentPlacement.RELATED, 619, Short.MAX_VALUE)
+        							.addComponent(closeJButton, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE))
+        						.addGroup(layout.createSequentialGroup()
+        							.addComponent(adultBox, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+        							.addPreferredGap(ComponentPlacement.UNRELATED)
+        							.addComponent(jLabel4))
+        						.addGroup(layout.createSequentialGroup()
+        							.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
+        								.addComponent(childBox, 0, 70, Short.MAX_VALUE)
+        								.addComponent(student_OAP_Box, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        							.addGap(12)
+        							.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        								.addComponent(jLabel6)
+        								.addComponent(jLabel5)))
+        						.addComponent(jLabel7))))
+        			.addContainerGap())
+        		.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+        			.addGap(583)
+        			.addComponent(jLabel3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        			.addGap(174))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel9))
-                .addGap(11, 11, 11)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel11))
-                .addGap(24, 24, 24)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(adultBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(childBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(student_OAP_Box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(closeJButton)
-                    .addComponent(acceptJButton))
-                .addContainerGap())
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addContainerGap()
+        			.addComponent(jLabel3)
+        			.addGap(18)
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(jLabel2)
+        				.addComponent(jLabel8))
+        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(jLabel10)
+        				.addComponent(jLabel9))
+        			.addGap(11)
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(jLabel12)
+        				.addComponent(jLabel11))
+        			.addGap(24)
+        			.addComponent(jLabel1)
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addComponent(jLabel7)
+        			.addGap(18)
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(adultBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(jLabel4))
+        			.addGap(18)
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(childBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(jLabel5))
+        			.addGap(15)
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(student_OAP_Box, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(jLabel6))
+        			.addPreferredGap(ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(closeJButton, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(acceptJButton, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE))
+        			.addContainerGap())
         );
+        getContentPane().setLayout(layout);
+        getContentPane().setBackground(Color.GRAY);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
