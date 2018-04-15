@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
 
 import chrriis.dj.nativeswing.swtimpl.NativeInterface;
 import chrriis.dj.nativeswing.swtimpl.components.JWebBrowser;
@@ -40,10 +41,10 @@ public class playTrailer {
 				try {
 
 				JFrame frame = new JFrame("Youtube");
-				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 				frame.getContentPane().add(getBrowser(), BorderLayout.CENTER);
-				frame.setSize(400, 300);
-				 
+				frame.setSize(800, 600);
+				frame.setLocationByPlatform(true); 
 				frame.setVisible(true);
 				}
 				catch(Exception e)
@@ -113,6 +114,7 @@ public class playTrailer {
   	wbPanel.add(wb, BorderLayout.CENTER);
   	wb.setBarsVisible(false);
   	getLink();
+  //	link = "www.dailymotion.com/embed/video/x5pwvgd";
   	wb.navigate(link);
   	
   	return wbPanel;

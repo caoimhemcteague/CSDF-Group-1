@@ -7,6 +7,7 @@ package cinemasystem;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,6 +27,7 @@ import net.proteanit.sql.DbUtils;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JLabel;
@@ -58,7 +60,11 @@ public class ViewInfo extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
+    	
+    	Image img = new ImageIcon(this.getClass().getResource("/images.jpg")).getImage();
+    	posterLabel = new JLabel(new ImageIcon(img));
+        posterLabel.setSize(457, 610);
+    	
         jLabel1 = new javax.swing.JLabel();
         closeJButton = new javax.swing.JButton();
         filmName = new javax.swing.JComboBox<>();
@@ -154,85 +160,83 @@ public class ViewInfo extends javax.swing.JFrame {
         
         
         
+        
+        
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(
-        	layout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(layout.createSequentialGroup()
-        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        				.addGroup(layout.createSequentialGroup()
-        					.addGap(170)
-        					.addComponent(jLabel1))
-        				.addGroup(layout.createSequentialGroup()
-        					.addContainerGap()
-        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        						.addComponent(filmName, GroupLayout.PREFERRED_SIZE, 214, GroupLayout.PREFERRED_SIZE)
-        						.addGroup(layout.createSequentialGroup()
-        							.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        								.addGroup(layout.createSequentialGroup()
-        									.addComponent(lblActors)
-        									.addPreferredGap(ComponentPlacement.RELATED)
-        									.addComponent(actorsLabel, GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE))
-        								.addGroup(layout.createSequentialGroup()
-        									.addComponent(lblDirector, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
-        									.addPreferredGap(ComponentPlacement.RELATED)
-        									.addComponent(lblDirName))
-        								.addGroup(layout.createSequentialGroup()
-        									.addPreferredGap(ComponentPlacement.RELATED)
-        									.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        										.addGroup(layout.createSequentialGroup()
-        											.addComponent(lblRun)
-        											.addPreferredGap(ComponentPlacement.RELATED)
-        											.addComponent(lblRunTime))
-        										.addGroup(layout.createSequentialGroup()
-        											.addComponent(lblGenre)
-        											.addPreferredGap(ComponentPlacement.UNRELATED)
-        											.addComponent(sqlGenre)))))
-        							.addGap(328)))
-        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        						.addGroup(layout.createSequentialGroup()
-        							.addGap(720)
-        							.addComponent(lblPgRating, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE))
-        						.addGroup(layout.createSequentialGroup()
-        							.addPreferredGap(ComponentPlacement.RELATED)
-        							.addComponent(synopsisTextArea, GroupLayout.PREFERRED_SIZE, 648, GroupLayout.PREFERRED_SIZE)))))
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(closeJButton, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE)
-        			.addContainerGap())
-        );
-        layout.setVerticalGroup(
         	layout.createParallelGroup(Alignment.TRAILING)
         		.addGroup(layout.createSequentialGroup()
         			.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        				.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
-        					.addGap(14)
-        					.addComponent(jLabel1)
-        					.addGap(11)
-        					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addGroup(layout.createSequentialGroup()
+        					.addGap(28)
+        					.addComponent(posterLabel, GroupLayout.PREFERRED_SIZE, 229, GroupLayout.PREFERRED_SIZE)
+        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
         						.addGroup(layout.createSequentialGroup()
-        							.addComponent(filmName, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
-        							.addGap(60)
-        							.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        								.addComponent(lblActors, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
-        								.addComponent(actorsLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        							.addGap(30)
-        							.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        								.addComponent(lblDirector, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-        								.addComponent(lblDirName, GroupLayout.PREFERRED_SIZE, 23, Short.MAX_VALUE))
-        							.addGap(26)
-        							.addGroup(layout.createParallelGroup(Alignment.TRAILING)
-        								.addComponent(lblGenre, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-        								.addComponent(sqlGenre, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE))
-        							.addGap(43)
-        							.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        								.addComponent(lblRun)
-        								.addComponent(lblRunTime)))
-        						.addComponent(lblPgRating)))
-        				.addComponent(closeJButton, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
-        				.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
-        					.addGap(102)
-        					.addComponent(synopsisTextArea, GroupLayout.PREFERRED_SIZE, 353, GroupLayout.PREFERRED_SIZE)
-        					.addGap(29)))
-        			.addContainerGap())
+        							.addGap(62)
+        							.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        								.addComponent(synopsisTextArea, GroupLayout.PREFERRED_SIZE, 299, GroupLayout.PREFERRED_SIZE)
+        								.addComponent(filmName, GroupLayout.PREFERRED_SIZE, 214, GroupLayout.PREFERRED_SIZE)
+        								.addGroup(layout.createSequentialGroup()
+        									.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        										.addComponent(lblRun)
+        										.addComponent(lblGenre))
+        									.addGap(36)
+        									.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        										.addComponent(sqlGenre)
+        										.addComponent(lblRunTime)))
+        								.addGroup(layout.createSequentialGroup()
+        									.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        										.addComponent(lblDirector)
+        										.addComponent(lblActors))
+        									.addGap(18)
+        									.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        										.addComponent(actorsLabel)
+        										.addComponent(lblDirName)))))
+        						.addGroup(layout.createSequentialGroup()
+        							.addGap(379)
+        							.addComponent(lblPgRating, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE))))
+        				.addGroup(layout.createSequentialGroup()
+        					.addGap(338)
+        					.addComponent(jLabel1)))
+        			.addContainerGap(1617, Short.MAX_VALUE))
+        		.addGroup(layout.createSequentialGroup()
+        			.addContainerGap(2628, Short.MAX_VALUE)
+        			.addComponent(closeJButton, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE)
+        			.addGap(864))
+        );
+        layout.setVerticalGroup(
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(14)
+        			.addComponent(jLabel1)
+        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addComponent(posterLabel, GroupLayout.PREFERRED_SIZE, 305, GroupLayout.PREFERRED_SIZE)
+        				.addGroup(layout.createSequentialGroup()
+        					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+        						.addComponent(lblPgRating)
+        						.addComponent(filmName, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE))
+        					.addGap(26)
+        					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(lblGenre)
+        						.addComponent(sqlGenre))
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(lblRun)
+        						.addComponent(lblRunTime))
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(lblDirector)
+        						.addComponent(lblDirName))
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(lblActors)
+        						.addComponent(actorsLabel))
+        					.addGap(27)
+        					.addComponent(synopsisTextArea, GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)))
+        			.addGap(247)
+        			.addComponent(closeJButton, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+        			.addGap(112))
         );
         getContentPane().setLayout(layout);
         getContentPane().setBackground(Color.GRAY);
@@ -285,7 +289,8 @@ public class ViewInfo extends javax.swing.JFrame {
 			String mins = "Select Duration from film Where Name ='"+value+"'";
 			String pgR = "Select PG_Rating from film Where Name ='"+value+"'";
 			String synopsis = "Select synopsis from film Where Name ='"+value+"'";
-			
+			String poster = "select poster from film where Name ='"+value+"'";
+
 			rs = st.executeQuery(d);
 			if(rs.next())
 			lblDirName.setText(rs.getString(1));
@@ -309,6 +314,20 @@ public class ViewInfo extends javax.swing.JFrame {
 			rs = st.executeQuery(synopsis);
 			if(rs.next())
 			synopsisTextArea.setText(rs.getString(1));
+			
+			rs=st.executeQuery(poster);
+			if(rs.next()) {
+				byte[] img = rs.getBytes(1);
+				ImageIcon image = new ImageIcon(img);
+				Image im = image.getImage();
+				Image myImg = im.getScaledInstance(posterLabel.getWidth(), posterLabel.getHeight(), Image.SCALE_SMOOTH);
+				ImageIcon newImage = new ImageIcon(myImg);
+				posterLabel.setIcon(newImage);
+	
+			}
+			else {
+				JOptionPane.showMessageDialog(null,  "No Data");
+			}
 		}
 		catch (Exception b) {
 		JOptionPane.showMessageDialog(null,  b.getMessage());
@@ -381,4 +400,6 @@ public class ViewInfo extends javax.swing.JFrame {
     private JLabel lblRunTime;
     private JLabel lblPgRating;
     private JTextArea synopsisTextArea;
+    private JLabel posterLabel;
+
 }
