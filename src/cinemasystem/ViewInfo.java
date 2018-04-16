@@ -101,7 +101,9 @@ public class ViewInfo extends javax.swing.JFrame {
         lblPgRating.setForeground(Color.RED);
         
         synopsisTextArea = new JTextArea();
-        setFont(new Font("SansSerif", Font.ITALIC, 18));
+        synopsisTextArea.setFont(new Font("SansSerif", Font.ITALIC, 18));
+        Border border = BorderFactory.createLineBorder(Color.BLACK);
+        synopsisTextArea.setBorder(BorderFactory.createCompoundBorder(border,BorderFactory.createEmptyBorder(15, 15, 15, 15)));
         setForeground(Color.BLACK);
         synopsisTextArea.setLineWrap(true);
         synopsisTextArea.setWrapStyleWord(true);

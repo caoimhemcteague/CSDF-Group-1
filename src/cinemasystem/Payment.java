@@ -11,6 +11,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.time.LocalDate;
 import java.util.Calendar;
+import java.text.DecimalFormat; 
+
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -75,8 +77,10 @@ public class Payment extends javax.swing.JFrame {
 
         jLabel3.setText("Credit/Debit Card Details");
         jLabel3.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
-
-        jLabel4.setText("Your Order Total Is "+ TicketBooking.Price);
+        
+        DecimalFormat df = new DecimalFormat("####0.00");
+        
+        jLabel4.setText("Your Order Total Is "+"€"+ df.format(TicketBooking.Price));
         jLabel4.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
 
         jLabel5.setText("Card Number:");
