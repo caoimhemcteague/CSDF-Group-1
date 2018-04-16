@@ -17,6 +17,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
@@ -385,7 +386,14 @@ public class ViewInfo extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ViewInfo().setVisible(true);
+            	ViewInfo frame = new ViewInfo();
+                
+                frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+                
+                frame.setVisible(true);   
+            	
+            	
+        
             }
         });
     }

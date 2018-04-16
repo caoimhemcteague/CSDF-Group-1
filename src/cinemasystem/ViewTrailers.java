@@ -224,7 +224,13 @@ public class ViewTrailers extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ViewTrailers().setVisible(true);
+            	ViewTrailers frame = new ViewTrailers();
+                
+                frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+                
+                frame.setVisible(true);      
+            	
+            	
             }
         });
     }

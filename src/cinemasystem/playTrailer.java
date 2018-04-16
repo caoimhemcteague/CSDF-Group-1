@@ -60,7 +60,9 @@ public class playTrailer {
 					}});
 				frame.add(btnClose, BorderLayout.SOUTH);
 				frame.setLocationByPlatform(true); 
+				frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				frame.setVisible(true);
+				
 				}
 				catch(Exception e)
 				{

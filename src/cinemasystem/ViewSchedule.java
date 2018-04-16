@@ -10,9 +10,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import javax.swing.JComponent;
-import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
 import javax.swing.table.JTableHeader;
 import javax.swing.*;
 import java.awt.*;
@@ -231,8 +228,14 @@ public class ViewSchedule extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ViewSchedule().setVisible(true);
-            }
+            		ViewSchedule frame = new ViewSchedule();
+                
+                frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+                
+                frame.setVisible(true);   
+            	
+            	
+                      }
         });
     }
 

@@ -16,6 +16,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.GroupLayout.Alignment;
@@ -135,15 +136,15 @@ public class TicketBooking extends javax.swing.JFrame{
         jLabel3.setForeground(Color.PINK);
         jLabel3.setText("Ticket Booking");
 
-        jLabel4.setText("Theatre Adult Ticket @ €" + adultPrice + " Amount");
+        jLabel4.setText("Theatre Adult Ticket @ ï¿½" + adultPrice + " Amount");
         jLabel4.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
         jLabel4.setForeground(Color.YELLOW);
 
-        jLabel5.setText("Theatre Child Tickets @ €" + childPrice + " Amount");
+        jLabel5.setText("Theatre Child Tickets @ ï¿½" + childPrice + " Amount");
         jLabel5.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
         jLabel5.setForeground(Color.YELLOW);
 
-        jLabel6.setText("Theatre Student/OAP Tickets @ €" + student_OAP_Price + " Amount");
+        jLabel6.setText("Theatre Student/OAP Tickets @ ï¿½" + student_OAP_Price + " Amount");
         jLabel6.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
         jLabel6.setForeground(Color.YELLOW);
 
@@ -438,7 +439,12 @@ public class TicketBooking extends javax.swing.JFrame{
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TicketBooking().setVisible(true);
+             	TicketBooking frame = new TicketBooking();
+                
+                frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+                
+                frame.setVisible(true);    
+            
             }
         });
     }
