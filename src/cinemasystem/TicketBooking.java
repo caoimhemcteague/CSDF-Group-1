@@ -107,6 +107,8 @@ public class TicketBooking extends javax.swing.JFrame{
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel2.setText(frame.getFilm());
+        jLabel2.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
+
         
         
 
@@ -177,15 +179,18 @@ public class TicketBooking extends javax.swing.JFrame{
         jLabel9.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
 
         jLabel10.setText(frame.getDate());
+        jLabel10.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
 
+        
         jLabel11.setText("Time:");
         jLabel11.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
 
         jLabel12.setText(frame.getTime());
+        jLabel12.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(
-        	layout.createParallelGroup(Alignment.LEADING)
+        	layout.createParallelGroup(Alignment.TRAILING)
         		.addGroup(layout.createSequentialGroup()
         			.addGroup(layout.createParallelGroup(Alignment.LEADING)
         				.addGroup(layout.createSequentialGroup()
@@ -208,7 +213,7 @@ public class TicketBooking extends javax.swing.JFrame{
         						.addGroup(layout.createSequentialGroup()
         							.addGap(10)
         							.addComponent(acceptJButton, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
-        							.addPreferredGap(ComponentPlacement.RELATED, 619, Short.MAX_VALUE)
+        							.addPreferredGap(ComponentPlacement.RELATED, 705, Short.MAX_VALUE)
         							.addComponent(closeJButton, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE))
         						.addGroup(layout.createSequentialGroup()
         							.addComponent(adultBox, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
@@ -224,10 +229,10 @@ public class TicketBooking extends javax.swing.JFrame{
         								.addComponent(jLabel5)))
         						.addComponent(jLabel7))))
         			.addContainerGap())
-        		.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
-        			.addGap(583)
+        		.addGroup(Alignment.LEADING, layout.createSequentialGroup()
+        			.addGap(321)
         			.addComponent(jLabel3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        			.addGap(174))
+        			.addGap(436))
         );
         layout.setVerticalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
