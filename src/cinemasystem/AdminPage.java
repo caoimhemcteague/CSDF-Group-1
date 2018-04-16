@@ -292,6 +292,10 @@ public class AdminPage extends javax.swing.JFrame {
     		JOptionPane.showMessageDialog(null,  "Select a film to be removed");
     	}
     	else {
+    		int response=JOptionPane.showConfirmDialog(null,  "Are you sure you want to remove "+filmName+"?","Remove Film?", JOptionPane.YES_NO_OPTION);
+    		
+    		if(response==JOptionPane.YES_OPTION)
+    		{
     	
     	try {
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema", USER_NAME, PASSWORD);
@@ -315,9 +319,14 @@ public class AdminPage extends javax.swing.JFrame {
 	    		JOptionPane.showMessageDialog(null,  "Error Close");
 
 			}
+	     }
+       }
+    else {			
 		}
+    		
+      }
     }
-    }
+    
     
     private void addFilmJButtonActionPerformed(java.awt.event.ActionEvent evt) {                                         
 
