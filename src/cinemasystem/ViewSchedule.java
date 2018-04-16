@@ -92,7 +92,7 @@ public class ViewSchedule extends javax.swing.JFrame {
             }
         ));
         
-        table.setFont(new Font("Arial", Font.BOLD, 20));
+        table.setFont(new Font("Arial", Font.PLAIN, 20));
         JTableHeader header = table.getTableHeader();
         header.setBackground(Color.black);
         header.setForeground(Color.black);
