@@ -1,17 +1,22 @@
 package CinemaClasses;
 
+import java.io.InputStream;
+
+import com.mysql.jdbc.Blob;
+
 public class Film {
 	
 	public String name;
 	public String pgRating; 
 	public String genre;
-	public String actor, director, trailer;
+	public String actor, director, trailer, synopsis;
 	public int duration;
+	public InputStream poster;
 	//Trailer
 	//Descritpion
 	//Release Date
 	
-	public Film(String name, String pgRating, String genre, int duration, String actor, String director, String trailer)
+	public Film(String name, String pgRating, String genre, int duration, String actor, String director, String trailer, InputStream poster, String synopsis)
 	{
 		this.name=name;
 		this.pgRating=pgRating;
@@ -20,6 +25,8 @@ public class Film {
 		this.actor=actor;
 		this.director=director;
 		this.trailer=trailer;
+		this.poster=poster;
+		this.synopsis=synopsis;
 	}
 	
 	public Film()
@@ -55,14 +62,18 @@ public class Film {
 					  "'" + duration + "' ," +
 					  "'" + actor + "' ," +
 					  "'" + director + "' ," +
-					  "'" + trailer + "') " +
+					  "'" + trailer + "' ," +
+					  "'" + poster + "' ," +
+					  "'" + synopsis + "') " +
 					  "ON DUPLICATE KEY UPDATE Name='" + name + "', " +
 					  "PG_Rating=' " + pgRating + "', " +
 					  "Genre=' " + genre + "', " +
 					  "Duration=' " + duration + "', " +
 					  "Actor=' " + actor + "', " +
 					  "Director=' " + director + "', " +
-					  "trailer=' " + trailer + "'";
+					  "trailer=' " + trailer + "', " +
+					  "poster=' " + poster + "', " +
+					  "synopsis=' " + synopsis + "'";
 		JDBCcinema database = new JDBCcinema();
 		database.insertIntoDatabase(film);
 	}

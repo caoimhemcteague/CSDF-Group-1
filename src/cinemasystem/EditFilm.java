@@ -1,13 +1,19 @@
 package cinemasystem;
 
 import java.awt.Window;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComponent;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -17,6 +23,7 @@ import CinemaClasses.JTextFieldLimit;
 import java.awt.Font;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.GroupLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -25,6 +32,7 @@ import javax.swing.JButton;
 
 public class EditFilm extends javax.swing.JFrame {
 	
+	String ImagePath ="";
 	
 	public EditFilm() {
     initComponents();
@@ -231,8 +239,13 @@ private void initComponents() {
     JLabel lblNewLabel_1 = new JLabel("Poster");
     lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
     
-    JButton btnNewButton = new JButton("Edit Poster");
-    btnNewButton.setFont(new Font("Lucida Grande", Font.PLAIN, 32));
+    JButton browse = new JButton("Add Poster");
+    browse.setFont(new Font("Lucida Grande", Font.PLAIN, 32));
+    browse.addActionListener(new ActionListener() {
+    	public void actionPerformed(ActionEvent e) {
+    		browseBTActionPerformed(e);
+    	}
+    });
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     layout.setHorizontalGroup(
@@ -270,7 +283,7 @@ private void initComponents() {
     						.addComponent(DirectorjTextField, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 904, Short.MAX_VALUE)
     						.addComponent(txtSynopsis, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 904, Short.MAX_VALUE)
     						.addGroup(layout.createSequentialGroup()
-    							.addComponent(btnNewButton)
+    							.addComponent(browse)
     							.addPreferredGap(ComponentPlacement.RELATED, 377, Short.MAX_VALUE)
     							.addComponent(Cancel, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
     							.addPreferredGap(ComponentPlacement.UNRELATED)
@@ -320,7 +333,7 @@ private void initComponents() {
     					.addComponent(editBt, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
     					.addComponent(Cancel))
     				.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-    					.addComponent(btnNewButton)
+    					.addComponent(browse)
     					.addComponent(lblNewLabel_1)))
     			.addGap(254))
     );
@@ -336,12 +349,14 @@ private void CancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
 }//GEN-LAST:event_CancelActionPerformed
 
 private void addBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelActionPerformed
-   String title, rating, genre, durationString, actor, director, ytLink;
+   String title, rating, genre, durationString, actor, director, ytLink, synopsis;
    int duration = 0;
    title = TitleTextField1.getText();
    rating = PgRatingCB.getSelectedItem().toString();
    genre = GenrejTextField.getText();
    durationString = DurationjTextField.getText();
+   synopsis = txtSynopsis.getText();
+   InputStream poster = null;
 	   try {
 		duration = Integer.parseInt(durationString);
 	   }catch(Exception e) {
@@ -370,17 +385,43 @@ private void addBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
 	   else if(ytLink.equals("Youtube Link")) {
 		JOptionPane.showMessageDialog(null,  "Please enter a vaild Youtube link");
 	   }
-	   else {
-		Film newFilm = new Film(title, rating, genre, duration, actor, director, ytLink); 
-	
-		newFilm.addFilmToDB();
-		
-		JOptionPane.showMessageDialog(null,  "Film sucessfully edited");
+	   else if(ImagePath.equals("")) {
+	      	JOptionPane.showMessageDialog(null,  "Please enter a vaild Path link");
 
+	   	   }
+	   	   else if(synopsis.equals("")){
+	        JOptionPane.showMessageDialog(null,  "Please enter a synopsis");
+
+	   	   }
+	   	   else { 
+	   		   try {
+	   		poster = new FileInputStream(new File(ImagePath));
+	   		   }
+	   		   catch(Exception e) {
+	   			   
+	   		   }
+	   		
+	   		Film newFilm = new Film(title, rating, genre, duration, actor, director, ytLink, poster, synopsis); 
+			
+	   		newFilm.addFilmToDB();
+	   		
+	   		JOptionPane.showMessageDialog(null,  "Film sucessfull edited");
+	   	   }
 	   }
+
+private void browseBTActionPerformed(ActionEvent e) {
+	JFileChooser fileChooser = new JFileChooser();
+	fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+	FileNameExtensionFilter filter = new FileNameExtensionFilter("*.IMAGE", "jpg", "gif", "png");
+	fileChooser.addChoosableFileFilter(filter);
+	int result = fileChooser.showSaveDialog(null);
+	if(result == JFileChooser.APPROVE_OPTION) {
+		File selectedFile = fileChooser.getSelectedFile();
+		String path = selectedFile.getAbsolutePath();
+		ImagePath = path;
+		
+	}
 }
-
-
 
 
 private void genreTFfocusGained(FocusEvent e) {

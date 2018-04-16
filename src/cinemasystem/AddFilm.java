@@ -93,9 +93,6 @@ public class AddFilm extends javax.swing.JFrame {
         LinkLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
         LinkjTextField = new javax.swing.JTextField();
         LinkjTextField.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
-       /* browseLabel = new javax.swing.JLabel();
-        browseLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
-        JButton Browse = new JButton();*/
         
         
 
@@ -268,8 +265,15 @@ public class AddFilm extends javax.swing.JFrame {
         txtSynopsis.setText("Synopsis");
         txtSynopsis.setColumns(10);
         
-        JButton btnNewButton = new JButton("Add Poster");
-        btnNewButton.setFont(new Font("Lucida Grande", Font.PLAIN, 32));
+        JButton browse = new JButton("Add Poster");
+        browse.setFont(new Font("Lucida Grande", Font.PLAIN, 32));
+        browse.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		browseBTActionPerformed(e);
+        	}
+        });
+        
+        
         
         JLabel lblNewLabel_1 = new JLabel("Poster");
         lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
@@ -311,7 +315,7 @@ public class AddFilm extends javax.swing.JFrame {
         						.addComponent(LinkjTextField, GroupLayout.DEFAULT_SIZE, 842, Short.MAX_VALUE)
         						.addComponent(TitleTextField1, GroupLayout.DEFAULT_SIZE, 842, Short.MAX_VALUE)
         						.addGroup(layout.createSequentialGroup()
-        							.addComponent(btnNewButton)
+        							.addComponent(browse)
         							.addPreferredGap(ComponentPlacement.RELATED, 303, Short.MAX_VALUE)
         							.addComponent(Cancel, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
         							.addPreferredGap(ComponentPlacement.UNRELATED)
@@ -370,7 +374,7 @@ public class AddFilm extends javax.swing.JFrame {
         					.addPreferredGap(ComponentPlacement.RELATED)
         					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
         						.addComponent(lblNewLabel_1)
-        						.addComponent(btnNewButton))))
+        						.addComponent(browse))))
         			.addGap(7))
         );
         getContentPane().setLayout(layout);
@@ -385,12 +389,14 @@ public class AddFilm extends javax.swing.JFrame {
     }//GEN-LAST:event_CancelActionPerformed
     
     private void addBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelActionPerformed
-       String title, rating, genre, durationString, actor, director, ytLink;
+       String title, rating, genre, durationString, actor, director, ytLink, synopsis;
        int duration = 0;
+       InputStream poster = null;
        title = TitleTextField1.getText();
        rating = PgRatingCB.getSelectedItem().toString();
    	   genre = GenrejTextField.getText();
    	   durationString = DurationjTextField.getText();
+   	   synopsis = txtSynopsis.getText();
    	   try {
    		duration = Integer.parseInt(durationString);
    	   }catch(Exception e) {
@@ -419,9 +425,23 @@ public class AddFilm extends javax.swing.JFrame {
    	   else if(ytLink.equals("Youtube Link")) {
    		JOptionPane.showMessageDialog(null,  "Please enter a vaild Youtube link");
    	   }
-   	   else {
-   		//InputStream poster = new FileInputStream(new File(ImagePath));
-   		Film newFilm = new Film(title, rating, genre, duration, actor, director, ytLink); 
+   	   else if(ImagePath.equals("")) {
+      	JOptionPane.showMessageDialog(null,  "Please enter a vaild Path link");
+
+   	   }
+   	   else if(synopsis.equals("")){
+        JOptionPane.showMessageDialog(null,  "Please enter a synopsis");
+
+   	   }
+   	   else { 
+   		   try {
+   		poster = new FileInputStream(new File(ImagePath));
+   		   }
+   		   catch(Exception e) {
+   			   
+   		   }
+   		
+   		Film newFilm = new Film(title, rating, genre, duration, actor, director, ytLink, poster, synopsis); 
 		
    		newFilm.addFilmToDB();
    		
@@ -430,7 +450,7 @@ public class AddFilm extends javax.swing.JFrame {
    	   }
     }
     
-  /*  private void browseBTActionPerformed(ActionEvent e) {
+    private void browseBTActionPerformed(ActionEvent e) {
     	JFileChooser fileChooser = new JFileChooser();
     	fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
     	FileNameExtensionFilter filter = new FileNameExtensionFilter("*.IMAGE", "jpg", "gif", "png");
@@ -442,7 +462,7 @@ public class AddFilm extends javax.swing.JFrame {
     		ImagePath = path;
     		
     	}
-    }*/
+    }
     
     private void titleTFfocusGained(FocusEvent e) {
     	if(TitleTextField1.getText().equals("Film Title")) {
