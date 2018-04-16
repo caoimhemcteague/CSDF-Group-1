@@ -322,7 +322,8 @@ public class AdminPage extends javax.swing.JFrame {
     private void addFilmJButtonActionPerformed(java.awt.event.ActionEvent evt) {                                         
 
         AddFilm film = new AddFilm();
-        film.setVisible(true);// TODO add your handling code here:
+        film.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+        film.setVisible(true);
     } 
     
     private void editBtActionPerformed(java.awt.event.ActionEvent evt) {     
@@ -333,6 +334,7 @@ public class AdminPage extends javax.swing.JFrame {
         else {
     	EditFilm film = new EditFilm();
         EditFilm.TitleTextField1.setText(filmToBeEdited);
+        film.setExtendedState(JFrame.MAXIMIZED_BOTH); 
         film.setVisible(true);// TODO add your handling code here:
         }
     } 

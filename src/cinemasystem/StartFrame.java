@@ -274,6 +274,7 @@ public class StartFrame extends javax.swing.JFrame {
     	    }
     	    else {
     	    	TicketBooking Ticket = new TicketBooking();
+    	    	Ticket.setExtendedState(JFrame.MAXIMIZED_BOTH); 
     	    	Ticket.setVisible(true);// TODO add your handling code here:
     	    }
     }
@@ -281,29 +282,29 @@ public class StartFrame extends javax.swing.JFrame {
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
 
        ViewSchedule Schedule = new ViewSchedule();
+       Schedule.setExtendedState(JFrame.MAXIMIZED_BOTH); 
        Schedule.setVisible(true);
         
-        // TODO add your handling code here:
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
        ViewTrailers Trailer = new ViewTrailers();
-       Trailer.setVisible(true);// TODO add your handling code here:  // TODO add your handling code here:
+       Trailer.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+       Trailer.setVisible(true);
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         ViewInfo Info = new ViewInfo();
-       Info.setVisible(true);// TODO add your handling code here:  // TODO add your handling code here:
+        Info.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+       Info.setVisible(true);
     }//GEN-LAST:event_jButton4MouseClicked
 
- //   private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
- //       CancelTicket Cancel = new CancelTicket();
- //      Cancel.setVisible(true);  // TODO add your handling code here:
- //   }//GEN-LAST:event_jButton5MouseClicked
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
         AdminLogIn Admin = new AdminLogIn();
+        Admin.setExtendedState(JFrame.MAXIMIZED_BOTH); 
         Admin.setVisible(true);
+        
     //GEN-LAST:event_jButton6MouseClicked
     }  
 

@@ -161,7 +161,8 @@ public class AdminLogIn extends javax.swing.JFrame {
         if(punamer.equals(usertxter) && ppaswder.equals(passtxter))
        { 
        AdminPage page = new AdminPage();
-        page.setVisible(true);
+       page.setExtendedState(JFrame.MAXIMIZED_BOTH);  
+       page.setVisible(true);
        }
 
     }//GEN-LAST:event_jButton2MouseClicked
