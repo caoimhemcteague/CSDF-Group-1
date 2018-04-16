@@ -164,12 +164,18 @@ public class ViewTrailers extends javax.swing.JFrame {
    		 //Do Nothing
    	 }
    	 else {
+   		JComponent comp = (JComponent) e.getSource();
+        Window win = SwingUtilities.getWindowAncestor(comp);
+        win.dispose();
+   		 
      playTrailer trailer = new playTrailer(value);	
 	 
      
      Thread t = new Thread(new Runnable() {
     	 public void run() {
     		  trailer.startTrailer();
+    		  
+    		  
     	 }
      });
      t.start();

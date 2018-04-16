@@ -1,11 +1,16 @@
 package cinemasystem;
 
 import java.awt.BorderLayout;
+import java.awt.Window;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -44,6 +49,16 @@ public class playTrailer {
 				frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 				frame.getContentPane().add(getBrowser(), BorderLayout.CENTER);
 				frame.setSize(800, 600);
+				JButton btnClose = new JButton("Close");
+				btnClose.setSize(50, 50);
+				btnClose.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						JComponent comp = (JComponent) e.getSource();
+				        Window win = SwingUtilities.getWindowAncestor(comp);
+				        win.dispose();
+						
+					}});
+				frame.add(btnClose, BorderLayout.SOUTH);
 				frame.setLocationByPlatform(true); 
 				frame.setVisible(true);
 				}
@@ -114,7 +129,6 @@ public class playTrailer {
   	wbPanel.add(wb, BorderLayout.CENTER);
   	wb.setBarsVisible(false);
   	getLink();
-  //	link = "www.dailymotion.com/embed/video/x5pwvgd";
   	wb.navigate(link);
   	
   	return wbPanel;
