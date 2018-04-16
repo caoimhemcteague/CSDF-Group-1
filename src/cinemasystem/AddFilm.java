@@ -6,21 +6,27 @@
 package cinemasystem;
 
 import java.awt.Window;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComponent;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import CinemaClasses.Film;
 import CinemaClasses.JTextFieldLimit;
 import java.awt.Font;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.GroupLayout;
 import java.awt.Color;
@@ -31,6 +37,7 @@ import java.awt.Color;
  */
 public class AddFilm extends javax.swing.JFrame {
 
+	String ImagePath ="";
     /**
      * Creates new form AddFilm
      */
@@ -82,6 +89,11 @@ public class AddFilm extends javax.swing.JFrame {
         LinkLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
         LinkjTextField = new javax.swing.JTextField();
         LinkjTextField.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
+       /* browseLabel = new javax.swing.JLabel();
+        browseLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
+        JButton Browse = new JButton();*/
+        
+        
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,6 +108,13 @@ public class AddFilm extends javax.swing.JFrame {
 
         addBt.setText("Add");
         addBt.setPreferredSize(new java.awt.Dimension(89, 29));
+        
+      /*  browse.setText("Browse");
+        browse.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		browseBTActionPerformed(e);
+        	}
+        });*/
         
         addBt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -379,6 +398,20 @@ public class AddFilm extends javax.swing.JFrame {
    	   }
     }
     
+  /*  private void browseBTActionPerformed(ActionEvent e) {
+    	JFileChooser fileChooser = new JFileChooser();
+    	fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+    	FileNameExtensionFilter filter = new FileNameExtensionFilter("*.IMAGE", "jpg", "gif", "png");
+    	fileChooser.addChoosableFileFilter(filter);
+    	int result = fileChooser.showSaveDialog(null);
+    	if(result == JFileChooser.APPROVE_OPTION) {
+    		File selectedFile = fileChooser.getSelectedFile();
+    		String path = selectedFile.getAbsolutePath();
+    		ImagePath = path;
+    		
+    	}
+    }*/
+    
     private void titleTFfocusGained(FocusEvent e) {
     	if(TitleTextField1.getText().equals("Film Title")) {
     		TitleTextField1.setText("");
@@ -533,5 +566,7 @@ public class AddFilm extends javax.swing.JFrame {
     private javax.swing.JTextField TitleTextField1;
     private javax.swing.JButton addBt;
     private javax.swing.JLabel jLabel1;
+   /* private javax.swing.JButton browse;
+    private javax.swing.JLabel browseLabel;*/
     // End of variables declaration//GEN-END:variables
 }
