@@ -18,6 +18,10 @@ import java.awt.Font;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.GroupLayout;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import java.awt.Color;
+import javax.swing.JButton;
 
 public class EditFilm extends javax.swing.JFrame {
 	
@@ -214,59 +218,67 @@ private void initComponents() {
 
     LinkjTextField.setForeground(new java.awt.Color(204, 204, 204));
     LinkjTextField.setText("Youtube Link");
+    
+    JLabel lblNewLabel = new JLabel("Synopsis");
+    lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
+    
+    txtSynopsis = new JTextField();
+    txtSynopsis.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
+    txtSynopsis.setForeground(Color.LIGHT_GRAY);
+    txtSynopsis.setText("Synopsis");
+    txtSynopsis.setColumns(10);
+    
+    JLabel lblNewLabel_1 = new JLabel("Poster");
+    lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
+    
+    JButton btnNewButton = new JButton("Edit Poster");
+    btnNewButton.setFont(new Font("Lucida Grande", Font.PLAIN, 32));
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     layout.setHorizontalGroup(
     	layout.createParallelGroup(Alignment.LEADING)
     		.addGroup(layout.createSequentialGroup()
+    			.addGap(657)
+    			.addComponent(jLabel1)
+    			.addContainerGap(3048, Short.MAX_VALUE))
+    		.addGroup(layout.createSequentialGroup()
     			.addGap(24)
     			.addGroup(layout.createParallelGroup(Alignment.LEADING)
     				.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
-    					.addComponent(Cancel)
-    					.addPreferredGap(ComponentPlacement.RELATED, 960, Short.MAX_VALUE)
-    					.addComponent(editBt, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
-    					.addGap(679))
+    					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+    						.addComponent(TitleLabel)
+    						.addComponent(PgRatingLabel)
+    						.addComponent(GenreLabel)
+    						.addComponent(DurationLabel))
+    					.addGap(28)
+    					.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
+    						.addComponent(TitleTextField1)
+    						.addComponent(PgRatingCB, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    						.addComponent(GenrejTextField)
+    						.addComponent(DurationjTextField)
+    						.addComponent(ActorjTextField, GroupLayout.DEFAULT_SIZE, 904, Short.MAX_VALUE)))
     				.addGroup(layout.createSequentialGroup()
+    					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+    						.addComponent(DirectorLabel)
+    						.addComponent(ActorLabel)
+    						.addComponent(lblNewLabel)
+    						.addComponent(lblNewLabel_1)
+    						.addComponent(LinkLabel))
+    					.addGap(73)
     					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+    						.addComponent(LinkjTextField, GroupLayout.DEFAULT_SIZE, 904, Short.MAX_VALUE)
+    						.addComponent(DirectorjTextField, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 904, Short.MAX_VALUE)
+    						.addComponent(txtSynopsis, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 904, Short.MAX_VALUE)
     						.addGroup(layout.createSequentialGroup()
-    							.addGroup(layout.createParallelGroup(Alignment.TRAILING)
-    								.addGroup(layout.createSequentialGroup()
-    									.addGroup(layout.createParallelGroup(Alignment.LEADING)
-    										.addComponent(TitleLabel)
-    										.addComponent(PgRatingLabel)
-    										.addComponent(GenreLabel))
-    									.addGap(98))
-    								.addGroup(layout.createSequentialGroup()
-    									.addComponent(DurationLabel)
-    									.addGap(18)))
-    							.addGroup(layout.createParallelGroup(Alignment.LEADING)
-    								.addComponent(PgRatingCB, 0, 791, Short.MAX_VALUE)
-    								.addComponent(TitleTextField1, 791, 791, 791)
-    								.addGroup(layout.createSequentialGroup()
-    									.addPreferredGap(ComponentPlacement.RELATED)
-    									.addComponent(GenrejTextField, GroupLayout.DEFAULT_SIZE, 791, Short.MAX_VALUE))
-    								.addGroup(layout.createSequentialGroup()
-    									.addGap(6)
-    									.addComponent(DurationjTextField, GroupLayout.DEFAULT_SIZE, 785, Short.MAX_VALUE)))
-    							.addGap(491))
-    						.addGroup(Alignment.LEADING, layout.createSequentialGroup()
-    							.addGroup(layout.createParallelGroup(Alignment.LEADING)
-    								.addComponent(LinkLabel)
-    								.addComponent(DirectorLabel)
-    								.addComponent(ActorLabel))
-    							.addGap(73)
-    							.addGroup(layout.createParallelGroup(Alignment.TRAILING, false)
-    								.addComponent(LinkjTextField)
-    								.addComponent(DirectorjTextField)
-    								.addComponent(ActorjTextField, GroupLayout.DEFAULT_SIZE, 785, Short.MAX_VALUE))))
-    					.addGap(293))))
-    		.addGroup(layout.createSequentialGroup()
-    			.addGap(657)
-    			.addComponent(jLabel1)
-    			.addContainerGap(1115, Short.MAX_VALUE))
+    							.addComponent(btnNewButton)
+    							.addPreferredGap(ComponentPlacement.RELATED, 377, Short.MAX_VALUE)
+    							.addComponent(Cancel, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
+    							.addPreferredGap(ComponentPlacement.UNRELATED)
+    							.addComponent(editBt, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)))))
+    			.addGap(2598))
     );
     layout.setVerticalGroup(
-    	layout.createParallelGroup(Alignment.LEADING)
+    	layout.createParallelGroup(Alignment.TRAILING)
     		.addGroup(layout.createSequentialGroup()
     			.addContainerGap()
     			.addComponent(jLabel1)
@@ -284,8 +296,8 @@ private void initComponents() {
     				.addComponent(GenrejTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
     			.addPreferredGap(ComponentPlacement.RELATED)
     			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-    				.addComponent(DurationjTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-    				.addComponent(DurationLabel))
+    				.addComponent(DurationLabel)
+    				.addComponent(DurationjTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
     			.addGap(10)
     			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
     				.addComponent(ActorLabel)
@@ -294,17 +306,23 @@ private void initComponents() {
     			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
     				.addComponent(DirectorLabel)
     				.addComponent(DirectorjTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-    			.addGap(18)
+    			.addPreferredGap(ComponentPlacement.UNRELATED)
     			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-    				.addComponent(LinkLabel)
-    				.addComponent(LinkjTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-    			.addContainerGap(140, Short.MAX_VALUE))
-    		.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
-    			.addContainerGap(597, Short.MAX_VALUE)
+    				.addComponent(LinkjTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+    				.addComponent(LinkLabel))
+    			.addGap(11)
     			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-    				.addComponent(editBt, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-    				.addComponent(Cancel))
-    			.addGap(32))
+    				.addComponent(txtSynopsis, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+    				.addComponent(lblNewLabel))
+    			.addPreferredGap(ComponentPlacement.RELATED)
+    			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+    				.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+    					.addComponent(editBt, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
+    					.addComponent(Cancel))
+    				.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+    					.addComponent(btnNewButton)
+    					.addComponent(lblNewLabel_1)))
+    			.addGap(254))
     );
     getContentPane().setLayout(layout);
 
@@ -503,5 +521,5 @@ private javax.swing.JLabel TitleLabel;
 public static javax.swing.JTextField TitleTextField1;
 private javax.swing.JButton editBt;
 private javax.swing.JLabel jLabel1;
-// End of variables declaration//GEN-END:variables
+private JTextField txtSynopsis;
 }
