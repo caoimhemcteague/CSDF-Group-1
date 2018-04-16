@@ -283,6 +283,7 @@ public class StartFrame extends javax.swing.JFrame {
 
        ViewSchedule Schedule = new ViewSchedule();
        Schedule.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+       Schedule.fetch();
        Schedule.setVisible(true);
         
     }//GEN-LAST:event_jButton2MouseClicked
