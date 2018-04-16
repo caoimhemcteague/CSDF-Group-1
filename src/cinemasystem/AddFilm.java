@@ -13,6 +13,8 @@ import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComponent;
@@ -389,6 +391,7 @@ public class AddFilm extends javax.swing.JFrame {
    		JOptionPane.showMessageDialog(null,  "Please enter a vaild Youtube link");
    	   }
    	   else {
+   		//InputStream poster = new FileInputStream(new File(ImagePath));
    		Film newFilm = new Film(title, rating, genre, duration, actor, director, ytLink); 
 		
    		newFilm.addFilmToDB();
