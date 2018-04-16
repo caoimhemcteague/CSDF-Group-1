@@ -27,6 +27,7 @@ import net.proteanit.sql.DbUtils;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JButton;
 
 /**
  *
@@ -164,6 +165,10 @@ public class AdminPage extends javax.swing.JFrame {
 
 			}
 		}
+        
+        JButton btnAddScreening = new JButton("Add Screening");
+        btnAddScreening.setBackground(Color.CYAN);
+        btnAddScreening.setFont(new Font("SansSerif", Font.BOLD, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(
@@ -174,22 +179,22 @@ public class AdminPage extends javax.swing.JFrame {
         				.addComponent(jLabel2)
         				.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 747, GroupLayout.PREFERRED_SIZE)
         				.addGroup(layout.createSequentialGroup()
-        					.addComponent(jComboBox1, 0, 476, Short.MAX_VALUE)
+        					.addComponent(jComboBox1, 0, 592, Short.MAX_VALUE)
         					.addGap(279)
         					.addGroup(layout.createParallelGroup(Alignment.TRAILING, false)
+        						.addComponent(removeJButton, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+        						.addComponent(btnAddScreening, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         						.addComponent(editFilmJButton, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        						.addComponent(addFilmJButton, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        						.addComponent(removeJButton, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE))
-        					.addPreferredGap(ComponentPlacement.RELATED, 13, Short.MAX_VALUE)))
+        						.addComponent(addFilmJButton, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         			.addContainerGap())
         		.addGroup(layout.createSequentialGroup()
-        			.addContainerGap(1109, Short.MAX_VALUE)
+        			.addContainerGap(1133, Short.MAX_VALUE)
         			.addComponent(closeJButton)
         			.addGap(32))
-        		.addGroup(Alignment.LEADING, layout.createSequentialGroup()
+        		.addGroup(layout.createSequentialGroup()
         			.addGap(488)
         			.addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 295, GroupLayout.PREFERRED_SIZE)
-        			.addContainerGap(487, Short.MAX_VALUE))
+        			.addContainerGap(497, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
@@ -203,16 +208,19 @@ public class AdminPage extends javax.swing.JFrame {
         				.addComponent(jComboBox1, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
         				.addComponent(removeJButton))
         			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(addFilmJButton)
-        			.addGap(12)
-        			.addComponent(editFilmJButton)
+        			.addComponent(addFilmJButton, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
+        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addComponent(editFilmJButton, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addComponent(btnAddScreening, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+        			.addPreferredGap(ComponentPlacement.RELATED)
         			.addGroup(layout.createParallelGroup(Alignment.LEADING)
         				.addGroup(layout.createSequentialGroup()
-        					.addGap(62)
+        					.addGap(4)
         					.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 282, GroupLayout.PREFERRED_SIZE)
         					.addContainerGap(63, Short.MAX_VALUE))
-        				.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
-        					.addPreferredGap(ComponentPlacement.RELATED)
+        				.addGroup(layout.createSequentialGroup()
+        					.addPreferredGap(ComponentPlacement.RELATED, 279, Short.MAX_VALUE)
         					.addComponent(closeJButton)
         					.addGap(19))))
         );
@@ -403,5 +411,4 @@ public class AdminPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable table;
-    // End of variables declaration//GEN-END:variables
 }
