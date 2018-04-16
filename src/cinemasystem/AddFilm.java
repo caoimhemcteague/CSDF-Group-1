@@ -32,6 +32,8 @@ import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.GroupLayout;
 import java.awt.Color;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -109,7 +111,6 @@ public class AddFilm extends javax.swing.JFrame {
         TitleLabel.setText("Film Title");
 
         addBt.setText("Add");
-        addBt.setPreferredSize(new java.awt.Dimension(89, 29));
         
       /*  browse.setText("Browse");
         browse.addActionListener(new ActionListener() {
@@ -257,6 +258,21 @@ public class AddFilm extends javax.swing.JFrame {
 
         LinkjTextField.setForeground(new java.awt.Color(204, 204, 204));
         LinkjTextField.setText("Youtube Link");
+        
+        JLabel lblNewLabel = new JLabel("Synopsis");
+        lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
+        
+        txtSynopsis = new JTextField();
+        txtSynopsis.setForeground(Color.LIGHT_GRAY);
+        txtSynopsis.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
+        txtSynopsis.setText("Synopsis");
+        txtSynopsis.setColumns(10);
+        
+        JButton btnNewButton = new JButton("Add Poster");
+        btnNewButton.setFont(new Font("Lucida Grande", Font.PLAIN, 32));
+        
+        JLabel lblNewLabel_1 = new JLabel("Poster");
+        lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(
@@ -264,11 +280,10 @@ public class AddFilm extends javax.swing.JFrame {
         		.addGroup(layout.createSequentialGroup()
         			.addGroup(layout.createParallelGroup(Alignment.LEADING)
         				.addGroup(layout.createSequentialGroup()
-        					.addContainerGap(38, Short.MAX_VALUE)
+        					.addContainerGap()
         					.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        						.addComponent(Cancel)
         						.addComponent(TitleLabel, GroupLayout.PREFERRED_SIZE, 220, GroupLayout.PREFERRED_SIZE)
-        						.addGroup(layout.createParallelGroup(Alignment.TRAILING, false)
+        						.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
         							.addGroup(layout.createSequentialGroup()
         								.addComponent(GenreLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         								.addGap(117))
@@ -279,27 +294,30 @@ public class AddFilm extends javax.swing.JFrame {
         							.addGroup(layout.createSequentialGroup()
         								.addComponent(ActorLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         								.addGap(134))
-        							.addGroup(Alignment.LEADING, layout.createSequentialGroup()
-        								.addComponent(DurationLabel, GroupLayout.PREFERRED_SIZE, 305, GroupLayout.PREFERRED_SIZE)
-        								.addPreferredGap(ComponentPlacement.RELATED))
+        							.addComponent(DurationLabel, GroupLayout.PREFERRED_SIZE, 305, GroupLayout.PREFERRED_SIZE)
         							.addGroup(layout.createSequentialGroup()
         								.addComponent(LinkLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        								.addGap(45))))
-        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        								.addGap(45)))
+        						.addComponent(lblNewLabel)
+        						.addComponent(lblNewLabel_1))
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+        						.addComponent(txtSynopsis, GroupLayout.DEFAULT_SIZE, 842, Short.MAX_VALUE)
+        						.addComponent(PgRatingCB, 0, 842, Short.MAX_VALUE)
+        						.addComponent(GenrejTextField, 842, 842, Short.MAX_VALUE)
+        						.addComponent(DurationjTextField, 842, 842, Short.MAX_VALUE)
+        						.addComponent(ActorjTextField, 842, 842, Short.MAX_VALUE)
+        						.addComponent(DirectorjTextField, 842, 842, Short.MAX_VALUE)
+        						.addComponent(LinkjTextField, GroupLayout.DEFAULT_SIZE, 842, Short.MAX_VALUE)
+        						.addComponent(TitleTextField1, GroupLayout.DEFAULT_SIZE, 842, Short.MAX_VALUE)
         						.addGroup(layout.createSequentialGroup()
-        							.addPreferredGap(ComponentPlacement.RELATED)
-        							.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
-        								.addComponent(LinkjTextField)
-        								.addComponent(DirectorjTextField)
-        								.addComponent(ActorjTextField)
-        								.addComponent(DurationjTextField)
-        								.addComponent(GenrejTextField)
-        								.addComponent(PgRatingCB, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        								.addComponent(TitleTextField1, GroupLayout.DEFAULT_SIZE, 842, Short.MAX_VALUE)))
-        						.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
-        							.addPreferredGap(ComponentPlacement.RELATED, 807, Short.MAX_VALUE)
-        							.addComponent(addBt, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-        							.addGap(26))))
+        							.addComponent(btnNewButton)
+        							.addPreferredGap(ComponentPlacement.RELATED, 303, Short.MAX_VALUE)
+        							.addComponent(Cancel, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
+        							.addPreferredGap(ComponentPlacement.UNRELATED)
+        							.addComponent(addBt, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
+        							.addPreferredGap(ComponentPlacement.RELATED)))
+        					.addGap(42))
         				.addGroup(layout.createSequentialGroup()
         					.addGap(577)
         					.addComponent(jLabel1)))
@@ -311,9 +329,9 @@ public class AddFilm extends javax.swing.JFrame {
         			.addContainerGap()
         			.addComponent(jLabel1)
         			.addGap(24)
-        			.addGroup(layout.createParallelGroup(Alignment.TRAILING, false)
-        				.addComponent(TitleLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        				.addComponent(TitleTextField1))
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(TitleLabel)
+        				.addComponent(TitleTextField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         			.addPreferredGap(ComponentPlacement.UNRELATED)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
         				.addComponent(PgRatingCB, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)
@@ -338,11 +356,22 @@ public class AddFilm extends javax.swing.JFrame {
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
         				.addComponent(LinkLabel)
         				.addComponent(LinkjTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-        			.addGap(45)
+        			.addPreferredGap(ComponentPlacement.RELATED)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(Cancel)
-        				.addComponent(addBt, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE))
-        			.addGap(19))
+        				.addComponent(txtSynopsis, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(lblNewLabel))
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(layout.createSequentialGroup()
+        					.addGap(12)
+        					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(Cancel, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(addBt, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)))
+        				.addGroup(layout.createSequentialGroup()
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(lblNewLabel_1)
+        						.addComponent(btnNewButton))))
+        			.addGap(7))
         );
         getContentPane().setLayout(layout);
 
@@ -569,7 +598,5 @@ public class AddFilm extends javax.swing.JFrame {
     private javax.swing.JTextField TitleTextField1;
     private javax.swing.JButton addBt;
     private javax.swing.JLabel jLabel1;
-   /* private javax.swing.JButton browse;
-    private javax.swing.JLabel browseLabel;*/
-    // End of variables declaration//GEN-END:variables
+    private JTextField txtSynopsis;
 }
