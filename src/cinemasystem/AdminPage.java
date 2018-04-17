@@ -30,6 +30,7 @@ import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
 
 /**
  *
@@ -169,6 +170,15 @@ public class AdminPage extends javax.swing.JFrame {
 		}
         
         JButton btnAddScreening = new JButton("Add Screening");
+        btnAddScreening.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	
+        		Screenings screen = new Screenings();
+     	       screen.setExtendedState(JFrame.MAXIMIZED_BOTH);         	      
+     	       screen.setVisible(true);
+        
+        	}
+        });
         btnAddScreening.setBackground(Color.CYAN);
         btnAddScreening.setFont(new Font("SansSerif", Font.BOLD, 30));
 
