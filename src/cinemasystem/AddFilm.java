@@ -15,6 +15,11 @@ import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComponent;
@@ -26,6 +31,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import CinemaClasses.Film;
 import CinemaClasses.JTextFieldLimit;
+import net.proteanit.sql.DbUtils;
+
 import java.awt.Font;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -40,8 +47,14 @@ import javax.swing.JTextField;
  * @author christophermclaughlin
  */
 public class AddFilm extends javax.swing.JFrame {
-
+	
+	private final String USER_NAME = "root";
+	private final String PASSWORD = "password";
+    Connection conn;
+    Statement st;
+    ResultSet rs;
 	String ImagePath ="";
+	//File image = new File(ImagePath);
     /**
      * Creates new form AddFilm
      */
@@ -435,15 +448,39 @@ public class AddFilm extends javax.swing.JFrame {
    	   }
    	   else { 
    		   try {
-   		poster = new FileInputStream(new File(ImagePath));
+   	//	poster = new FileInputStream(image);
    		   }
    		   catch(Exception e) {
    			   
    		   }
-   		
-   		Film newFilm = new Film(title, rating, genre, duration, actor, director, ytLink, poster, synopsis); 
-		
-   		newFilm.addFilmToDB();
+   		   
+   		try {
+   			InputStream is = new FileInputStream(new File(ImagePath));
+    		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema", USER_NAME, PASSWORD);
+    		PreparedStatement ps = conn.prepareStatement("Insert into film() values(?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    		ps.setString(1,  title);
+    		ps.setString(2,  rating);
+    		ps.setString(3,  genre);
+    		ps.setInt(4,  duration);
+    		ps.setString(5,  actor);
+    		ps.setString(6,  director);
+    		ps.setString(7,  ytLink);
+    		ps.setBlob(8,  is);
+    		ps.setString(9,  synopsis);
+    		ps.executeUpdate();
+
+ 		}
+ 		catch (Exception a) {
+ 		JOptionPane.showMessageDialog(null,  "Error");
+ 		}finally {
+ 			try {
+ 				conn.close();
+ 				
+ 			}catch(Exception a) {
+ 	    		JOptionPane.showMessageDialog(null,  "Error Close");
+
+ 			}
+ 		}
    		
    		JOptionPane.showMessageDialog(null,  "Film sucessfull added");
 
@@ -460,6 +497,7 @@ public class AddFilm extends javax.swing.JFrame {
     		File selectedFile = fileChooser.getSelectedFile();
     		String path = selectedFile.getAbsolutePath();
     		ImagePath = path;
+    		System.out.println(path);
     		
     	}
     }
