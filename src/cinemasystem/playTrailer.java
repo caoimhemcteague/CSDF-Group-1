@@ -45,7 +45,7 @@ public class playTrailer {
 				
 				try {
 
-				JFrame frame = new JFrame("Youtube");
+				JFrame frame = new JFrame("Movie Trailer");
 				frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 				frame.getContentPane().add(getBrowser(), BorderLayout.CENTER);
 				frame.setSize(800, 600);
