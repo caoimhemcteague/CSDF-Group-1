@@ -100,6 +100,8 @@ public class ViewSchedule extends javax.swing.JFrame {
         Border line = BorderFactory.createLineBorder(Color.black, 1);
         table.setBorder(line);
         table.setFont(new Font("Arial", Font.PLAIN, 20));
+        table.setRowHeight(30);
+        table.setRowMargin(5);
         JTableHeader header = table.getTableHeader();
         header.setBackground(Color.black);
         header.setForeground(Color.black);
