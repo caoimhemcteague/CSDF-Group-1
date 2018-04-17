@@ -6,21 +6,33 @@ import java.sql.SQLException;
 
 public class Screening extends JDBCcinema{
 	
-	public int screeningNum; 
+	//private static int counter=0;
+	public int screeningNum=0; 
 	private Theatre theatre; 
-	public Film film; 
+	public Film film;
+	private int ticketsBooked;
 	//public Date date; 
 	//public time;
 	
 	public Screening(int screeningNum, Theatre theatre, Film film) {
 		this.film=film;
-		this.screeningNum = screeningNum;
+		screeningNum++;
 		this.theatre = theatre;
-		
+		ticketsBooked=0;
 	}
 	
 	public Screening() {
 		
+	}
+	
+	public int getScreeningNum()
+	{
+		return screeningNum;
+	}
+	
+	public int getTicketsBooked()
+	{
+		return ticketsBooked;
 	}
 	
 	public void getFilmScreening(String filmName) {
@@ -53,10 +65,10 @@ public class Screening extends JDBCcinema{
 			}
 	}
 	
-	public int returnTheatreNum()
+	/*public int returnTheatreNum()
 	{
 		return theatre.returnTheatreNum();
-	}
+	}*/
 	
 	public int returnScreeningNum(String filmName, String filmTime, String filmDate)
 	{

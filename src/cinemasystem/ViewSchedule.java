@@ -18,6 +18,7 @@ import java.awt.event.*;
 import net.proteanit.sql.DbUtils;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.Border;
 
 /**
  *
@@ -62,11 +63,15 @@ public class ViewSchedule extends javax.swing.JFrame {
         previousBT = new javax.swing.JButton();
         followingBT = new javax.swing.JButton();
         
+        
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        
+        Border line2 = BorderFactory.createLineBorder(Color.black, 3);
 
         jLabel1.setText("Film Schedule");
-        jLabel1.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
-        jLabel1.setForeground(Color.PINK);
+        jLabel1.setBorder(line2);
+        jLabel1.setFont(new Font("Lucida Grande", Font.ITALIC, 39));
+        jLabel1.setForeground(Color.CYAN);
 
         closeButton.setText("close");
         closeButton.setBackground(Color.RED);
@@ -92,13 +97,17 @@ public class ViewSchedule extends javax.swing.JFrame {
             }
         ));
         
+        Border line = BorderFactory.createLineBorder(Color.black, 1);
+        table.setBorder(line);
         table.setFont(new Font("Arial", Font.PLAIN, 20));
         JTableHeader header = table.getTableHeader();
         header.setBackground(Color.black);
         header.setForeground(Color.black);
         header.setFont(new Font("Arial", Font.BOLD, 20));
           
+        
         jScrollPane1.setViewportView(table);
+        jScrollPane1.setBorder(line2);
         
         previousBT.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -124,8 +133,8 @@ public class ViewSchedule extends javax.swing.JFrame {
         	layout.createParallelGroup(Alignment.LEADING)
         		.addGroup(layout.createSequentialGroup()
         			.addGap(546)
-        			.addComponent(jLabel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        			.addContainerGap())
+        			.addComponent(jLabel1)
+        			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         		.addGroup(layout.createSequentialGroup()
         			.addGap(92)
         			.addGroup(layout.createParallelGroup(Alignment.LEADING)
@@ -133,11 +142,11 @@ public class ViewSchedule extends javax.swing.JFrame {
         					.addComponent(previousBT)
         					.addGap(27)
         					.addComponent(followingBT)
-        					.addPreferredGap(ComponentPlacement.RELATED, 294, Short.MAX_VALUE)
+        					.addPreferredGap(ComponentPlacement.RELATED, 300, Short.MAX_VALUE)
         					.addComponent(closeButton, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)
         					.addGap(27))
         				.addGroup(layout.createSequentialGroup()
-        					.addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 648, Short.MAX_VALUE)
+        					.addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 654, Short.MAX_VALUE)
         					.addGap(67))))
         );
         layout.setVerticalGroup(
@@ -155,7 +164,8 @@ public class ViewSchedule extends javax.swing.JFrame {
         			.addGap(19))
         );
         getContentPane().setLayout(layout);
-        getContentPane().setBackground(Color.GRAY);
+        getContentPane().setBackground(Color.WHITE);
+        
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

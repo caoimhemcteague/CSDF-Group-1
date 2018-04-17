@@ -15,6 +15,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -27,6 +28,7 @@ import chrriis.dj.nativeswing.swtimpl.components.JWebBrowser;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.Border;
 
 /**
  *
@@ -59,16 +61,17 @@ public class ViewTrailers extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         closeButton = new javax.swing.JButton();
         filmName = new javax.swing.JComboBox<>();
-       // table = new javax.swing.JTable();
-       // jScrollPane1 = new javax.swing.JScrollPane();
+        Border line2 = BorderFactory.createLineBorder(Color.black, 3);
+        jLabel1.setBorder(line2);
 
 
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Film Trailers");
-        jLabel1.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
-        jLabel1.setForeground(Color.PINK);
+        jLabel1.setFont(new Font("Lucida Grande", Font.ITALIC, 39));
+        jLabel1.setForeground(Color.cyan);
+        
 
         closeButton.setText("Close");
         closeButton.setBackground(Color.RED);
@@ -114,16 +117,6 @@ public class ViewTrailers extends javax.swing.JFrame {
 
 			}
 		}
-        
-   /*     table.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                    
-                },
-                new String [] {
-                    "Select a film to view its trailer"
-                }
-            ));
-        jScrollPane1.setViewportView(table);*/
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(
@@ -151,7 +144,7 @@ public class ViewTrailers extends javax.swing.JFrame {
         			.addComponent(closeButton))
         );
         getContentPane().setLayout(layout);
-        getContentPane().setBackground(Color.GRAY);
+        getContentPane().setBackground(Color.WHITE);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -239,7 +232,5 @@ public class ViewTrailers extends javax.swing.JFrame {
     private javax.swing.JButton closeButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JComboBox<String> filmName;
- //   private javax.swing.JScrollPane jScrollPane1;
-   // private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }

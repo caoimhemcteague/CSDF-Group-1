@@ -135,6 +135,7 @@ public class Booking extends JDBCcinema{
 		JDBCcinema database = new JDBCcinema();
 		database.insertIntoDatabase(booking);
 		Ticket ticket = new Ticket();
+		
 		for(int i =0; i<numOfAdults;  i++) {
 			
 			ticket.addTicketToDB("Adult", bookingNum, screeningNum);
@@ -148,7 +149,6 @@ public class Booking extends JDBCcinema{
 			
 			ticket.addTicketToDB("Student/OAP", bookingNum, screeningNum);	
 		}
-		
 		
 		
 	}

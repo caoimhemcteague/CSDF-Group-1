@@ -12,6 +12,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.Border;
+
 import java.awt.GraphicsEnvironment;
 import java.awt.GraphicsDevice;
 /**
@@ -73,6 +75,7 @@ public class StartFrame extends javax.swing.JFrame {
         dateBox.setFont(new Font("Lucida Grande", Font.PLAIN, 24));
         timeBox = new JComboBox<String>();
         timeBox.setFont(new Font("Lucida Grande", Font.PLAIN, 24));
+        
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 255, 255));
@@ -113,13 +116,6 @@ public class StartFrame extends javax.swing.JFrame {
                 jButton4MouseClicked(evt);
             }
         });
-
-      //  cancelButton.setText("Cancel Ticket");
-      //  cancelButton.addMouseListener(new java.awt.event.MouseAdapter() {
-       //     public void mouseClicked(java.awt.event.MouseEvent evt) {
-        //        jButton5MouseClicked(evt);
-        //    }
-       // });
         
         
         filmNameBox.addActionListener(new ActionListener() {
@@ -181,84 +177,82 @@ public class StartFrame extends javax.swing.JFrame {
         Image img = new ImageIcon(this.getClass().getResource("/images.jpg")).getImage();
         lblNewLabel_1.setIcon(new ImageIcon(img));
         
-        JLabel label = new JLabel();
-        label.setText("Cinema System");
-        label.setForeground(Color.PINK);
-        label.setFont(new Font("SansSerif", Font.BOLD, 32));
+        
+        JLabel label = new JLabel("");
+        Image imgLogo = new ImageIcon(this.getClass().getResource("/logo.jpg")).getImage();
+        label.setIcon(new ImageIcon(imgLogo));
+        Border line = BorderFactory.createLineBorder(Color.black, 5);
+        label.setBorder(line);
 
-
+        
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(
-        	layout.createParallelGroup(Alignment.LEADING)
+        	layout.createParallelGroup(Alignment.TRAILING)
         		.addGroup(layout.createSequentialGroup()
+        			.addGap(489)
+        			.addComponent(label, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        			.addGap(447))
+        		.addGroup(Alignment.LEADING, layout.createSequentialGroup()
         			.addGap(21)
         			.addGroup(layout.createParallelGroup(Alignment.LEADING)
         				.addGroup(layout.createSequentialGroup()
-        					.addComponent(filmNameBox, 0, 276, Short.MAX_VALUE)
+        					.addComponent(filmNameBox, 0, 389, Short.MAX_VALUE)
         					.addPreferredGap(ComponentPlacement.RELATED)
-        					.addComponent(dateBox, 0, 280, Short.MAX_VALUE)
+        					.addComponent(dateBox, 0, 390, Short.MAX_VALUE)
         					.addPreferredGap(ComponentPlacement.UNRELATED)
-        					.addComponent(timeBox, 0, 284, Short.MAX_VALUE)
+        					.addComponent(timeBox, 0, 394, Short.MAX_VALUE)
         					.addPreferredGap(ComponentPlacement.RELATED)
-        					.addComponent(makeBookingJB, GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE))
+        					.addComponent(makeBookingJB, GroupLayout.PREFERRED_SIZE, 309, GroupLayout.PREFERRED_SIZE)
+        					.addGap(47))
         				.addGroup(layout.createSequentialGroup()
-        					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
-        						.addComponent(adminLogin, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 284, Short.MAX_VALUE)
-        						.addComponent(viewScheduleJB, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
-        						.addComponent(viewInfoJB, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
-        						.addComponent(viewTrailersJB, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 284, Short.MAX_VALUE))
-        					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        						.addComponent(adminLogin, GroupLayout.PREFERRED_SIZE, 515, Short.MAX_VALUE)
+        						.addComponent(viewScheduleJB, GroupLayout.DEFAULT_SIZE, 515, Short.MAX_VALUE)
+        						.addComponent(viewInfoJB, GroupLayout.DEFAULT_SIZE, 515, Short.MAX_VALUE)
+        						.addComponent(viewTrailersJB, GroupLayout.PREFERRED_SIZE, 515, Short.MAX_VALUE))
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
         						.addGroup(layout.createSequentialGroup()
         							.addGap(90)
         							.addComponent(lblNewLabel)
         							.addGap(275))
         						.addGroup(layout.createSequentialGroup()
         							.addGap(112)
-        							.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        							.addGap(22)))))
+        							.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, 975, Short.MAX_VALUE)))))
         			.addContainerGap())
-        		.addGroup(layout.createSequentialGroup()
-        			.addGap(469)
-        			.addComponent(label, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        			.addGap(469))
         );
         layout.setVerticalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
         		.addGroup(layout.createSequentialGroup()
-        			.addContainerGap()
-        			.addComponent(label, GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addGap(21)
+        			.addComponent(label)
+        			.addGap(46)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(filmNameBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(dateBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        					.addComponent(timeBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        					.addComponent(makeBookingJB, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        			.addGap(18)
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
         				.addGroup(layout.createSequentialGroup()
-        					.addGap(3)
-        					.addComponent(filmNameBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-        				.addGroup(layout.createSequentialGroup()
-        					.addGap(3)
-        					.addComponent(dateBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-        				.addGroup(layout.createSequentialGroup()
-        					.addGap(3)
-        					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        						.addComponent(timeBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        						.addComponent(makeBookingJB, GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))))
-        			.addGap(32)
-        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        				.addGroup(layout.createSequentialGroup()
-        					.addGap(30)
+        					.addGap(54)
+        					.addComponent(lblNewLabel)
+        					.addPreferredGap(ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+        					.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 424, GroupLayout.PREFERRED_SIZE)
+        					.addGap(23))
+        				.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
         					.addComponent(viewScheduleJB, GroupLayout.PREFERRED_SIZE, 96, Short.MAX_VALUE)
         					.addGap(18)
         					.addComponent(viewTrailersJB, GroupLayout.PREFERRED_SIZE, 96, Short.MAX_VALUE)
         					.addPreferredGap(ComponentPlacement.UNRELATED)
-        					.addComponent(viewInfoJB, GroupLayout.PREFERRED_SIZE, 96, Short.MAX_VALUE)
+        					.addComponent(viewInfoJB, GroupLayout.PREFERRED_SIZE, 97, Short.MAX_VALUE)
         					.addPreferredGap(ComponentPlacement.RELATED)
-        					.addComponent(adminLogin, GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))
-        				.addGroup(layout.createSequentialGroup()
-        					.addComponent(lblNewLabel)
-        					.addPreferredGap(ComponentPlacement.RELATED)
-        					.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        			.addGap(23))
+        					.addComponent(adminLogin, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
+        					.addGap(66))))
         );
         getContentPane().setLayout(layout);
-        getContentPane().setBackground(Color.GRAY);
+        getContentPane().setBackground(Color.WHITE);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -438,7 +432,6 @@ public class StartFrame extends javax.swing.JFrame {
     private javax.swing.JButton viewScheduleJB;
     private javax.swing.JButton viewTrailersJB;
     private javax.swing.JButton viewInfoJB;
-   // private javax.swing.JButton cancelButton;
     private javax.swing.JButton adminLogin;
     private javax.swing.JComboBox<String> filmNameBox;
     private javax.swing.JComboBox<String> dateBox;
