@@ -34,6 +34,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JLabel;
 import javax.swing.JTextPane;
 import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 /**
  *
@@ -130,14 +132,8 @@ public class ViewInfo extends javax.swing.JFrame {
         lblPgRating = new JLabel();
         lblPgRating.setFont(new Font("SansSerif", Font.BOLD, 30));
         lblPgRating.setForeground(Color.RED);
-        
-        synopsisTextArea = new JTextArea();
-        synopsisTextArea.setFont(new Font("SansSerif", Font.ITALIC, 18));
         Border border = BorderFactory.createLineBorder(Color.BLACK);
-        synopsisTextArea.setBorder(BorderFactory.createCompoundBorder(border,BorderFactory.createEmptyBorder(15, 15, 15, 15)));
         setForeground(Color.BLACK);
-        synopsisTextArea.setLineWrap(true);
-        synopsisTextArea.setWrapStyleWord(true);
 
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -246,6 +242,10 @@ public class ViewInfo extends javax.swing.JFrame {
             }
         });
         
+        scrollPane = new JScrollPane();
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        
         
         
         
@@ -261,41 +261,40 @@ public class ViewInfo extends javax.swing.JFrame {
         				.addGroup(layout.createSequentialGroup()
         					.addGap(28)
         					.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        						.addComponent(viewTrailerBt, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        						.addComponent(viewTrailerBt, GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
         						.addComponent(posterLabel, GroupLayout.PREFERRED_SIZE, 229, GroupLayout.PREFERRED_SIZE))
         					.addGroup(layout.createParallelGroup(Alignment.LEADING)
         						.addGroup(layout.createSequentialGroup()
         							.addGap(62)
         							.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        								.addComponent(synopsisTextArea, GroupLayout.PREFERRED_SIZE, 299, GroupLayout.PREFERRED_SIZE)
         								.addComponent(filmName, GroupLayout.PREFERRED_SIZE, 214, GroupLayout.PREFERRED_SIZE)
-        								.addGroup(layout.createSequentialGroup()
-        									.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        										.addComponent(lblRun)
-        										.addComponent(lblGenre))
-        									.addGap(36)
-        									.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        										.addComponent(sqlGenre)
-        										.addComponent(lblRunTime)))
-        								.addGroup(layout.createSequentialGroup()
-        									.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        										.addComponent(lblDirector)
-        										.addComponent(lblActors))
-        									.addGap(18)
-        									.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        										.addComponent(actorsLabel)
-        										.addComponent(lblDirName)))))
+        								.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
+        									.addGroup(layout.createSequentialGroup()
+        										.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        											.addComponent(lblRun)
+        											.addComponent(lblGenre))
+        										.addGap(36)
+        										.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        											.addComponent(sqlGenre)
+        											.addComponent(lblRunTime)))
+        									.addGroup(layout.createSequentialGroup()
+        										.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        											.addComponent(lblDirector)
+        											.addComponent(lblActors))
+        										.addGap(25)
+        										.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        											.addComponent(actorsLabel)
+        											.addComponent(lblDirName)))
+        									.addComponent(scrollPane, 0, 0, Short.MAX_VALUE)
+        									.addComponent(closeJButton, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE))))
         						.addGroup(layout.createSequentialGroup()
         							.addGap(379)
-        							.addComponent(lblPgRating, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE))))
+        							.addComponent(lblPgRating, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)))
+        					.addGap(285))
         				.addGroup(layout.createSequentialGroup()
         					.addGap(338)
         					.addComponent(jLabel1)))
-        			.addContainerGap(2847, Short.MAX_VALUE))
-        		.addGroup(layout.createSequentialGroup()
-        			.addContainerGap(2628, Short.MAX_VALUE)
-        			.addComponent(closeJButton, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE)
-        			.addGap(864))
+        			.addGap(2570))
         );
         layout.setVerticalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
@@ -304,10 +303,6 @@ public class ViewInfo extends javax.swing.JFrame {
         			.addComponent(jLabel1)
         			.addPreferredGap(ComponentPlacement.UNRELATED)
         			.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        				.addGroup(layout.createSequentialGroup()
-        					.addComponent(posterLabel, GroupLayout.PREFERRED_SIZE, 305, GroupLayout.PREFERRED_SIZE)
-        					.addGap(18)
-        					.addComponent(viewTrailerBt, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE))
         				.addGroup(layout.createSequentialGroup()
         					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
         						.addComponent(lblPgRating)
@@ -328,12 +323,23 @@ public class ViewInfo extends javax.swing.JFrame {
         					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
         						.addComponent(lblActors)
         						.addComponent(actorsLabel))
-        					.addGap(27)
-        					.addComponent(synopsisTextArea, GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)))
-        			.addGap(247)
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 390, GroupLayout.PREFERRED_SIZE))
+        				.addGroup(layout.createSequentialGroup()
+        					.addComponent(posterLabel, GroupLayout.PREFERRED_SIZE, 305, GroupLayout.PREFERRED_SIZE)
+        					.addGap(18)
+        					.addComponent(viewTrailerBt, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)))
+        			.addGap(49)
         			.addComponent(closeJButton, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
-        			.addGap(112))
+        			.addGap(50))
         );
+        
+        synopsisTextArea = new JTextArea();
+        scrollPane.setViewportView(synopsisTextArea);
+        synopsisTextArea.setFont(new Font("SansSerif", Font.ITALIC, 18));
+        synopsisTextArea.setBorder(BorderFactory.createCompoundBorder(border,BorderFactory.createEmptyBorder(15, 15, 15, 15)));
+        synopsisTextArea.setLineWrap(true);
+        synopsisTextArea.setWrapStyleWord(true);
         getContentPane().setLayout(layout);
         getContentPane().setBackground(Color.GRAY);
 
@@ -528,5 +534,6 @@ public class ViewInfo extends javax.swing.JFrame {
     private JTextArea synopsisTextArea;
     private JLabel posterLabel;
     private JButton viewTrailerBt;
+    private JScrollPane scrollPane;
 
 }
