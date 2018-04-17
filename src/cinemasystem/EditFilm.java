@@ -222,10 +222,10 @@ private void initComponents() {
 
     DirectorLabel.setText("Director");
 
-    LinkLabel.setText("Youtube Link");
+    LinkLabel.setText("Trailer");
 
     LinkjTextField.setForeground(new java.awt.Color(204, 204, 204));
-    LinkjTextField.setText("Youtube Link");
+    LinkjTextField.setText("Trailer Link");
     
     JLabel lblNewLabel = new JLabel("Synopsis");
     lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
@@ -397,12 +397,12 @@ private void addBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
 	   else if(ytLink.equals("Youtube Link")) {
 		JOptionPane.showMessageDialog(null,  "Please enter a vaild Youtube link");
 	   }
-	   else if(ImagePath.equals("")) {
-	      	JOptionPane.showMessageDialog(null,  "Please enter a vaild Path link");
+	   else if(synopsis.equals("")){
+	          JOptionPane.showMessageDialog(null,  "Please enter a synopsis");
 
-	   	   }
-	   	   else if(synopsis.equals("")){
-	        JOptionPane.showMessageDialog(null,  "Please enter a synopsis");
+	     	   }
+	   else if(ImagePath.equals("")) {
+	      	JOptionPane.showMessageDialog(null,  "Please add a vaild poster");
 
 	   	   }
 	   	   else { 

@@ -264,10 +264,10 @@ public class AddFilm extends javax.swing.JFrame {
 
         DirectorLabel.setText("Director");
 
-        LinkLabel.setText("Youtube Link");
+        LinkLabel.setText("Trailer");
 
         LinkjTextField.setForeground(new java.awt.Color(204, 204, 204));
-        LinkjTextField.setText("Youtube Link");
+        LinkjTextField.setText("Trailer Link");
         
         JLabel lblNewLabel = new JLabel("Synopsis");
         lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
@@ -448,15 +448,15 @@ public class AddFilm extends javax.swing.JFrame {
    	   else if(actor.equals("Actor")) {
    		JOptionPane.showMessageDialog(null,  "Please enter vaild Actor/s name");
    	   }
-   	   else if(ytLink.equals("Youtube Link")) {
-   		JOptionPane.showMessageDialog(null,  "Please enter a vaild Youtube link");
+   	   else if(ytLink.equals("Trailer Link")) {
+   		JOptionPane.showMessageDialog(null,  "Please enter a vaild Trailer Link");
    	   }
-   	   else if(ImagePath.equals("")) {
-      	JOptionPane.showMessageDialog(null,  "Please enter a vaild Path link");
+   	  else if(synopsis.equals("")){
+          JOptionPane.showMessageDialog(null,  "Please enter a synopsis");
 
-   	   }
-   	   else if(synopsis.equals("")){
-        JOptionPane.showMessageDialog(null,  "Please enter a synopsis");
+     	   }
+   	   else if(ImagePath.equals("Synopsis")) {
+      	JOptionPane.showMessageDialog(null,  "Please add a vaild Poster");
 
    	   }
    	   else { 
@@ -510,7 +510,6 @@ public class AddFilm extends javax.swing.JFrame {
     		File selectedFile = fileChooser.getSelectedFile();
     		String path = selectedFile.getAbsolutePath();
     		ImagePath = path;
-    		System.out.println(path);
     		
     	}
     }
@@ -589,7 +588,7 @@ public class AddFilm extends javax.swing.JFrame {
 
 
     private void ytTFfocusGained(FocusEvent e) {
-    	if(LinkjTextField.getText().equals("Youtube Link")) {
+    	if(LinkjTextField.getText().equals("Trailer Link")) {
     		LinkjTextField.setText("");
     	}
     	
@@ -597,7 +596,7 @@ public class AddFilm extends javax.swing.JFrame {
     
     private void ytTFfocusLost(FocusEvent e) {
     	if(LinkjTextField.getText().equals("")) {
-    		LinkjTextField.setText("Youtube Link");
+    		LinkjTextField.setText("Trailer Link");
     	}
     }
     
