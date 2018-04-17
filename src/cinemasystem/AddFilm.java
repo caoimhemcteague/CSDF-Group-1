@@ -278,6 +278,19 @@ public class AddFilm extends javax.swing.JFrame {
         txtSynopsis.setText("Synopsis");
         txtSynopsis.setColumns(10);
         
+        txtSynopsis.addFocusListener(new FocusListener() {
+        	public void focusGained(FocusEvent e) {
+        		synopsisTFfocusGained(e);
+        
+        	}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				synopsisTFfocusLost(e);
+				
+			}
+        });
+        
         JButton browse = new JButton("Add Poster");
         browse.setFont(new Font("Lucida Grande", Font.PLAIN, 32));
         browse.addActionListener(new ActionListener() {
@@ -588,6 +601,19 @@ public class AddFilm extends javax.swing.JFrame {
     	}
     }
     
+    
+    private void synopsisTFfocusGained(FocusEvent e) {
+    	if(txtSynopsis.getText().equals("Synopsis")) {
+    		txtSynopsis.setText("");
+    	}
+    	
+    }
+    
+    private void synopsisTFfocusLost(FocusEvent e) {
+    	if(txtSynopsis.getText().equals("")) {
+    		txtSynopsis.setText("Synopsis");
+    	}
+    }
     private void durationTFkeyTyped(KeyEvent e) {
     	char c = e.getKeyChar();
     	if(!(Character.isDigit(c)) || c==KeyEvent.VK_BACK_SPACE || c==KeyEvent.VK_DELETE) {

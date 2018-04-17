@@ -236,6 +236,18 @@ private void initComponents() {
     txtSynopsis.setText("Synopsis");
     txtSynopsis.setColumns(10);
     
+    txtSynopsis.addFocusListener(new FocusListener() {
+    	public void focusGained(FocusEvent e) {
+    		synopsisTFfocusGained(e);
+    
+    	}
+    	@Override
+		public void focusLost(FocusEvent e) {
+			synopsisTFfocusLost(e);
+			
+		}
+    });
+    
     JLabel lblNewLabel_1 = new JLabel("Poster");
     lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
     
@@ -491,6 +503,19 @@ private void ytTFfocusGained(FocusEvent e) {
 private void ytTFfocusLost(FocusEvent e) {
 	if(LinkjTextField.getText().equals("")) {
 		LinkjTextField.setText("Youtube Link");
+	}
+}
+
+private void synopsisTFfocusGained(FocusEvent e) {
+	if(txtSynopsis.getText().equals("Synopsis")) {
+		txtSynopsis.setText("");
+	}
+	
+}
+
+private void synopsisTFfocusLost(FocusEvent e) {
+	if(txtSynopsis.getText().equals("")) {
+		txtSynopsis.setText("Synopsis");
 	}
 }
 
