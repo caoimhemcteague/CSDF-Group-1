@@ -90,8 +90,6 @@ private void initComponents() {
     jLabel1.setText("Edit Film");
 
     TitleTextField1.setForeground(new java.awt.Color(204, 204, 204));
-   // String title = AdminPage.getTitle();
-   // TitleTextField1.setText("");
     TitleTextField1.setEditable(false);
 
     TitleLabel.setText("Film Title");
@@ -567,21 +565,21 @@ public static void main(String args[]) {
 
 // Variables declaration - do not modify//GEN-BEGIN:variables
 private javax.swing.JLabel ActorLabel;
-private javax.swing.JTextField ActorjTextField;
+public static javax.swing.JTextField ActorjTextField;
 private javax.swing.JButton Cancel;
 private javax.swing.JLabel DirectorLabel;
-private javax.swing.JTextField DirectorjTextField;
+public static javax.swing.JTextField DirectorjTextField;
 private javax.swing.JLabel DurationLabel;
-private javax.swing.JTextField DurationjTextField;
+public static javax.swing.JTextField DurationjTextField;
 private javax.swing.JLabel GenreLabel;
-private javax.swing.JTextField GenrejTextField;
+public static javax.swing.JTextField GenrejTextField;
 private javax.swing.JLabel LinkLabel;
-private javax.swing.JTextField LinkjTextField;
+public static javax.swing.JTextField LinkjTextField;
 private javax.swing.JLabel PgRatingLabel;
 private javax.swing.JComboBox PgRatingCB;
 private javax.swing.JLabel TitleLabel;
 public static javax.swing.JTextField TitleTextField1;
 private javax.swing.JButton editBt;
 private javax.swing.JLabel jLabel1;
-private JTextField txtSynopsis;
+public static JTextField txtSynopsis;
 }

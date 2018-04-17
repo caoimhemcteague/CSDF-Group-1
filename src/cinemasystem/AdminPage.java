@@ -7,6 +7,7 @@ package cinemasystem;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
@@ -26,6 +27,7 @@ import javax.swing.table.JTableHeader;
 import net.proteanit.sql.DbUtils;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 
@@ -347,12 +349,73 @@ public class AdminPage extends javax.swing.JFrame {
     
     private void editBtActionPerformed(java.awt.event.ActionEvent evt) {     
     	String filmToBeEdited = jComboBox1.getSelectedItem().toString();
+    	
         if(filmToBeEdited.equals("Select Film")) {
         	JOptionPane.showMessageDialog(null,  "Select a Film to edit first");
         }
         else {
+        String genre="", actor="", director="", trailer="", synopsis1="", duration="";
+        String value = filmToBeEdited;
+        
+        try {
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema?autoReconnect=true&useSSL=false", USER_NAME, PASSWORD);
+			st = conn.createStatement();
+			String ac = "Select Actor from film Where Name ='"+value+"'";
+			String d = "Select Director from film Where Name ='"+value+"'";
+			String g = "Select Genre from film Where Name ='"+value+"'";
+			String mins = "Select Duration from film Where Name ='"+value+"'";
+			String synopsis = "Select synopsis from film Where Name ='"+value+"'";
+			String getTrailer = "select trailer from film where Name ='"+value+"'";
+
+			rs = st.executeQuery(d);
+			if(rs.next())
+			director = rs.getString(1);
+			
+			rs = st.executeQuery(ac);
+			if(rs.next())
+			actor = rs.getString(1);
+			
+			rs = st.executeQuery(g);
+			if(rs.next())
+			genre = rs.getString(1);
+			
+			rs = st.executeQuery(mins);
+			if(rs.next())
+			duration = rs.getString(1);
+			
+			rs = st.executeQuery(getTrailer);
+			if(rs.next())
+			trailer = rs.getString(1);
+			
+			rs = st.executeQuery(synopsis);
+			if(rs.next())
+			synopsis1 = rs.getString(1);
+			
+		}
+		catch (Exception b) {
+		JOptionPane.showMessageDialog(null,  b.getMessage());
+		}finally {
+			try {
+				st.close();
+				rs.close();
+				conn.close();
+				
+			}catch(Exception b) {
+	    		JOptionPane.showMessageDialog(null,  "Error Close");
+
+			}
+		}
+        	
+        	
     	EditFilm film = new EditFilm();
         EditFilm.TitleTextField1.setText(filmToBeEdited);
+        EditFilm.ActorjTextField.setText(actor);
+        EditFilm.DirectorjTextField.setText(director);
+        EditFilm.DurationjTextField.setText(duration);
+        EditFilm.GenrejTextField.setText(genre);
+        EditFilm.LinkjTextField.setText(trailer);
+        EditFilm.txtSynopsis.setText(synopsis1);
+
         film.setExtendedState(JFrame.MAXIMIZED_BOTH); 
         film.setVisible(true);// TODO add your handling code here:
         }
