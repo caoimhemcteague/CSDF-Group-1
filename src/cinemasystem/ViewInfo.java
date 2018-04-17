@@ -48,7 +48,7 @@ public class ViewInfo extends javax.swing.JFrame {
     Connection conn;
     Statement st;
     ResultSet rs;
-    
+        
     public ViewInfo() {
         initComponents();
     }
@@ -64,7 +64,37 @@ public class ViewInfo extends javax.swing.JFrame {
     	
     	Image img = new ImageIcon(this.getClass().getResource("/images.jpg")).getImage();
     	posterLabel = new JLabel(new ImageIcon(img));
-        posterLabel.setSize(457, 610);
+    	posterLabel.setSize(229, 305);
+
+    	try {
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema?autoReconnect=true&useSSL=false", USER_NAME, PASSWORD);
+			st = conn.createStatement();
+			String s = "select poster from film LIMIT 1";
+			rs = st.executeQuery(s);
+			while(rs.next()) {
+				byte[] img1 = rs.getBytes(1);
+				ImageIcon image = new ImageIcon(img1);
+				Image im = image.getImage();
+				Image myImg = im.getScaledInstance(posterLabel.getWidth(), posterLabel.getHeight(), Image.SCALE_SMOOTH);
+				ImageIcon newImage = new ImageIcon(myImg);
+				posterLabel.setIcon(newImage);
+				
+			}
+
+		}
+		catch (Exception b) {
+		JOptionPane.showMessageDialog(null,  "Error");
+		}finally {
+			try {
+				st.close();
+				rs.close();
+				conn.close();
+				
+			}catch(Exception b) {
+	    		JOptionPane.showMessageDialog(null,  "Error Close");
+
+			}
+		}
     	
         jLabel1 = new javax.swing.JLabel();
         closeJButton = new javax.swing.JButton();
@@ -107,15 +137,13 @@ public class ViewInfo extends javax.swing.JFrame {
         setForeground(Color.BLACK);
         synopsisTextArea.setLineWrap(true);
         synopsisTextArea.setWrapStyleWord(true);
-        //Border border = BorderFactory.createLineBorder(Color.BLACK, 5);
-        //Border border = BorderFactory.createBevelBorder(5, Color.BLACK, Color.GREEN);
+
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("View Film Info");
         jLabel1.setFont(new Font("sansserif", Font.BOLD, 24));
         jLabel1.setForeground(Color.PINK);
-        //jLabel1.setBorder(border);
 
         closeJButton.setText("Close");
         closeJButton.setBackground(Color.RED);
@@ -126,8 +154,7 @@ public class ViewInfo extends javax.swing.JFrame {
             }
         });
 
-        //jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        filmName.setModel(new DefaultComboBoxModel<>(new String[] {"Select Film"}));
+        fetch();
         filmName.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		filmNameActionPerformed(e);
@@ -157,6 +184,58 @@ public class ViewInfo extends javax.swing.JFrame {
 
 			}
 		}
+        
+        String value=(String)filmName.getSelectedItem();
+
+     		 try {
+   			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema?autoReconnect=true&useSSL=false", USER_NAME, PASSWORD);
+   			st = conn.createStatement();
+   			String ac = "Select Actor from film Where Name ='"+value+"'";
+   			String d = "Select Director from film Where Name ='"+value+"'";
+   			String g = "Select Genre from film Where Name ='"+value+"'";
+   			String mins = "Select Duration from film Where Name ='"+value+"'";
+   			String pgR = "Select PG_Rating from film Where Name ='"+value+"'";
+   			String synopsis = "Select synopsis from film Where Name ='"+value+"'";
+   			
+   			rs = st.executeQuery(d);
+   			if(rs.next())
+   			lblDirName.setText(rs.getString(1));
+   			
+   			rs = st.executeQuery(ac);
+   			if(rs.next())
+   			actorsLabel.setText(rs.getString(1));
+   			
+   			rs = st.executeQuery(g);
+   			if(rs.next())
+   			sqlGenre.setText(rs.getString(1));
+   			
+   			rs = st.executeQuery(pgR);
+   			if(rs.next())
+   			lblPgRating.setText(rs.getString(1));
+   			
+   			rs = st.executeQuery(mins);
+   			if(rs.next())
+   			lblRunTime.setText(rs.getString(1));
+   			
+   			rs = st.executeQuery(synopsis);
+   			if(rs.next())
+   			synopsisTextArea.setText(rs.getString(1));
+   			
+   		}
+   		catch (Exception b) {
+   		JOptionPane.showMessageDialog(null,  b.getMessage());
+   		}finally {
+   			try {
+   				st.close();
+   				rs.close();
+   				conn.close();
+   				
+   			}catch(Exception b) {
+   	    		JOptionPane.showMessageDialog(null,  "Error Close");
+
+   			}
+   		}
+     	 
         
         
         
@@ -249,7 +328,7 @@ public class ViewInfo extends javax.swing.JFrame {
     
     private void fetch() {
     	
-    	filmName.setModel(new DefaultComboBoxModel<>(new String[] {"Select Film"}));
+    //	filmName.setModel(new DefaultComboBoxModel<>(new String[] {"Select Film"}));
 
         try {
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema?autoReconnect=true&useSSL=false", USER_NAME, PASSWORD);
@@ -326,7 +405,6 @@ public class ViewInfo extends javax.swing.JFrame {
 				Image myImg = im.getScaledInstance(posterLabel.getWidth(), posterLabel.getHeight(), Image.SCALE_SMOOTH);
 				ImageIcon newImage = new ImageIcon(myImg);
 				posterLabel.setIcon(newImage);
-	
 			}
 			else {
 				JOptionPane.showMessageDialog(null,  "No Data");
