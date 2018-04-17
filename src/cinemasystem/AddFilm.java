@@ -15,6 +15,11 @@ import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComponent;
@@ -26,6 +31,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import CinemaClasses.Film;
 import CinemaClasses.JTextFieldLimit;
+import net.proteanit.sql.DbUtils;
+
 import java.awt.Font;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -40,8 +47,14 @@ import javax.swing.JTextField;
  * @author christophermclaughlin
  */
 public class AddFilm extends javax.swing.JFrame {
-
+	
+	private final String USER_NAME = "root";
+	private final String PASSWORD = "password";
+    Connection conn;
+    Statement st;
+    ResultSet rs;
 	String ImagePath ="";
+	//File image = new File(ImagePath);
     /**
      * Creates new form AddFilm
      */
@@ -251,10 +264,10 @@ public class AddFilm extends javax.swing.JFrame {
 
         DirectorLabel.setText("Director");
 
-        LinkLabel.setText("Youtube Link");
+        LinkLabel.setText("Trailer");
 
         LinkjTextField.setForeground(new java.awt.Color(204, 204, 204));
-        LinkjTextField.setText("Youtube Link");
+        LinkjTextField.setText("Trailer Link");
         
         JLabel lblNewLabel = new JLabel("Synopsis");
         lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
@@ -264,6 +277,19 @@ public class AddFilm extends javax.swing.JFrame {
         txtSynopsis.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
         txtSynopsis.setText("Synopsis");
         txtSynopsis.setColumns(10);
+        
+        txtSynopsis.addFocusListener(new FocusListener() {
+        	public void focusGained(FocusEvent e) {
+        		synopsisTFfocusGained(e);
+        
+        	}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				synopsisTFfocusLost(e);
+				
+			}
+        });
         
         JButton browse = new JButton("Add Poster");
         browse.setFont(new Font("Lucida Grande", Font.PLAIN, 32));
@@ -422,28 +448,52 @@ public class AddFilm extends javax.swing.JFrame {
    	   else if(actor.equals("Actor")) {
    		JOptionPane.showMessageDialog(null,  "Please enter vaild Actor/s name");
    	   }
-   	   else if(ytLink.equals("Youtube Link")) {
-   		JOptionPane.showMessageDialog(null,  "Please enter a vaild Youtube link");
+   	   else if(ytLink.equals("Trailer Link")) {
+   		JOptionPane.showMessageDialog(null,  "Please enter a vaild Trailer Link");
    	   }
-   	   else if(ImagePath.equals("")) {
-      	JOptionPane.showMessageDialog(null,  "Please enter a vaild Path link");
+   	  else if(synopsis.equals("")){
+          JOptionPane.showMessageDialog(null,  "Please enter a synopsis");
 
-   	   }
-   	   else if(synopsis.equals("")){
-        JOptionPane.showMessageDialog(null,  "Please enter a synopsis");
+     	   }
+   	   else if(ImagePath.equals("Synopsis")) {
+      	JOptionPane.showMessageDialog(null,  "Please add a vaild Poster");
 
    	   }
    	   else { 
    		   try {
-   		poster = new FileInputStream(new File(ImagePath));
+   	//	poster = new FileInputStream(image);
    		   }
    		   catch(Exception e) {
    			   
    		   }
-   		
-   		Film newFilm = new Film(title, rating, genre, duration, actor, director, ytLink, poster, synopsis); 
-		
-   		newFilm.addFilmToDB();
+   		   
+   		try {
+   			InputStream is = new FileInputStream(new File(ImagePath));
+    		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema", USER_NAME, PASSWORD);
+    		PreparedStatement ps = conn.prepareStatement("Insert into film() values(?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    		ps.setString(1,  title);
+    		ps.setString(2,  rating);
+    		ps.setString(3,  genre);
+    		ps.setInt(4,  duration);
+    		ps.setString(5,  actor);
+    		ps.setString(6,  director);
+    		ps.setString(7,  ytLink);
+    		ps.setBlob(8,  is);
+    		ps.setString(9,  synopsis);
+    		ps.executeUpdate();
+
+ 		}
+ 		catch (Exception a) {
+ 		JOptionPane.showMessageDialog(null,  "Error");
+ 		}finally {
+ 			try {
+ 				conn.close();
+ 				
+ 			}catch(Exception a) {
+ 	    		JOptionPane.showMessageDialog(null,  "Error Close");
+
+ 			}
+ 		}
    		
    		JOptionPane.showMessageDialog(null,  "Film sucessfull added");
 
@@ -538,7 +588,7 @@ public class AddFilm extends javax.swing.JFrame {
 
 
     private void ytTFfocusGained(FocusEvent e) {
-    	if(LinkjTextField.getText().equals("Youtube Link")) {
+    	if(LinkjTextField.getText().equals("Trailer Link")) {
     		LinkjTextField.setText("");
     	}
     	
@@ -546,10 +596,23 @@ public class AddFilm extends javax.swing.JFrame {
     
     private void ytTFfocusLost(FocusEvent e) {
     	if(LinkjTextField.getText().equals("")) {
-    		LinkjTextField.setText("Youtube Link");
+    		LinkjTextField.setText("Trailer Link");
     	}
     }
     
+    
+    private void synopsisTFfocusGained(FocusEvent e) {
+    	if(txtSynopsis.getText().equals("Synopsis")) {
+    		txtSynopsis.setText("");
+    	}
+    	
+    }
+    
+    private void synopsisTFfocusLost(FocusEvent e) {
+    	if(txtSynopsis.getText().equals("")) {
+    		txtSynopsis.setText("Synopsis");
+    	}
+    }
     private void durationTFkeyTyped(KeyEvent e) {
     	char c = e.getKeyChar();
     	if(!(Character.isDigit(c)) || c==KeyEvent.VK_BACK_SPACE || c==KeyEvent.VK_DELETE) {

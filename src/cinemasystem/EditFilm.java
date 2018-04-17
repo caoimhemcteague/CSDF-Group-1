@@ -222,10 +222,10 @@ private void initComponents() {
 
     DirectorLabel.setText("Director");
 
-    LinkLabel.setText("Youtube Link");
+    LinkLabel.setText("Trailer");
 
     LinkjTextField.setForeground(new java.awt.Color(204, 204, 204));
-    LinkjTextField.setText("Youtube Link");
+    LinkjTextField.setText("Trailer Link");
     
     JLabel lblNewLabel = new JLabel("Synopsis");
     lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
@@ -235,6 +235,18 @@ private void initComponents() {
     txtSynopsis.setForeground(Color.LIGHT_GRAY);
     txtSynopsis.setText("Synopsis");
     txtSynopsis.setColumns(10);
+    
+    txtSynopsis.addFocusListener(new FocusListener() {
+    	public void focusGained(FocusEvent e) {
+    		synopsisTFfocusGained(e);
+    
+    	}
+    	@Override
+		public void focusLost(FocusEvent e) {
+			synopsisTFfocusLost(e);
+			
+		}
+    });
     
     JLabel lblNewLabel_1 = new JLabel("Poster");
     lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
@@ -385,12 +397,12 @@ private void addBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
 	   else if(ytLink.equals("Youtube Link")) {
 		JOptionPane.showMessageDialog(null,  "Please enter a vaild Youtube link");
 	   }
-	   else if(ImagePath.equals("")) {
-	      	JOptionPane.showMessageDialog(null,  "Please enter a vaild Path link");
+	   else if(synopsis.equals("")){
+	          JOptionPane.showMessageDialog(null,  "Please enter a synopsis");
 
-	   	   }
-	   	   else if(synopsis.equals("")){
-	        JOptionPane.showMessageDialog(null,  "Please enter a synopsis");
+	     	   }
+	   else if(ImagePath.equals("")) {
+	      	JOptionPane.showMessageDialog(null,  "Please add a vaild poster");
 
 	   	   }
 	   	   else { 
@@ -491,6 +503,19 @@ private void ytTFfocusGained(FocusEvent e) {
 private void ytTFfocusLost(FocusEvent e) {
 	if(LinkjTextField.getText().equals("")) {
 		LinkjTextField.setText("Youtube Link");
+	}
+}
+
+private void synopsisTFfocusGained(FocusEvent e) {
+	if(txtSynopsis.getText().equals("Synopsis")) {
+		txtSynopsis.setText("");
+	}
+	
+}
+
+private void synopsisTFfocusLost(FocusEvent e) {
+	if(txtSynopsis.getText().equals("")) {
+		txtSynopsis.setText("Synopsis");
 	}
 }
 

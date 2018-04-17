@@ -72,7 +72,6 @@ public class Film {
 					  "Actor=' " + actor + "', " +
 					  "Director=' " + director + "', " +
 					  "trailer=' " + trailer + "', " +
-					  "poster=' " + poster + "', " +
 					  "synopsis=' " + synopsis + "'";
 		JDBCcinema database = new JDBCcinema();
 		database.insertIntoDatabase(film);
