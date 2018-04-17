@@ -183,6 +183,7 @@ public class ViewInfo extends javax.swing.JFrame {
 		}
         
         String value=(String)filmName.getSelectedItem();
+        synopsisTextArea = new JTextArea();
 
      		 try {
    			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema?autoReconnect=true&useSSL=false", USER_NAME, PASSWORD);
@@ -334,7 +335,6 @@ public class ViewInfo extends javax.swing.JFrame {
         			.addGap(50))
         );
         
-        synopsisTextArea = new JTextArea();
         scrollPane.setViewportView(synopsisTextArea);
         synopsisTextArea.setFont(new Font("SansSerif", Font.ITALIC, 18));
         synopsisTextArea.setBorder(BorderFactory.createCompoundBorder(border,BorderFactory.createEmptyBorder(15, 15, 15, 15)));
