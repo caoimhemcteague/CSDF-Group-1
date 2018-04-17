@@ -173,7 +173,7 @@ public class AdminPage extends javax.swing.JFrame {
         btnAddScreening.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         	
-        		Screenings screen = new Screenings();
+        	   Screenings screen = new Screenings();
      	       screen.setExtendedState(JFrame.MAXIMIZED_BOTH);         	      
      	       screen.setVisible(true);
         
