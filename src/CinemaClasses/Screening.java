@@ -14,15 +14,15 @@ public class Screening extends JDBCcinema{
 	//public Date date; 
 	//public time;
 	
-	public Screening(int screeningNum, Theatre theatre, Film film) {
+	public Screening(Theatre theatre, Film film) {
 		this.film=film;
-		screeningNum++;
+		this.screeningNum=screeningNum++;
 		this.theatre = theatre;
 		ticketsBooked=0;
 	}
 	
 	public Screening() {
-		
+		this.screeningNum=screeningNum++;
 	}
 	
 	public int getScreeningNum()

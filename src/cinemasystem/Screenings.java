@@ -1,11 +1,20 @@
 package cinemasystem;
 
 import java.awt.Window;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.text.DateFormat;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+
+import CinemaClasses.Film;
+import CinemaClasses.Screening;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -26,6 +35,11 @@ import javax.swing.DefaultComboBoxModel;
 public class Screenings extends javax.swing.JFrame {
       
     DateFormat df = DateFormat.getDateInstance();
+    private final String USER_NAME = "root";
+	private final String PASSWORD = "password";
+    Connection conn;
+    Statement st;
+    ResultSet rs;
     
     
   
@@ -51,11 +65,11 @@ public class Screenings extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        theatreComboBox = new javax.swing.JComboBox<>();
+        filmComboBox = new javax.swing.JComboBox<>();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        saveButton = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
 
@@ -80,27 +94,71 @@ public class Screenings extends javax.swing.JFrame {
         jLabel6.setText("Film Name:");
         jLabel6.setToolTipText("");
 
-        jComboBox1.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        theatreComboBox.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
+        theatreComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Theatre" }));
+        try {
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema?autoReconnect=true&useSSL=false", USER_NAME, PASSWORD);
+			st = conn.createStatement();
+			String s = "Select Theatre_Num from theatre";
+			rs = st.executeQuery(s);
+			while(rs.next()) {
+				theatreComboBox.addItem(rs.getString(1));
+			}
+		}
+		catch (Exception b) {
+		JOptionPane.showMessageDialog(null,  "Error");
+		}finally {
+			try {
+				st.close();
+				rs.close();
+				conn.close();
+				
+			}catch(Exception b) {
+	    		JOptionPane.showMessageDialog(null,  "Error Close");
 
-        jComboBox2.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+			}
+		}
+
+        filmComboBox.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
+        filmComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Film" }));
+        try {
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema?autoReconnect=true&useSSL=false", USER_NAME, PASSWORD);
+			st = conn.createStatement();
+			String s = "Select Name from film";
+			rs = st.executeQuery(s);
+			while(rs.next()) {
+				filmComboBox.addItem(rs.getString(1));
+			}
+		}
+		catch (Exception b) {
+		JOptionPane.showMessageDialog(null,  "Error");
+		}finally {
+			try {
+				st.close();
+				rs.close();
+				conn.close();
+				
+			}catch(Exception b) {
+	    		JOptionPane.showMessageDialog(null,  "Error Close");
+
+			}
+		}
 
         jDateChooser1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
 
-        jButton1.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
-        jButton1.setText("Save");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        saveButton.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
+        saveButton.setText("Save");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                saveBtnActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
-        jButton2.setText("Cancel");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        cancelButton.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
+        cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                cancelButtonActionPerformed(evt);
             }
         });
 
@@ -129,7 +187,7 @@ public class Screenings extends javax.swing.JFrame {
         			.addGroup(layout.createParallelGroup(Alignment.LEADING)
         				.addComponent(lblNewLabel)
         				.addComponent(jLabel5)
-        				.addComponent(jButton2, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(cancelButton, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
         				.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
         					.addGroup(layout.createSequentialGroup()
         						.addComponent(jLabel2)
@@ -143,9 +201,9 @@ public class Screenings extends javax.swing.JFrame {
         						.addGap(50)
         						.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
         							.addComponent(jDateChooser1, GroupLayout.PREFERRED_SIZE, 270, GroupLayout.PREFERRED_SIZE)
-        							.addComponent(jButton1, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
-        							.addComponent(jComboBox2, 0, 584, Short.MAX_VALUE)
-        							.addComponent(jComboBox1, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        							.addComponent(saveButton, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
+        							.addComponent(filmComboBox, 0, 584, Short.MAX_VALUE)
+        							.addComponent(theatreComboBox, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         							.addComponent(jTextField2)
         							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))))
         			.addContainerGap(154, Short.MAX_VALUE))
@@ -162,7 +220,7 @@ public class Screenings extends javax.swing.JFrame {
         			.addPreferredGap(ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
         				.addComponent(jLabel3)
-        				.addComponent(jComboBox1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        				.addComponent(theatreComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         			.addPreferredGap(ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
         			.addGroup(layout.createParallelGroup(Alignment.LEADING)
         				.addGroup(layout.createSequentialGroup()
@@ -176,15 +234,15 @@ public class Screenings extends javax.swing.JFrame {
         			.addPreferredGap(ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
         				.addComponent(jLabel6)
-        				.addComponent(jComboBox2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        				.addComponent(filmComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         			.addGap(32)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
         				.addComponent(lblNewLabel)
         				.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         			.addGap(74)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(jButton1)
-        				.addComponent(jButton2))
+        				.addComponent(saveButton)
+        				.addComponent(cancelButton))
         			.addGap(33))
         );
         getContentPane().setLayout(layout);
@@ -192,13 +250,26 @@ public class Screenings extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String Date = df.format(jDateChooser1.getDate()) ;
         System.out.println(Date);
-       
+        
+        String filmName=(String)filmComboBox.getSelectedItem();
+        String theatreSelected=(String)theatreComboBox.getSelectedItem();
+        
+    	if(filmName.equals("Select Film")||theatreSelected.equals("Select Theatre")) 
+    	{
+    		 filmComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Film"}));
+    		 theatreComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Theatre"}));
+    	}
+    	else {
+        Film film = new Film();
+        Screening screening = new Screening();
+    	}
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         JComponent comp = (JComponent) evt.getSource();
          Window win = SwingUtilities.getWindowAncestor(comp);
          win.dispose();
@@ -244,10 +315,10 @@ public class Screenings extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JButton saveButton;
+    private javax.swing.JButton cancelButton;
+    private javax.swing.JComboBox<String> theatreComboBox;
+    private javax.swing.JComboBox<String> filmComboBox;
     public static com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -5,6 +5,7 @@ public class Ticket {
 	String type = null;
 	int bookingNum=0;
 	int screeningNum=0;
+	//Type type = new Type("");
 
 	
 	
@@ -13,8 +14,10 @@ public class Ticket {
 		this.type=type;
 		this.bookingNum=bookingNum;
 		this.screeningNum=screeningNum;
-		
+		//Type type = new Type(name);
 	}
+	
+	
 	
 	public Ticket() {
 		
