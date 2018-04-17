@@ -33,6 +33,7 @@ import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JLabel;
 import javax.swing.JTextPane;
+import javax.swing.JButton;
 
 /**
  *
@@ -235,7 +236,15 @@ public class ViewInfo extends javax.swing.JFrame {
 
    			}
    		}
-     	 
+        
+        viewTrailerBt = new JButton("View Trailer");
+        viewTrailerBt.setBackground(Color.RED);
+        viewTrailerBt.setFont(new Font("sansserif", Font.BOLD, 16));
+        viewTrailerBt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewTrailerActionPerformed(evt);
+            }
+        });
         
         
         
@@ -251,7 +260,9 @@ public class ViewInfo extends javax.swing.JFrame {
         			.addGroup(layout.createParallelGroup(Alignment.LEADING)
         				.addGroup(layout.createSequentialGroup()
         					.addGap(28)
-        					.addComponent(posterLabel, GroupLayout.PREFERRED_SIZE, 229, GroupLayout.PREFERRED_SIZE)
+        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        						.addComponent(viewTrailerBt, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        						.addComponent(posterLabel, GroupLayout.PREFERRED_SIZE, 229, GroupLayout.PREFERRED_SIZE))
         					.addGroup(layout.createParallelGroup(Alignment.LEADING)
         						.addGroup(layout.createSequentialGroup()
         							.addGap(62)
@@ -280,7 +291,7 @@ public class ViewInfo extends javax.swing.JFrame {
         				.addGroup(layout.createSequentialGroup()
         					.addGap(338)
         					.addComponent(jLabel1)))
-        			.addContainerGap(1617, Short.MAX_VALUE))
+        			.addContainerGap(2847, Short.MAX_VALUE))
         		.addGroup(layout.createSequentialGroup()
         			.addContainerGap(2628, Short.MAX_VALUE)
         			.addComponent(closeJButton, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE)
@@ -293,7 +304,10 @@ public class ViewInfo extends javax.swing.JFrame {
         			.addComponent(jLabel1)
         			.addPreferredGap(ComponentPlacement.UNRELATED)
         			.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        				.addComponent(posterLabel, GroupLayout.PREFERRED_SIZE, 305, GroupLayout.PREFERRED_SIZE)
+        				.addGroup(layout.createSequentialGroup()
+        					.addComponent(posterLabel, GroupLayout.PREFERRED_SIZE, 305, GroupLayout.PREFERRED_SIZE)
+        					.addGap(18)
+        					.addComponent(viewTrailerBt, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE))
         				.addGroup(layout.createSequentialGroup()
         					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
         						.addComponent(lblPgRating)
@@ -427,6 +441,30 @@ public class ViewInfo extends javax.swing.JFrame {
   	 }
     }
     
+    private void viewTrailerActionPerformed(ActionEvent e) {
+        
+        String value=(String)filmName.getSelectedItem();
+
+       	 if(value.equals("Select Film")) {
+       		 //Do Nothing
+       	 }
+       	 else {
+       		 
+         playTrailer trailer = new playTrailer(value);	
+    	 
+         
+         Thread t = new Thread(new Runnable() {
+        	 public void run() {
+        		  trailer.startTrailer();
+        		  
+        		  
+        	 }
+         });
+         t.start();
+          
+    	 
+       	 }
+        }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JComponent comp = (JComponent) evt.getSource();
@@ -489,5 +527,6 @@ public class ViewInfo extends javax.swing.JFrame {
     private JLabel lblPgRating;
     private JTextArea synopsisTextArea;
     private JLabel posterLabel;
+    private JButton viewTrailerBt;
 
 }
