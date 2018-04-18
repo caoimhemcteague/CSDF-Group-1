@@ -59,6 +59,7 @@ public class AddFilm extends javax.swing.JFrame {
      * Creates new form AddFilm
      */
     public AddFilm() {
+    	getContentPane().setBackground(new Color(0, 204, 204));
     	setBackground(Color.WHITE);
     	getContentPane().setForeground(Color.WHITE);
         initComponents();
@@ -79,8 +80,10 @@ public class AddFilm extends javax.swing.JFrame {
         TitleLabel = new javax.swing.JLabel();
         TitleLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
         addBt = new javax.swing.JButton();
+        addBt.setBackground(new Color(102, 204, 0));
         addBt.setFont(new Font("Lucida Grande", Font.PLAIN, 32));
         Cancel = new javax.swing.JButton();
+        Cancel.setBackground(new Color(204, 51, 51));
         Cancel.setFont(new Font("Lucida Grande", Font.PLAIN, 32));
         PgRatingLabel = new javax.swing.JLabel();
         PgRatingLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
@@ -111,8 +114,8 @@ public class AddFilm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new Font("Lucida Grande", Font.BOLD, 34)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel1.setFont(new Font("American Typewriter", Font.BOLD, 50)); // NOI18N
+        jLabel1.setForeground(Color.RED);
         jLabel1.setText("Add Film");
 
         TitleTextField1.setForeground(new java.awt.Color(204, 204, 204));
@@ -292,6 +295,7 @@ public class AddFilm extends javax.swing.JFrame {
         });
         
         JButton browse = new JButton("Add Poster");
+        browse.setBackground(new Color(102, 204, 0));
         browse.setFont(new Font("Lucida Grande", Font.PLAIN, 32));
         browse.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
