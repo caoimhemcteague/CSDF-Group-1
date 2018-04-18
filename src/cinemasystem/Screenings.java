@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import CinemaClasses.Film;
+import CinemaClasses.JTextFieldLimit;
 import CinemaClasses.Screening;
 
 import javax.swing.JLabel;
@@ -82,7 +83,7 @@ public class Screenings extends javax.swing.JFrame {
         saveButton.setBackground(new Color(102, 204, 0));
         cancelButton = new javax.swing.JButton();
         cancelButton.setBackground(new Color(204, 51, 51));
-        jTextField1 = new javax.swing.JTextField();
+        screeningNumTf = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -174,7 +175,10 @@ public class Screenings extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
+        screeningNumTf.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
+        screeningNumTf.setForeground(new java.awt.Color(204, 204, 204));
+        screeningNumTf.setDocument(new JTextFieldLimit(6));
+        screeningNumTf.setText("Number");
 
         jTextField2.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(204, 204, 204));
@@ -196,31 +200,31 @@ public class Screenings extends javax.swing.JFrame {
         				.addGroup(layout.createSequentialGroup()
         					.addGap(150)
         					.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        						.addComponent(lblNewLabel)
-        						.addComponent(jLabel5)
-        						.addComponent(cancelButton, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
-        						.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
-        							.addGroup(layout.createSequentialGroup()
+        						.addGroup(layout.createSequentialGroup()
+        							.addComponent(cancelButton, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
+        							.addPreferredGap(ComponentPlacement.RELATED, 581, Short.MAX_VALUE)
+        							.addComponent(saveButton, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
+        						.addGroup(layout.createSequentialGroup()
+        							.addGroup(layout.createParallelGroup(Alignment.LEADING)
         								.addComponent(jLabel2)
-        								.addGap(18)
-        								.addComponent(jTextField1))
-        							.addGroup(layout.createSequentialGroup()
+        								.addComponent(jLabel3)
+        								.addComponent(jLabel6)
+        								.addComponent(jLabel4)
+        								.addComponent(jLabel5)
+        								.addComponent(lblNewLabel))
+        							.addGap(18)
+        							.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        								.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         								.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        									.addComponent(jLabel3)
-        									.addComponent(jLabel6)
-        									.addComponent(jLabel4))
-        								.addGap(50)
-        								.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
-        									.addComponent(jDateChooser1, GroupLayout.PREFERRED_SIZE, 270, GroupLayout.PREFERRED_SIZE)
-        									.addComponent(saveButton, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
         									.addComponent(filmComboBox, 0, 584, Short.MAX_VALUE)
-        									.addComponent(theatreComboBox, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        									.addComponent(jDateChooser1, GroupLayout.PREFERRED_SIZE, 270, GroupLayout.PREFERRED_SIZE)
         									.addComponent(jTextField2)
-        									.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))))
+        									.addComponent(theatreComboBox, 0, 584, Short.MAX_VALUE)
+        									.addComponent(screeningNumTf, GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE))))))
         				.addGroup(layout.createSequentialGroup()
         					.addGap(489)
         					.addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 258, GroupLayout.PREFERRED_SIZE)))
-        			.addContainerGap(227, Short.MAX_VALUE))
+        			.addGap(221))
         );
         layout.setVerticalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
@@ -230,21 +234,21 @@ public class Screenings extends javax.swing.JFrame {
         			.addGap(51)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
         				.addComponent(jLabel2)
-        				.addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        				.addComponent(screeningNumTf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         			.addPreferredGap(ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
         				.addComponent(jLabel3)
         				.addComponent(theatreComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         			.addPreferredGap(ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
+        				.addComponent(jDateChooser1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        				.addComponent(jLabel4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        			.addGap(30, 30, Short.MAX_VALUE)
         			.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        				.addGroup(layout.createSequentialGroup()
-        					.addComponent(jLabel4)
-        					.addGap(0, 0, Short.MAX_VALUE))
-        				.addComponent(jDateChooser1, GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
-        			.addGap(30)
-        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
         				.addComponent(jLabel5)
-        				.addComponent(jTextField2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        				.addGroup(layout.createSequentialGroup()
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addComponent(jTextField2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
         			.addPreferredGap(ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
         				.addComponent(jLabel6)
@@ -255,8 +259,8 @@ public class Screenings extends javax.swing.JFrame {
         				.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         			.addGap(74)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(saveButton)
-        				.addComponent(cancelButton))
+        				.addComponent(cancelButton)
+        				.addComponent(saveButton))
         			.addGap(33))
         );
         getContentPane().setLayout(layout);
@@ -265,13 +269,21 @@ public class Screenings extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String Date = df.format(jDateChooser1.getDate()) ;
-        System.out.println(Date);
+ //       String Date = df.format(jDateChooser1.getDate()) ;
+ //       System.out.println(Date);
+        int screeningNum = Integer.parseInt(screeningNumTf.getText());
+        Boolean check = isNumberFree(screeningNum);
+      //  String filmName=(String)filmComboBox.getSelectedItem();
+        //String theatreSelected=(String)theatreComboBox.getSelectedItem();
+        System.out.println(check);
+        if(check == false) {
+			JOptionPane.showMessageDialog(null,  "This Screening Number is already in use");
+        	
+        }
         
-        String filmName=(String)filmComboBox.getSelectedItem();
-        String theatreSelected=(String)theatreComboBox.getSelectedItem();
         
-    	if(filmName.equals("Select Film")||theatreSelected.equals("Select Theatre")) 
+        
+    	/*if(filmName.equals("Select Film")||theatreSelected.equals("Select Theatre")) 
     	{
     		 filmComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Film"}));
     		 theatreComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Theatre"}));
@@ -279,7 +291,7 @@ public class Screenings extends javax.swing.JFrame {
     	else {
         Film film = new Film();
         Screening screening = new Screening();
-    	}
+    	}*/
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -288,6 +300,38 @@ public class Screenings extends javax.swing.JFrame {
          Window win = SwingUtilities.getWindowAncestor(comp);
          win.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+    
+    public Boolean isNumberFree(int num) {
+    	int databaseNum = 0;
+    	try {
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema?autoReconnect=true&useSSL=false", USER_NAME, PASSWORD);
+			st = conn.createStatement();
+			String s = "Select Screening_Num from screening;";
+			rs = st.executeQuery(s);
+			while(rs.next()) {
+				databaseNum = rs.getInt(1);
+				if(num == databaseNum)
+				{
+					return false;
+				}
+			}
+			return true;
+		}
+		catch (Exception b) {
+		JOptionPane.showMessageDialog(null,  "Error");
+		return false;
+		}finally {
+			try {
+				st.close();
+				rs.close();
+				conn.close();
+				
+			}catch(Exception b) {
+	    		JOptionPane.showMessageDialog(null,  "Error Close");
+
+			}
+		}
+    }
 
     /**
      * @param args the command line arguments
@@ -340,6 +384,6 @@ public class Screenings extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField screeningNumTf;
     private javax.swing.JTextField jTextField2;
 }
