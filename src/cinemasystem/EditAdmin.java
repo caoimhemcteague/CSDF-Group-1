@@ -5,11 +5,18 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 
 /*
@@ -24,6 +31,12 @@ import java.awt.Font;
  */
 public class EditAdmin extends javax.swing.JFrame {
 
+	
+	private final String USER_NAME = "root";
+	private final String PASSWORD = "password";
+    Connection conn;
+    Statement st;
+    ResultSet rs;
     /**
      * Creates new form EditAdmin
      */
@@ -40,24 +53,20 @@ public class EditAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton1.addActionListener(new ActionListener() {
+        administratorsLabel = new javax.swing.JLabel();
+        editButton = new javax.swing.JButton();
+        editButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		EditAdministrator editAdmin1 = new EditAdministrator();
           	  editAdmin1.setExtendedState(JFrame.MAXIMIZED_BOTH); 
                 editAdmin1.setVisible(true);
-          	 
-        		
-        		
-        		
         	}
         });
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        deleteButton = new javax.swing.JButton();
+        addButton = new javax.swing.JButton();
+        adminCBox = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        closeButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -65,27 +74,56 @@ public class EditAdmin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 39)); // NOI18N
-        jLabel1.setText("Administrators");
+        administratorsLabel.setFont(new java.awt.Font("Lucida Grande", 0, 39)); // NOI18N
+        administratorsLabel.setText("Administrators");
 
-        jButton1.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
-        jButton1.setText("Edit");
+        editButton.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
+        editButton.setText("Edit");
+        editButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editButtonActionPerformed(evt);
+            }
+        });
 
-        jButton2.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
-        jButton2.setText("Delete");
+        deleteButton.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
+        deleteButton.setText("Delete");
 
-        jButton3.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
-        jButton3.setText("Add");
+        addButton.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
+        addButton.setText("Add");
 
-        jComboBox1.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        adminCBox.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
+        //adminCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "It", "Item 3", "Item 4" }));
+        adminCBox.setModel(new DefaultComboBoxModel<>(new String[] {"Select Administrator"}));
+        
+        try {
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema?autoReconnect=true&useSSL=false", USER_NAME, PASSWORD);
+			st = conn.createStatement();
+			String s = "Select adminName from admins";
+			rs = st.executeQuery(s);
+			while(rs.next()) {
+				adminCBox.addItem(rs.getString(1));
+			}
+		}
+		catch (Exception b) {
+		JOptionPane.showMessageDialog(null,  "Error");
+		}finally {
+			try {
+				st.close();
+				rs.close();
+				conn.close();
+				
+			}catch(Exception b) {
+	    		JOptionPane.showMessageDialog(null,  "Error Close");
+
+			}
+		}
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
         jLabel2.setText("    Please Select Administrator to Edit or Delete");
 
-        jButton4.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
-        jButton4.setText("Close");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        closeButton.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
+        closeButton.setText("Close");
+        closeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
@@ -99,7 +137,7 @@ public class EditAdmin extends javax.swing.JFrame {
 
         jTextField1.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField1.setText("   Name");
+        //jTextField1.setText("   Name");
 
         jPasswordField1.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
         jPasswordField1.setToolTipText("");
@@ -112,17 +150,17 @@ public class EditAdmin extends javax.swing.JFrame {
         	layout.createParallelGroup(Alignment.LEADING)
         		.addGroup(layout.createSequentialGroup()
         			.addGap(65)
-        			.addComponent(jButton4, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+        			.addComponent(closeButton, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.RELATED, 1557, Short.MAX_VALUE)
-        			.addComponent(jButton3, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+        			.addComponent(addButton, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
         			.addGap(65))
         		.addGroup(layout.createSequentialGroup()
         			.addGap(333)
-        			.addComponent(jComboBox1, GroupLayout.PREFERRED_SIZE, 580, GroupLayout.PREFERRED_SIZE)
+        			.addComponent(adminCBox, GroupLayout.PREFERRED_SIZE, 580, GroupLayout.PREFERRED_SIZE)
         			.addGap(331))
         		.addGroup(layout.createSequentialGroup()
         			.addGap(473)
-        			.addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 293, GroupLayout.PREFERRED_SIZE)
+        			.addComponent(administratorsLabel, GroupLayout.PREFERRED_SIZE, 293, GroupLayout.PREFERRED_SIZE)
         			.addContainerGap())
         		.addGroup(layout.createSequentialGroup()
         			.addGap(250)
@@ -131,12 +169,12 @@ public class EditAdmin extends javax.swing.JFrame {
         					.addGroup(layout.createParallelGroup(Alignment.LEADING)
         						.addComponent(jLabel2, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 1213, Short.MAX_VALUE)
         						.addGroup(layout.createSequentialGroup()
-        							.addComponent(jButton1, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
+        							.addComponent(editButton, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
         							.addGap(0, 1051, Short.MAX_VALUE)))
         					.addContainerGap(504, Short.MAX_VALUE))
         				.addGroup(layout.createSequentialGroup()
         					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
-        						.addComponent(jButton2, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(deleteButton, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
         						.addGroup(layout.createSequentialGroup()
         							.addGroup(layout.createParallelGroup(Alignment.LEADING)
         								.addComponent(jLabel3)
@@ -155,15 +193,15 @@ public class EditAdmin extends javax.swing.JFrame {
         	layout.createParallelGroup(Alignment.LEADING)
         		.addGroup(layout.createSequentialGroup()
         			.addGap(21)
-        			.addComponent(jLabel1)
+        			.addComponent(administratorsLabel)
         			.addGap(18)
-        			.addComponent(jComboBox1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        			.addComponent(adminCBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(jLabel2)
         			.addGap(32)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(jButton1)
-        				.addComponent(jButton2))
+        				.addComponent(editButton)
+        				.addComponent(deleteButton))
         			.addGap(55)
         			.addComponent(lblNewLabel)
         			.addGap(18)
@@ -176,14 +214,21 @@ public class EditAdmin extends javax.swing.JFrame {
         				.addComponent(jLabel4))
         			.addPreferredGap(ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(jButton4)
-        				.addComponent(jButton3))
+        				.addComponent(closeButton)
+        				.addComponent(addButton))
         			.addGap(14))
         );
         getContentPane().setLayout(layout);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+       // JComponent comp = (JComponent) evt.getSource();
+        //Window win = SwingUtilities.getWindowAncestor(comp);
+        //win.dispose();
+    	
+    	
+   }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
          JComponent comp = (JComponent) evt.getSource();
@@ -232,12 +277,12 @@ public class EditAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton editButton;
+    private javax.swing.JButton deleteButton;
+    private javax.swing.JButton addButton;
+    private javax.swing.JButton closeButton;
+    private javax.swing.JComboBox<String> adminCBox;
+    private javax.swing.JLabel administratorsLabel;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
