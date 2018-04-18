@@ -7,14 +7,19 @@ package cinemasystem;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Window;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.Border;
 import javax.swing.SwingConstants;
+import javax.swing.JLabel;
 
 /**
  *
@@ -48,7 +53,7 @@ public class CancelTicket extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         closeJButton.setText("Close");
-        closeJButton.setBackground(Color.RED);
+        closeJButton.setBackground(new Color(204, 51, 51));
         closeJButton.setFont(new Font("SansSerif", Font.BOLD, 30));
         closeJButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -63,47 +68,59 @@ public class CancelTicket extends javax.swing.JFrame {
 
         jLabel1.setText("Cancel Ticket");
         jLabel1.setFont(new Font("American Typewriter", Font.BOLD, 50));
-        jLabel1.setForeground(Color.PINK);
+        jLabel1.setForeground(new Color(51, 204, 204));
 
         jTextField1.setText("   Please Enter Ticket ID");
 
         cancelJButton.setText("Cancel Ticket");
-        cancelJButton.setBackground(new Color(204, 51, 51));
+        cancelJButton.setBackground(new Color(102, 204, 0));
         cancelJButton.setFont(new Font("SansSerif", Font.BOLD, 30));
+        
+        lblNewLabel = new JLabel("");
+        Image imgLogo = new ImageIcon(this.getClass().getResource("/logo.jpg")).getImage();
+        lblNewLabel.setIcon(new ImageIcon(imgLogo));
+        Border line = BorderFactory.createLineBorder(Color.black, 5);
+        lblNewLabel.setBorder(line);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
         		.addGroup(layout.createSequentialGroup()
-        			.addGap(197)
+        			.addGap(199)
         			.addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, 541, GroupLayout.PREFERRED_SIZE)
         			.addGap(50)
         			.addComponent(cancelJButton, GroupLayout.PREFERRED_SIZE, 311, GroupLayout.PREFERRED_SIZE)
-        			.addContainerGap(198, Short.MAX_VALUE))
+        			.addContainerGap(720, Short.MAX_VALUE))
         		.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
-        			.addContainerGap(1107, Short.MAX_VALUE)
-        			.addComponent(closeJButton)
-        			.addGap(61))
+        			.addGap(1121)
+        			.addComponent(closeJButton, GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+        			.addGap(547))
         		.addGroup(layout.createSequentialGroup()
-        			.addGap(508)
-        			.addComponent(jLabel1, GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
-        			.addGap(509))
+        			.addGap(537)
+        			.addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 370, GroupLayout.PREFERRED_SIZE)
+        			.addContainerGap(914, Short.MAX_VALUE))
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(487)
+        			.addComponent(lblNewLabel)
+        			.addContainerGap(875, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
         		.addGroup(layout.createSequentialGroup()
-        			.addGap(27)
+        			.addGap(22)
+        			.addComponent(lblNewLabel)
+        			.addGap(18)
         			.addComponent(jLabel1)
-        			.addGap(61)
+        			.addGap(47)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
         				.addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
         				.addComponent(cancelJButton))
-        			.addGap(449)
-        			.addComponent(closeJButton)
-        			.addContainerGap(17, Short.MAX_VALUE))
+        			.addGap(240)
+        			.addComponent(closeJButton, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
+        			.addContainerGap(197, Short.MAX_VALUE))
         );
         getContentPane().setLayout(layout);
-        getContentPane().setBackground(Color.GRAY);
+        getContentPane().setBackground(new Color(153, 0, 0));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -165,5 +182,6 @@ public class CancelTicket extends javax.swing.JFrame {
     private javax.swing.JButton cancelJButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField jTextField1;
+    private JLabel lblNewLabel;
     // End of variables declaration//GEN-END:variables
 }
