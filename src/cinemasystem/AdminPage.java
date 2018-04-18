@@ -373,10 +373,10 @@ public class AdminPage extends javax.swing.JFrame {
     
     private void addAdminButtonActionPerformed(java.awt.event.ActionEvent evt) 
     {
-    	/*EditAdmin editAdmin = new EditAdmin();
+    	  EditAdmin editAdmin = new EditAdmin();
     	  editAdmin.setExtendedState(JFrame.MAXIMIZED_BOTH); 
           editAdmin.setVisible(true);
-    	 */
+    	 
     	
     }
     private void addFilmJButtonActionPerformed(java.awt.event.ActionEvent evt) {                                         
