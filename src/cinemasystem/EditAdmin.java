@@ -233,6 +233,12 @@ public class EditAdmin extends javax.swing.JFrame {
 				String newAdmin = "Insert INTO admins VALUES ('"+name+"', '"+passWord+"')";
 				st.executeUpdate(newAdmin);
 				JOptionPane.showMessageDialog(null,  "New Administrator Successfully Added");
+				adminCBox.setModel(new DefaultComboBoxModel<>(new String[] {"Select Administrator"}));
+    			String s1 = "Select adminName from admins";
+    			rs = st.executeQuery(s1);
+    			while(rs.next()) {
+    				adminCBox.addItem(rs.getString(1));
+    			}
 			}
 		}
 		catch (Exception a) {
@@ -270,8 +276,14 @@ public class EditAdmin extends javax.swing.JFrame {
         	try {
     			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema", USER_NAME, PASSWORD);
     			st = conn.createStatement();
-    			String s = "Delete from admins where Name = '" + adminSelected+ "'";
+    			String s = "Delete from admins where adminName = '" + adminSelected+ "'";
     			st.executeUpdate(s);
+    			adminCBox.setModel(new DefaultComboBoxModel<>(new String[] {"Select Administrator"}));
+    			String s1 = "Select adminName from admins";
+    			rs = st.executeQuery(s1);
+    			while(rs.next()) {
+    				adminCBox.addItem(rs.getString(1));
+    			}
     			
     		}
     		catch (Exception a) {
