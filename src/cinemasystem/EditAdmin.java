@@ -54,14 +54,6 @@ public class EditAdmin extends javax.swing.JFrame {
     private void initComponents() {
 
         administratorsLabel = new javax.swing.JLabel();
-        editButton = new javax.swing.JButton();
-        editButton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		EditAdministrator editAdmin1 = new EditAdministrator();
-          	  editAdmin1.setExtendedState(JFrame.MAXIMIZED_BOTH); 
-                editAdmin1.setVisible(true);
-        	}
-        });
         deleteButton = new javax.swing.JButton();
         addButton = new javax.swing.JButton();
         adminCBox = new javax.swing.JComboBox<>();
@@ -76,14 +68,6 @@ public class EditAdmin extends javax.swing.JFrame {
 
         administratorsLabel.setFont(new java.awt.Font("Lucida Grande", 0, 39)); // NOI18N
         administratorsLabel.setText("Administrators");
-
-        editButton.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
-        editButton.setText("Edit");
-        editButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editButtonActionPerformed(evt);
-            }
-        });
 
         deleteButton.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
         deleteButton.setText("Delete");
@@ -119,7 +103,7 @@ public class EditAdmin extends javax.swing.JFrame {
 		}
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
-        jLabel2.setText("    Please Select Administrator to Edit or Delete");
+        jLabel2.setText("    Please Select Administrator Delete");
 
         closeButton.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
         closeButton.setText("Close");
@@ -166,11 +150,7 @@ public class EditAdmin extends javax.swing.JFrame {
         			.addGap(250)
         			.addGroup(layout.createParallelGroup(Alignment.LEADING)
         				.addGroup(layout.createSequentialGroup()
-        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        						.addComponent(jLabel2, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 1213, Short.MAX_VALUE)
-        						.addGroup(layout.createSequentialGroup()
-        							.addComponent(editButton, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
-        							.addGap(0, 1051, Short.MAX_VALUE)))
+        					.addComponent(jLabel2, GroupLayout.DEFAULT_SIZE, 1213, Short.MAX_VALUE)
         					.addContainerGap(504, Short.MAX_VALUE))
         				.addGroup(layout.createSequentialGroup()
         					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
@@ -199,9 +179,7 @@ public class EditAdmin extends javax.swing.JFrame {
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(jLabel2)
         			.addGap(32)
-        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(editButton)
-        				.addComponent(deleteButton))
+        			.addComponent(deleteButton)
         			.addGap(55)
         			.addComponent(lblNewLabel)
         			.addGap(18)
@@ -275,9 +253,6 @@ public class EditAdmin extends javax.swing.JFrame {
             }
         });
     }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton editButton;
     private javax.swing.JButton deleteButton;
     private javax.swing.JButton addButton;
     private javax.swing.JButton closeButton;
