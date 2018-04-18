@@ -5,6 +5,12 @@ import java.awt.Window;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JComboBox;
+import java.awt.Font;
+import java.awt.Color;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -22,6 +28,7 @@ public class EditAdministrator extends javax.swing.JFrame {
      * Creates new form EditAdmin
      */
     public EditAdministrator() {
+    	getContentPane().setBackground(new Color(0, 204, 204));
         initComponents();
     }
 
@@ -35,24 +42,33 @@ public class EditAdministrator extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jLabel1.setForeground(Color.RED);
+        jLabel1.setBackground(Color.RED);
         jButton3 = new javax.swing.JButton();
+        jButton3.setBackground(new Color(102, 204, 0));
+        jButton3.setForeground(new Color(0, 0, 0));
         jLabel2 = new javax.swing.JLabel();
+        jLabel2.setForeground(Color.RED);
         jButton4 = new javax.swing.JButton();
+        jButton4.setBackground(new Color(204, 51, 51));
         jLabel3 = new javax.swing.JLabel();
+        jLabel3.setForeground(Color.RED);
+        jLabel3.setBackground(Color.RED);
         jLabel4 = new javax.swing.JLabel();
+        jLabel4.setForeground(Color.RED);
         jTextField1 = new javax.swing.JTextField();
         jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 39)); // NOI18N
-        jLabel1.setText("Edit Administrators");
+        jLabel1.setFont(new Font("American Typewriter", Font.BOLD, 50)); // NOI18N
+        jLabel1.setText("Edit Administrator");
 
         jButton3.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
         jButton3.setText("Save");
 
-        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
-        jLabel2.setText("Please make the following changes:");
+        jLabel2.setFont(new Font("Lucida Grande", Font.BOLD, 32)); // NOI18N
+        jLabel2.setText("Make changes to selected Administrator");
 
         jButton4.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
         jButton4.setText("Close");
@@ -62,10 +78,10 @@ public class EditAdministrator extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
+        jLabel3.setFont(new Font("Lucida Grande", Font.BOLD, 32)); // NOI18N
         jLabel3.setText("User Name:");
 
-        jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
+        jLabel4.setFont(new Font("Lucida Grande", Font.BOLD, 32)); // NOI18N
         jLabel4.setText("Password:");
 
         jTextField1.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
@@ -74,58 +90,62 @@ public class EditAdministrator extends javax.swing.JFrame {
 
         jPasswordField1.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
         jPasswordField1.setToolTipText("");
+        
+        JComboBox comboBox = new JComboBox();
+        comboBox.setFont(new Font("Lucida Grande", Font.PLAIN, 32));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(250, 250, 250)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap(291, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE)
-                            .addComponent(jPasswordField1))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(454, 454, 454)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(413, Short.MAX_VALUE))
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(65)
+        			.addComponent(jButton4, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+        			.addPreferredGap(ComponentPlacement.RELATED, 834, Short.MAX_VALUE)
+        			.addComponent(jButton3, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+        			.addGap(65))
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(250)
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addComponent(jLabel2, GroupLayout.PREFERRED_SIZE, 693, GroupLayout.PREFERRED_SIZE)
+        				.addGroup(layout.createSequentialGroup()
+        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        						.addComponent(jLabel3)
+        						.addComponent(jLabel4))
+        					.addGap(40)
+        					.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
+        						.addComponent(jTextField1, GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE)
+        						.addComponent(jPasswordField1)))
+        				.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 551, GroupLayout.PREFERRED_SIZE))
+        			.addContainerGap(230, Short.MAX_VALUE))
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(417)
+        			.addComponent(jLabel1)
+        			.addContainerGap(342, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel1)
-                .addGap(64, 64, 64)
-                .addComponent(jLabel2)
-                .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 233, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton3))
-                .addGap(14, 14, 14))
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(21)
+        			.addComponent(jLabel1)
+        			.addGap(62)
+        			.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addComponent(jLabel2)
+        			.addGap(18)
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(jLabel3))
+        			.addGap(47)
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(jLabel4)
+        				.addComponent(jPasswordField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addPreferredGap(ComponentPlacement.RELATED, 233, Short.MAX_VALUE)
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(jButton4)
+        				.addComponent(jButton3))
+        			.addGap(14))
         );
+        getContentPane().setLayout(layout);
 
         pack();
     }// </editor-fold>                        
@@ -166,7 +186,7 @@ public class EditAdministrator extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                 EditAdmin frame = new EditAdmin();
+                 EditAdministrator frame = new EditAdministrator();
                 
                 frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
                 
@@ -185,5 +205,4 @@ public class EditAdministrator extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
-    // End of variables declaration                   
 }
