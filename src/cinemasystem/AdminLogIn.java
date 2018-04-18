@@ -64,16 +64,16 @@ public class AdminLogIn extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         
         jLabel1.setText("Admin Log In");
-        jLabel1.setFont(new Font("SansSerif", Font.BOLD, 32));
-        jLabel1.setForeground(Color.PINK);
+        jLabel1.setFont(new Font("American Typewriter", Font.BOLD, 50));
+        jLabel1.setForeground(Color.RED);
         
         jLabel2.setText("Username:");
         jLabel2.setFont(new Font("SansSerif", Font.BOLD, 39));
-        jLabel2.setForeground(Color.PINK);
+        jLabel2.setForeground(Color.RED);
         
         jLabel3.setText("Password:");
         jLabel3.setFont(new Font("SansSerif", Font.BOLD, 39));
-        jLabel3.setForeground(Color.PINK);
+        jLabel3.setForeground(Color.RED);
 
         TextUserName.setText("");
         TextUserName.addActionListener(new java.awt.event.ActionListener() {
@@ -85,7 +85,7 @@ public class AdminLogIn extends javax.swing.JFrame {
         TextPassword.setText("");
 
         closeJButton.setText("Close");
-        closeJButton.setBackground(Color.RED);
+        closeJButton.setBackground(new Color(204, 51, 51));
         closeJButton.setFont(new Font("SansSerif", Font.BOLD, 36));
         closeJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,7 +94,7 @@ public class AdminLogIn extends javax.swing.JFrame {
         });
 
         loginJButton.setText("Log In");
-        loginJButton.setBackground(Color.GREEN);
+        loginJButton.setBackground(new Color(102, 204, 0));
         loginJButton.setFont(new Font("SansSerif", Font.BOLD, 36));
         loginJButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -104,11 +104,7 @@ public class AdminLogIn extends javax.swing.JFrame {
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(
-        	layout.createParallelGroup(Alignment.TRAILING)
-        		.addGroup(layout.createSequentialGroup()
-        			.addContainerGap(966, Short.MAX_VALUE)
-        			.addComponent(closeJButton)
-        			.addGap(29))
+        	layout.createParallelGroup(Alignment.LEADING)
         		.addGroup(layout.createSequentialGroup()
         			.addGroup(layout.createParallelGroup(Alignment.TRAILING)
         				.addGroup(layout.createSequentialGroup()
@@ -122,12 +118,16 @@ public class AdminLogIn extends javax.swing.JFrame {
         					.addGap(18)
         					.addGroup(layout.createParallelGroup(Alignment.LEADING)
         						.addComponent(TextUserName, GroupLayout.DEFAULT_SIZE, 751, Short.MAX_VALUE)
-        						.addComponent(TextPassword, GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE))))
+        						.addComponent(TextPassword, GroupLayout.DEFAULT_SIZE, 751, Short.MAX_VALUE))))
         			.addGap(210))
-        		.addGroup(Alignment.LEADING, layout.createSequentialGroup()
-        			.addGap(499)
-        			.addComponent(jLabel1, GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
-        			.addGap(500))
+        		.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+        			.addContainerGap(1110, Short.MAX_VALUE)
+        			.addComponent(closeJButton)
+        			.addGap(90))
+        		.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+        			.addContainerGap(499, Short.MAX_VALUE)
+        			.addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 387, GroupLayout.PREFERRED_SIZE)
+        			.addGap(460))
         );
         layout.setVerticalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
@@ -144,12 +144,12 @@ public class AdminLogIn extends javax.swing.JFrame {
         				.addComponent(jLabel3, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE))
         			.addGap(28)
         			.addComponent(loginJButton)
-        			.addPreferredGap(ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+        			.addPreferredGap(ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
         			.addComponent(closeJButton)
-        			.addGap(36))
+        			.addGap(37))
         );
         getContentPane().setLayout(layout);
-        getContentPane().setBackground(Color.GRAY);
+        getContentPane().setBackground(new Color(0, 204, 204));
         
 
         pack();
