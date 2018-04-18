@@ -150,7 +150,7 @@ public class ViewInfo extends javax.swing.JFrame {
         jLabel1.setForeground(Color.PINK);
 
         closeJButton.setText("Close");
-        closeJButton.setBackground(Color.RED);
+        closeJButton.setBackground(new Color(0, 191, 255));
         closeJButton.setFont(new Font("sansserif", Font.BOLD, 16));
         closeJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -244,7 +244,7 @@ public class ViewInfo extends javax.swing.JFrame {
    		}
         
         viewTrailerBt = new JButton("View Trailer");
-        viewTrailerBt.setBackground(Color.RED);
+        viewTrailerBt.setBackground(new Color(0, 191, 255));
         viewTrailerBt.setFont(new Font("sansserif", Font.BOLD, 16));
         viewTrailerBt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -266,11 +266,20 @@ public class ViewInfo extends javax.swing.JFrame {
         layout.setHorizontalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
         		.addGroup(layout.createSequentialGroup()
+        			.addGap(366)
+        			.addComponent(jLabel1)
+        			.addContainerGap(3053, Short.MAX_VALUE))
+        		.addGroup(layout.createSequentialGroup()
         			.addGap(28)
         			.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        				.addComponent(viewTrailerBt, GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
-        				.addComponent(posterLabel, GroupLayout.PREFERRED_SIZE, 229, GroupLayout.PREFERRED_SIZE))
-        			.addGap(62)
+        				.addGroup(layout.createSequentialGroup()
+        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        						.addComponent(viewTrailerBt, GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+        						.addComponent(posterLabel, GroupLayout.PREFERRED_SIZE, 229, GroupLayout.PREFERRED_SIZE))
+        					.addGap(62))
+        				.addGroup(layout.createSequentialGroup()
+        					.addComponent(closeJButton, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE)
+        					.addPreferredGap(ComponentPlacement.RELATED)))
         			.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
         				.addComponent(filmName, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         				.addGroup(layout.createSequentialGroup()
@@ -289,17 +298,12 @@ public class ViewInfo extends javax.swing.JFrame {
         					.addGroup(layout.createParallelGroup(Alignment.LEADING)
         						.addComponent(actorsLabel)
         						.addComponent(lblDirName)))
-        				.addComponent(scrollPane, 0, 0, Short.MAX_VALUE)
-        				.addComponent(closeJButton, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE))
+        				.addComponent(scrollPane, 0, 0, Short.MAX_VALUE))
         			.addGap(46)
         			.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
         				.addComponent(poster2, GroupLayout.PREFERRED_SIZE, 392, GroupLayout.PREFERRED_SIZE)
         				.addComponent(lblPgRating, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE))
         			.addGap(2543))
-        		.addGroup(layout.createSequentialGroup()
-        			.addGap(366)
-        			.addComponent(jLabel1)
-        			.addContainerGap(3053, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
@@ -307,7 +311,7 @@ public class ViewInfo extends javax.swing.JFrame {
         			.addGap(14)
         			.addComponent(jLabel1)
         			.addPreferredGap(ComponentPlacement.UNRELATED)
-        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
         				.addGroup(layout.createSequentialGroup()
         					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
         						.addComponent(lblPgRating)
@@ -334,14 +338,15 @@ public class ViewInfo extends javax.swing.JFrame {
         							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 390, GroupLayout.PREFERRED_SIZE))
         						.addGroup(layout.createSequentialGroup()
         							.addPreferredGap(ComponentPlacement.RELATED)
-        							.addComponent(poster2, GroupLayout.PREFERRED_SIZE, 534, GroupLayout.PREFERRED_SIZE))))
+        							.addComponent(poster2, GroupLayout.PREFERRED_SIZE, 534, GroupLayout.PREFERRED_SIZE)))
+        					.addGap(138))
         				.addGroup(layout.createSequentialGroup()
         					.addComponent(posterLabel, GroupLayout.PREFERRED_SIZE, 305, GroupLayout.PREFERRED_SIZE)
         					.addGap(18)
-        					.addComponent(viewTrailerBt, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)))
-        			.addGap(49)
-        			.addComponent(closeJButton, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
-        			.addGap(50))
+        					.addComponent(viewTrailerBt, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+        					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        					.addComponent(closeJButton, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+        					.addGap(103))))
         );
         
         scrollPane.setViewportView(synopsisTextArea);
