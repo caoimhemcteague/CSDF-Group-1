@@ -8,8 +8,15 @@ package cinemasystem;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Window;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
@@ -20,7 +27,13 @@ import javax.swing.LayoutStyle.ComponentPlacement;
  * @author christophermclaughlin
  */
 public class AdminLogIn extends javax.swing.JFrame {
-
+	
+	
+	private final String USER_NAME = "root";
+	private final String PASSWORD = "password";
+    Connection conn;
+    Statement st;
+    ResultSet rs;
     /**
      * Creates new form AdminLogIn
      */
@@ -85,7 +98,7 @@ public class AdminLogIn extends javax.swing.JFrame {
         loginJButton.setFont(new Font("SansSerif", Font.BOLD, 36));
         loginJButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                loginMouseClicked(evt);
             }
         });
 
@@ -141,7 +154,7 @@ public class AdminLogIn extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JComponent comp = (JComponent) evt.getSource();
          Window win = SwingUtilities.getWindowAncestor(comp);
@@ -152,19 +165,47 @@ public class AdminLogIn extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TextUserNameActionPerformed
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-      String usertxter = "user";
-      String passtxter = "pass";
+    private void loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+      //String usertxter = "user";
+      //String passtxter = "pass";
       String punamer = TextUserName.getText();
       String ppaswder = TextPassword.getText();
         
-        if(punamer.equals(usertxter) && ppaswder.equals(passtxter))
-       { 
-       AdminPage page = new AdminPage();
-       page.setExtendedState(JFrame.MAXIMIZED_BOTH);  
-       page.setVisible(true);
-       }
+      if(punamer.isEmpty()||ppaswder.isEmpty())
+      {
+    	  JOptionPane.showMessageDialog(null,  "Invalid Admin Name or Password");
+      }
+      else {
+    	  try {
+  			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema", USER_NAME, PASSWORD);
+  			st = conn.createStatement();
+  			String s = "Select adminName, adminPassword from admins WHERE adminName = '" + punamer+ "' AND adminPassword = '"+ ppaswder+"'";
+  			rs=st.executeQuery(s);
+  			
+  			if(rs.next())
+  	        { 
+  	         AdminPage page = new AdminPage();
+  	         page.setExtendedState(JFrame.MAXIMIZED_BOTH);  
+  	         page.setVisible(true);
+  	        }  			
+  		}
+  		catch (Exception a) {
+  			System.out.println("\n" + a);
+  			JOptionPane.showMessageDialog(null,  "Error here");
+  			System.out.println("\n" + a);
+  		}finally {
+  			try {
+  				st.close();
+  				rs.close();
+  				conn.close();
+  				
+  			}catch(Exception a) {
+  	    		JOptionPane.showMessageDialog(null,  "Error Close");
 
+  			}
+  	     }
+      }
+      
     }//GEN-LAST:event_jButton2MouseClicked
     
     /**
