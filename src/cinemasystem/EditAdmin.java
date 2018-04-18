@@ -86,7 +86,6 @@ public class EditAdmin extends javax.swing.JFrame {
         });
 
         adminCBox.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
-        //adminCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "It", "Item 3", "Item 4" }));
         adminCBox.setModel(new DefaultComboBoxModel<>(new String[] {"Select Administrator"}));
         
         try {
@@ -219,21 +218,26 @@ public class EditAdmin extends javax.swing.JFrame {
     		JOptionPane.showMessageDialog(null,  "Invalid Username or Password");
     	}
     	else {
-    		//int response=JOptionPane.showConfirmDialog(null,  "Are you sure you want to remove "+adminSelected+"?","Remove Administrator?", JOptionPane.YES_NO_OPTION);
     		
-    		//if(response==JOptionPane.YES_OPTION)
-    		//{
-    	
     	try {
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema", USER_NAME, PASSWORD);
 			st = conn.createStatement();
-			//String s = "Delete from admins where Name = '" + adminSelected+ "'";
-			//st.executeUpdate(s);
-			
+			String sqlQuery = "Select adminName from admins WHERE BINARY adminName = BINARY '" + name+ "'"; 
+			rs=st.executeQuery(sqlQuery);
+			if(rs.next())
+			{
+				JOptionPane.showMessageDialog(null,  "Username already in use");
+			}
+			else 
+			{
+				String newAdmin = "Insert INTO admins VALUES ('"+name+"', '"+passWord+"')";
+				st.executeUpdate(newAdmin);
+				JOptionPane.showMessageDialog(null,  "New Administrator Successfully Added");
+			}
 		}
 		catch (Exception a) {
 			System.out.println("\n" + a);
-			JOptionPane.showMessageDialog(null,  "Error here");
+			JOptionPane.showMessageDialog(null,  "Username already in use");
 			System.out.println("\n" + a);
 		}finally {
 			try {
@@ -247,10 +251,6 @@ public class EditAdmin extends javax.swing.JFrame {
 			}
 	     }
        }
-   // else {			
-		//}
-    		
-     // }
     }//GEN-LAST:event_jButton4ActionPerformed
     
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
