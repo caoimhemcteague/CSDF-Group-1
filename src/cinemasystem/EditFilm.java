@@ -35,6 +35,7 @@ public class EditFilm extends javax.swing.JFrame {
 	String ImagePath ="";
 	
 	public EditFilm() {
+		getContentPane().setBackground(new Color(0, 204, 204));
     initComponents();
 }
 	
@@ -55,8 +56,10 @@ private void initComponents() {
     TitleLabel = new javax.swing.JLabel();
     TitleLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
     editBt = new javax.swing.JButton();
+    editBt.setBackground(new Color(102, 204, 0));
     editBt.setFont(new Font("Lucida Grande", Font.PLAIN, 32));
     Cancel = new javax.swing.JButton();
+    Cancel.setBackground(new Color(204, 51, 51));
     Cancel.setFont(new Font("Lucida Grande", Font.PLAIN, 32));
     PgRatingLabel = new javax.swing.JLabel();
     PgRatingLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
@@ -85,7 +88,7 @@ private void initComponents() {
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-    jLabel1.setFont(new Font("Lucida Grande", Font.BOLD, 32)); // NOI18N
+    jLabel1.setFont(new Font("American Typewriter", Font.BOLD, 50)); // NOI18N
     jLabel1.setForeground(new java.awt.Color(255, 0, 0));
     jLabel1.setText("Edit Film");
 
@@ -250,6 +253,7 @@ private void initComponents() {
     lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
     
     JButton browse = new JButton("Add Poster");
+    browse.setBackground(new Color(102, 204, 0));
     browse.setFont(new Font("Lucida Grande", Font.PLAIN, 32));
     browse.addActionListener(new ActionListener() {
     	public void actionPerformed(ActionEvent e) {
@@ -259,13 +263,9 @@ private void initComponents() {
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     layout.setHorizontalGroup(
-    	layout.createParallelGroup(Alignment.LEADING)
+    	layout.createParallelGroup(Alignment.TRAILING)
     		.addGroup(layout.createSequentialGroup()
-    			.addGap(657)
-    			.addComponent(jLabel1)
-    			.addContainerGap(3048, Short.MAX_VALUE))
-    		.addGroup(layout.createSequentialGroup()
-    			.addGap(24)
+    			.addGap(22)
     			.addGroup(layout.createParallelGroup(Alignment.LEADING)
     				.addComponent(TitleLabel)
     				.addComponent(PgRatingLabel)
@@ -277,31 +277,33 @@ private void initComponents() {
     				.addComponent(lblNewLabel_1)
     				.addComponent(LinkLabel))
     			.addGap(28)
-    			.addGroup(layout.createParallelGroup(Alignment.TRAILING)
-    				.addGroup(Alignment.LEADING, layout.createParallelGroup(Alignment.LEADING)
-    					.addComponent(LinkjTextField, GroupLayout.DEFAULT_SIZE, 910, Short.MAX_VALUE)
-    					.addComponent(txtSynopsis, GroupLayout.DEFAULT_SIZE, 910, Short.MAX_VALUE)
-    					.addGroup(layout.createSequentialGroup()
-    						.addComponent(browse)
-    						.addPreferredGap(ComponentPlacement.RELATED, 379, Short.MAX_VALUE)
-    						.addComponent(Cancel, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
-    						.addPreferredGap(ComponentPlacement.UNRELATED)
-    						.addComponent(editBt, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE))
-    					.addComponent(DirectorjTextField, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 904, Short.MAX_VALUE))
-    				.addGroup(Alignment.LEADING, layout.createParallelGroup(Alignment.LEADING, false)
-    					.addComponent(TitleTextField1)
-    					.addComponent(PgRatingCB, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-    					.addComponent(GenrejTextField)
-    					.addComponent(DurationjTextField)
-    					.addComponent(ActorjTextField, GroupLayout.DEFAULT_SIZE, 904, Short.MAX_VALUE)))
-    			.addGap(2598))
+    			.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
+    				.addGroup(layout.createSequentialGroup()
+    					.addComponent(browse)
+    					.addGap(335)
+    					.addComponent(Cancel, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
+    					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    					.addComponent(editBt, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
+    				.addComponent(PgRatingCB, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    				.addComponent(GenrejTextField)
+    				.addComponent(DurationjTextField)
+    				.addComponent(ActorjTextField)
+    				.addComponent(DirectorjTextField)
+    				.addComponent(txtSynopsis)
+    				.addComponent(LinkjTextField, GroupLayout.DEFAULT_SIZE, 892, Short.MAX_VALUE)
+    				.addComponent(TitleTextField1))
+    			.addContainerGap(24, Short.MAX_VALUE))
+    		.addGroup(layout.createSequentialGroup()
+    			.addContainerGap(610, Short.MAX_VALUE)
+    			.addComponent(jLabel1)
+    			.addGap(408))
     );
     layout.setVerticalGroup(
     	layout.createParallelGroup(Alignment.TRAILING)
     		.addGroup(layout.createSequentialGroup()
-    			.addContainerGap()
+    			.addGap(16)
     			.addComponent(jLabel1)
-    			.addGap(18)
+    			.addPreferredGap(ComponentPlacement.RELATED)
     			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
     				.addComponent(TitleLabel)
     				.addComponent(TitleTextField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
@@ -336,12 +338,12 @@ private void initComponents() {
     			.addPreferredGap(ComponentPlacement.RELATED)
     			.addGroup(layout.createParallelGroup(Alignment.LEADING)
     				.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-    					.addComponent(editBt, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
-    					.addComponent(Cancel))
+    					.addComponent(Cancel)
+    					.addComponent(editBt, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE))
     				.addGroup(layout.createParallelGroup(Alignment.BASELINE)
     					.addComponent(lblNewLabel_1)
     					.addComponent(browse)))
-    			.addGap(254))
+    			.addGap(256))
     );
     getContentPane().setLayout(layout);
 
