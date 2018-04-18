@@ -7,6 +7,7 @@ package cinemasystem;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Window;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -21,6 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 /**
@@ -47,6 +49,12 @@ public class TicketBooking extends javax.swing.JFrame{
         static double ChildQ;
         static double student_OAP_Q;
         static double Price;
+        
+        int seats = 0;
+        int ScreeningNum = 0;
+        int theatreNum = 0;
+        
+        String filmName="", filmDate="", filmTime="";
         
 
     
@@ -90,7 +98,7 @@ public class TicketBooking extends javax.swing.JFrame{
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        filmNameLabel = new javax.swing.JLabel();
         closeJButton = new javax.swing.JButton();
         acceptJButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -103,14 +111,14 @@ public class TicketBooking extends javax.swing.JFrame{
         student_OAP_Box = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        filmDateLabel = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        filmTimeLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel2.setText(frame.getFilm());
-        jLabel2.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
+        filmNameLabel.setText(frame.getFilm());
+        filmNameLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
 
         
         
@@ -181,15 +189,27 @@ public class TicketBooking extends javax.swing.JFrame{
         jLabel9.setText("Date:");
         jLabel9.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
 
-        jLabel10.setText(frame.getDate());
-        jLabel10.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
+        filmDateLabel.setText(frame.getDate());
+        filmDateLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
 
         
         jLabel11.setText("Time:");
         jLabel11.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
 
-        jLabel12.setText(frame.getTime());
-        jLabel12.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
+        filmTimeLabel.setText(frame.getTime());
+        filmTimeLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
+        
+        filmName=filmNameLabel.getText();
+        filmDate=filmDateLabel.getText();
+        filmTime=filmTimeLabel.getText();
+        checkNumOfTickets();
+        
+        if(seats < 10)
+        {
+        	jLabel7.setText("Alert - There is only "+seats+" seats remaining:");
+            jLabel7.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
+            jLabel7.setForeground(Color.YELLOW);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(
@@ -207,9 +227,9 @@ public class TicketBooking extends javax.swing.JFrame{
         						.addComponent(jLabel11))
         					.addGap(26)
         					.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        						.addComponent(jLabel10)
-        						.addComponent(jLabel2)
-        						.addComponent(jLabel12)))
+        						.addComponent(filmDateLabel)
+        						.addComponent(filmNameLabel)
+        						.addComponent(filmTimeLabel)))
         				.addGroup(layout.createSequentialGroup()
         					.addGap(12)
         					.addGroup(layout.createParallelGroup(Alignment.LEADING)
@@ -244,15 +264,15 @@ public class TicketBooking extends javax.swing.JFrame{
         			.addComponent(jLabel3)
         			.addGap(18)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(jLabel2)
+        				.addComponent(filmNameLabel)
         				.addComponent(jLabel8))
         			.addPreferredGap(ComponentPlacement.UNRELATED)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(jLabel10)
+        				.addComponent(filmDateLabel)
         				.addComponent(jLabel9))
         			.addGap(11)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(jLabel12)
+        				.addComponent(filmTimeLabel)
         				.addComponent(jLabel11))
         			.addGap(24)
         			.addComponent(jLabel1)
@@ -294,6 +314,15 @@ public class TicketBooking extends javax.swing.JFrame{
     		JOptionPane.showMessageDialog(null,  "Please select a minimum of 1 ticket");
 
     	}
+    	else if(seats == 0)
+    	{
+    		JOptionPane.showMessageDialog(null,  "This Film is SOLD OUT");
+
+    	}
+    	else if((AdultQ + ChildQ +student_OAP_Q) > seats) {
+    		
+    		JOptionPane.showMessageDialog(null,  "This screening is almost sold out\nThere is only "+seats+ "seats remaining");
+    	}
     	else {
 	        Price = ((AdultQ * adultPrice1) + (ChildQ * childPrice1) + (student_OAP_Q * student_OAP_Price1));
 	        Payment pay = new Payment();
@@ -322,6 +351,82 @@ public class TicketBooking extends javax.swing.JFrame{
         AdultQ = Double.parseDouble(tmp);
         
     }  
+    
+    public void getScreeningDetails() {
+    	try {
+   			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema?autoReconnect=true&useSSL=false", USER_NAME, PASSWORD);
+    		st = conn.createStatement();
+   			String s = "Select Screening_Num from cinema.screening where Date = '"+filmDate+"' And Time = "+filmTime+" And FilmName = '"+filmName+"';";
+   			String a = "Select    TheatreNum from cinema.screening where Date = '"+filmDate+"' And Time = "+filmTime+" And FilmName = '"+filmName+"';";
+   			rs = st.executeQuery(s);
+   			while(rs.next()) {
+   					ScreeningNum= rs.getInt(1);		
+   				}
+   			
+   			rs=st.executeQuery(a);
+   			while(rs.next()) {
+   					theatreNum=rs.getInt(1);
+   				}
+   			
+ 
+   			}
+   		catch (Exception b) {
+   		JOptionPane.showMessageDialog(null,  "Error");
+   		
+
+   		}finally {
+   			try {
+   				st.close();
+   				rs.close();
+   				conn.close();
+   				
+   			}catch(Exception b) {
+   	    		JOptionPane.showMessageDialog(null,  "Error Close");
+
+   			}
+   		}
+    	
+    	
+    }
+    
+    public void checkNumOfTickets() {
+    	getScreeningDetails();
+    	int capacity = 0;
+    	int purchasedTickets = 0;
+    	
+    	try {
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema?autoReconnect=true&useSSL=false", USER_NAME, PASSWORD);
+			st = conn.createStatement();
+			String cap = "Select Capacity From theatre where Theatre_Num = "+theatreNum+";";
+			String totalTicketsPurchased =  "Select Sum(Number_of_Tickets) from booking where Screening_Number = "+ScreeningNum+";";
+			
+			rs = st.executeQuery(cap);
+			if(rs.next())
+			capacity = rs.getInt(1);
+			
+			rs = st.executeQuery(totalTicketsPurchased);
+			if(rs.next()) {
+			purchasedTickets = rs.getInt(1);
+
+			}
+	   		
+			seats = capacity - purchasedTickets;
+		}
+		catch (Exception b) {
+		JOptionPane.showMessageDialog(null,  b.getMessage() );
+		}finally {
+			try {
+				st.close();
+				rs.close();
+				conn.close();
+				
+			}catch(Exception b) {
+	    		JOptionPane.showMessageDialog(null,  "Error Close");
+
+			}
+		}
+    }
+    
     
     public static void getPrices() {
     	try {
@@ -458,10 +563,10 @@ public class TicketBooking extends javax.swing.JFrame{
     private javax.swing.JComboBox<String> childBox;
     private javax.swing.JComboBox<String> student_OAP_Box;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel filmDateLabel;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel filmTimeLabel;
+    private javax.swing.JLabel filmNameLabel;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
