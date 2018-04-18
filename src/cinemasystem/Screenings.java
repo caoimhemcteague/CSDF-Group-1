@@ -21,6 +21,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.Color;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -47,6 +48,7 @@ public class Screenings extends javax.swing.JFrame {
      * Creates new form Screenings
      */
     public Screenings() {
+    	getContentPane().setBackground(new Color(0, 204, 204));
         initComponents();
     }
 
@@ -60,37 +62,47 @@ public class Screenings extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jLabel1.setForeground(Color.RED);
+        jLabel1.setBackground(Color.RED);
         jLabel2 = new javax.swing.JLabel();
+        jLabel2.setForeground(Color.RED);
         jLabel3 = new javax.swing.JLabel();
+        jLabel3.setForeground(Color.RED);
+        jLabel3.setBackground(Color.RED);
         jLabel4 = new javax.swing.JLabel();
+        jLabel4.setForeground(Color.RED);
         jLabel5 = new javax.swing.JLabel();
+        jLabel5.setForeground(Color.RED);
         jLabel6 = new javax.swing.JLabel();
+        jLabel6.setForeground(Color.RED);
         theatreComboBox = new javax.swing.JComboBox<>();
         filmComboBox = new javax.swing.JComboBox<>();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         saveButton = new javax.swing.JButton();
+        saveButton.setBackground(new Color(102, 204, 0));
         cancelButton = new javax.swing.JButton();
+        cancelButton.setBackground(new Color(204, 51, 51));
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        jLabel1.setFont(new Font("American Typewriter", Font.BOLD, 50)); // NOI18N
         jLabel1.setText("Screening");
 
-        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
+        jLabel2.setFont(new Font("Lucida Grande", Font.BOLD, 32)); // NOI18N
         jLabel2.setText("Screening Number:");
 
-        jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
+        jLabel3.setFont(new Font("Lucida Grande", Font.BOLD, 32)); // NOI18N
         jLabel3.setText("Theatre Number:");
 
-        jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
+        jLabel4.setFont(new Font("Lucida Grande", Font.BOLD, 32)); // NOI18N
         jLabel4.setText("Date:");
 
-        jLabel5.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
+        jLabel5.setFont(new Font("Lucida Grande", Font.BOLD, 32)); // NOI18N
         jLabel5.setText("Time:");
 
-        jLabel6.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
+        jLabel6.setFont(new Font("Lucida Grande", Font.BOLD, 32)); // NOI18N
         jLabel6.setText("Film Name:");
         jLabel6.setToolTipText("");
 
@@ -169,7 +181,8 @@ public class Screenings extends javax.swing.JFrame {
         jTextField2.setText("TIME");
         
         JLabel lblNewLabel = new JLabel("Screen Days");
-        lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 32));
+        lblNewLabel.setForeground(Color.RED);
+        lblNewLabel.setFont(new Font("Lucida Grande", Font.BOLD, 32));
         
         JComboBox comboBox = new JComboBox();
         comboBox.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"}));
@@ -177,36 +190,37 @@ public class Screenings extends javax.swing.JFrame {
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(
-        	layout.createParallelGroup(Alignment.TRAILING)
+        	layout.createParallelGroup(Alignment.LEADING)
         		.addGroup(layout.createSequentialGroup()
-        			.addGap(517)
-        			.addComponent(jLabel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        			.addGap(517))
-        		.addGroup(Alignment.LEADING, layout.createSequentialGroup()
-        			.addGap(150)
         			.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        				.addComponent(lblNewLabel)
-        				.addComponent(jLabel5)
-        				.addComponent(cancelButton, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
-        				.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
-        					.addGroup(layout.createSequentialGroup()
-        						.addComponent(jLabel2)
-        						.addGap(18)
-        						.addComponent(jTextField1))
-        					.addGroup(layout.createSequentialGroup()
-        						.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        							.addComponent(jLabel3)
-        							.addComponent(jLabel6)
-        							.addComponent(jLabel4))
-        						.addGap(50)
+        				.addGroup(layout.createSequentialGroup()
+        					.addGap(150)
+        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        						.addComponent(lblNewLabel)
+        						.addComponent(jLabel5)
+        						.addComponent(cancelButton, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
         						.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
-        							.addComponent(jDateChooser1, GroupLayout.PREFERRED_SIZE, 270, GroupLayout.PREFERRED_SIZE)
-        							.addComponent(saveButton, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
-        							.addComponent(filmComboBox, 0, 584, Short.MAX_VALUE)
-        							.addComponent(theatreComboBox, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        							.addComponent(jTextField2)
-        							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))))
-        			.addContainerGap(154, Short.MAX_VALUE))
+        							.addGroup(layout.createSequentialGroup()
+        								.addComponent(jLabel2)
+        								.addGap(18)
+        								.addComponent(jTextField1))
+        							.addGroup(layout.createSequentialGroup()
+        								.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        									.addComponent(jLabel3)
+        									.addComponent(jLabel6)
+        									.addComponent(jLabel4))
+        								.addGap(50)
+        								.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
+        									.addComponent(jDateChooser1, GroupLayout.PREFERRED_SIZE, 270, GroupLayout.PREFERRED_SIZE)
+        									.addComponent(saveButton, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
+        									.addComponent(filmComboBox, 0, 584, Short.MAX_VALUE)
+        									.addComponent(theatreComboBox, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        									.addComponent(jTextField2)
+        									.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))))
+        				.addGroup(layout.createSequentialGroup()
+        					.addGap(489)
+        					.addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 258, GroupLayout.PREFERRED_SIZE)))
+        			.addContainerGap(227, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
