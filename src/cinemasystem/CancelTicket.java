@@ -62,13 +62,13 @@ public class CancelTicket extends javax.swing.JFrame {
         });
 
         jLabel1.setText("Cancel Ticket");
-        jLabel1.setFont(new Font("SansSerif", Font.BOLD, 39));
+        jLabel1.setFont(new Font("American Typewriter", Font.BOLD, 50));
         jLabel1.setForeground(Color.PINK);
 
         jTextField1.setText("   Please Enter Ticket ID");
 
         cancelJButton.setText("Cancel Ticket");
-        cancelJButton.setBackground(Color.RED);
+        cancelJButton.setBackground(new Color(204, 51, 51));
         cancelJButton.setFont(new Font("SansSerif", Font.BOLD, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
