@@ -59,8 +59,8 @@ public class EditAdmin extends javax.swing.JFrame {
         adminCBox = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         closeButton = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        adminNameLabel = new javax.swing.JLabel();
+        passwordLabel = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jPasswordField1 = new javax.swing.JPasswordField();
 
@@ -71,9 +71,19 @@ public class EditAdmin extends javax.swing.JFrame {
 
         deleteButton.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
         deleteButton.setText("Delete");
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
 
         addButton.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
         addButton.setText("Add");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
 
         adminCBox.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
         //adminCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "It", "Item 3", "Item 4" }));
@@ -113,18 +123,16 @@ public class EditAdmin extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
-        jLabel3.setText("User Name:");
+        adminNameLabel.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
+        adminNameLabel.setText("User Name:");
 
-        jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
-        jLabel4.setText("Password:");
+        passwordLabel.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
+        passwordLabel.setText("Password:");
 
         jTextField1.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(204, 204, 204));
-        //jTextField1.setText("   Name");
 
         jPasswordField1.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
-        jPasswordField1.setToolTipText("");
         
         JLabel lblNewLabel = new JLabel("Please fill in fields below to add new administrator");
         lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 32));
@@ -157,8 +165,8 @@ public class EditAdmin extends javax.swing.JFrame {
         						.addComponent(deleteButton, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
         						.addGroup(layout.createSequentialGroup()
         							.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        								.addComponent(jLabel3)
-        								.addComponent(jLabel4))
+        								.addComponent(adminNameLabel)
+        								.addComponent(passwordLabel))
         							.addGap(40)
         							.addGroup(layout.createParallelGroup(Alignment.LEADING)
         								.addComponent(jPasswordField1, 545, 545, 545)
@@ -185,11 +193,11 @@ public class EditAdmin extends javax.swing.JFrame {
         			.addGap(18)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
         				.addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(jLabel3))
+        				.addComponent(adminNameLabel))
         			.addGap(18)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
         				.addComponent(jPasswordField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(jLabel4))
+        				.addComponent(passwordLabel))
         			.addPreferredGap(ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
         				.addComponent(closeButton)
@@ -200,13 +208,93 @@ public class EditAdmin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-       // JComponent comp = (JComponent) evt.getSource();
-        //Window win = SwingUtilities.getWindowAncestor(comp);
-        //win.dispose();
+    
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    	   
+    	String name = jTextField1.getText();
+    	String passWord = jPasswordField1.getText();
     	
+    	if(name.isEmpty()||passWord.isEmpty())
+    	{
+    		JOptionPane.showMessageDialog(null,  "Invalid Username or Password");
+    	}
+    	else {
+    		//int response=JOptionPane.showConfirmDialog(null,  "Are you sure you want to remove "+adminSelected+"?","Remove Administrator?", JOptionPane.YES_NO_OPTION);
+    		
+    		//if(response==JOptionPane.YES_OPTION)
+    		//{
     	
-   }//GEN-LAST:event_jButton4ActionPerformed
+    	try {
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema", USER_NAME, PASSWORD);
+			st = conn.createStatement();
+			//String s = "Delete from admins where Name = '" + adminSelected+ "'";
+			//st.executeUpdate(s);
+			
+		}
+		catch (Exception a) {
+			System.out.println("\n" + a);
+			JOptionPane.showMessageDialog(null,  "Error here");
+			System.out.println("\n" + a);
+		}finally {
+			try {
+				st.close();
+				rs.close();
+				conn.close();
+				
+			}catch(Exception a) {
+	    		JOptionPane.showMessageDialog(null,  "Error Close");
+
+			}
+	     }
+       }
+   // else {			
+		//}
+    		
+     // }
+    }//GEN-LAST:event_jButton4ActionPerformed
+    
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+   
+        	String adminSelected = adminCBox.getSelectedItem().toString();
+        	
+        	if(adminSelected.equals("Select Administrator"))
+        	{
+        		JOptionPane.showMessageDialog(null,  "No Administrator Selected");
+        	}
+        	else {
+        		int response=JOptionPane.showConfirmDialog(null,  "Are you sure you want to remove "+adminSelected+"?","Remove Administrator?", JOptionPane.YES_NO_OPTION);
+        		
+        		if(response==JOptionPane.YES_OPTION)
+        		{
+        	
+        	try {
+    			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema", USER_NAME, PASSWORD);
+    			st = conn.createStatement();
+    			String s = "Delete from admins where Name = '" + adminSelected+ "'";
+    			st.executeUpdate(s);
+    			
+    		}
+    		catch (Exception a) {
+    			System.out.println("\n" + a);
+    			JOptionPane.showMessageDialog(null,  "Error here");
+    			System.out.println("\n" + a);
+    		}finally {
+    			try {
+    				st.close();
+    				rs.close();
+    				conn.close();
+    				
+    			}catch(Exception a) {
+    	    		JOptionPane.showMessageDialog(null,  "Error Close");
+
+    			}
+    	     }
+           }
+        else {			
+    		}
+        		
+          }
+        }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
          JComponent comp = (JComponent) evt.getSource();
@@ -259,8 +347,8 @@ public class EditAdmin extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> adminCBox;
     private javax.swing.JLabel administratorsLabel;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel adminNameLabel;
+    private javax.swing.JLabel passwordLabel;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
 }
