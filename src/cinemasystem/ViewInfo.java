@@ -247,6 +247,12 @@ public class ViewInfo extends javax.swing.JFrame {
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         
+        lblNewLabel = new JLabel("New label");
+        lblNewLabel.setIcon(new ImageIcon("/Users/christophermclaughlin/git/CSDF-Group-1-Cinema1/image/images.jpg"));
+        lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 98));
+        lblNewLabel.setForeground(new Color(255, 0, 0));
+        lblNewLabel.setBackground(new Color(0, 255, 255));
+        
         
         
         
@@ -258,44 +264,43 @@ public class ViewInfo extends javax.swing.JFrame {
         layout.setHorizontalGroup(
         	layout.createParallelGroup(Alignment.TRAILING)
         		.addGroup(layout.createSequentialGroup()
+        			.addGap(28)
         			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addComponent(viewTrailerBt, GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+        				.addComponent(posterLabel, GroupLayout.PREFERRED_SIZE, 229, GroupLayout.PREFERRED_SIZE))
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
         				.addGroup(layout.createSequentialGroup()
-        					.addGap(28)
-        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        						.addComponent(viewTrailerBt, GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
-        						.addComponent(posterLabel, GroupLayout.PREFERRED_SIZE, 229, GroupLayout.PREFERRED_SIZE))
-        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        						.addGroup(layout.createSequentialGroup()
-        							.addGap(62)
+        					.addGap(379)
+        					.addComponent(lblPgRating, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE))
+        				.addGroup(layout.createSequentialGroup()
+        					.addGap(62)
+        					.addGroup(layout.createParallelGroup(Alignment.TRAILING, false)
+        						.addComponent(filmName, Alignment.LEADING, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        						.addGroup(Alignment.LEADING, layout.createSequentialGroup()
         							.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        								.addComponent(filmName, GroupLayout.PREFERRED_SIZE, 214, GroupLayout.PREFERRED_SIZE)
-        								.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
-        									.addGroup(layout.createSequentialGroup()
-        										.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        											.addComponent(lblRun)
-        											.addComponent(lblGenre))
-        										.addGap(36)
-        										.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        											.addComponent(sqlGenre)
-        											.addComponent(lblRunTime)))
-        									.addGroup(layout.createSequentialGroup()
-        										.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        											.addComponent(lblDirector)
-        											.addComponent(lblActors))
-        										.addGap(25)
-        										.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        											.addComponent(actorsLabel)
-        											.addComponent(lblDirName)))
-        									.addComponent(scrollPane, 0, 0, Short.MAX_VALUE)
-        									.addComponent(closeJButton, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE))))
-        						.addGroup(layout.createSequentialGroup()
-        							.addGap(379)
-        							.addComponent(lblPgRating, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)))
-        					.addGap(285))
-        				.addGroup(layout.createSequentialGroup()
-        					.addGap(338)
-        					.addComponent(jLabel1)))
-        			.addGap(2570))
+        								.addComponent(lblRun)
+        								.addComponent(lblGenre))
+        							.addGap(36)
+        							.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        								.addComponent(sqlGenre)
+        								.addComponent(lblRunTime)))
+        						.addGroup(Alignment.LEADING, layout.createSequentialGroup()
+        							.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        								.addComponent(lblDirector)
+        								.addComponent(lblActors))
+        							.addGap(25)
+        							.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        								.addComponent(actorsLabel)
+        								.addComponent(lblDirName)))
+        						.addComponent(scrollPane, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
+        						.addComponent(closeJButton, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE))
+        					.addGap(37)
+        					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 508, GroupLayout.PREFERRED_SIZE)))
+        			.addGap(2436))
+        		.addGroup(Alignment.LEADING, layout.createSequentialGroup()
+        			.addGap(366)
+        			.addComponent(jLabel1)
+        			.addContainerGap(3053, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
@@ -308,24 +313,27 @@ public class ViewInfo extends javax.swing.JFrame {
         					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
         						.addComponent(lblPgRating)
         						.addComponent(filmName, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE))
-        					.addGap(26)
-        					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        						.addComponent(lblGenre)
-        						.addComponent(sqlGenre))
         					.addPreferredGap(ComponentPlacement.RELATED)
-        					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        						.addComponent(lblRun)
-        						.addComponent(lblRunTime))
-        					.addPreferredGap(ComponentPlacement.RELATED)
-        					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        						.addComponent(lblDirector)
-        						.addComponent(lblDirName))
-        					.addPreferredGap(ComponentPlacement.RELATED)
-        					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        						.addComponent(lblActors)
-        						.addComponent(actorsLabel))
-        					.addPreferredGap(ComponentPlacement.RELATED)
-        					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 390, GroupLayout.PREFERRED_SIZE))
+        					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+        						.addGroup(layout.createSequentialGroup()
+        							.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        								.addComponent(lblGenre)
+        								.addComponent(sqlGenre))
+        							.addPreferredGap(ComponentPlacement.RELATED)
+        							.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        								.addComponent(lblRun)
+        								.addComponent(lblRunTime))
+        							.addPreferredGap(ComponentPlacement.RELATED)
+        							.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        								.addComponent(lblDirector)
+        								.addComponent(lblDirName))
+        							.addPreferredGap(ComponentPlacement.RELATED)
+        							.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        								.addComponent(lblActors)
+        								.addComponent(actorsLabel))
+        							.addPreferredGap(ComponentPlacement.RELATED)
+        							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 390, GroupLayout.PREFERRED_SIZE))
+        						.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 534, GroupLayout.PREFERRED_SIZE)))
         				.addGroup(layout.createSequentialGroup()
         					.addComponent(posterLabel, GroupLayout.PREFERRED_SIZE, 305, GroupLayout.PREFERRED_SIZE)
         					.addGap(18)
@@ -341,7 +349,7 @@ public class ViewInfo extends javax.swing.JFrame {
         synopsisTextArea.setLineWrap(true);
         synopsisTextArea.setWrapStyleWord(true);
         getContentPane().setLayout(layout);
-        getContentPane().setBackground(Color.GRAY);
+        getContentPane().setBackground(new Color(153, 0, 0));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -535,5 +543,5 @@ public class ViewInfo extends javax.swing.JFrame {
     private JLabel posterLabel;
     private JButton viewTrailerBt;
     private JScrollPane scrollPane;
-
+    private JLabel lblNewLabel;
 }
