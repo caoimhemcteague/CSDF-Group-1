@@ -179,7 +179,7 @@ public class AdminLogIn extends javax.swing.JFrame {
     	  try {
   			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema", USER_NAME, PASSWORD);
   			st = conn.createStatement();
-  			String s = "Select adminName, adminPassword from admins WHERE adminName = '" + punamer+ "' AND adminPassword = '"+ ppaswder+"'";
+  			String s = "Select adminName, adminPassword from admins WHERE BINARY adminName = BINARY '" + punamer+ "' AND BINARY adminPassword = BINARY '"+ ppaswder+"'";
   			rs=st.executeQuery(s);
   			
   			if(rs.next())
