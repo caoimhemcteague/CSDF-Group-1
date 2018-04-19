@@ -46,13 +46,14 @@ import javax.swing.JTextField;
  */
 public class Screenings extends javax.swing.JFrame {
       
-    DateFormat df = DateFormat.getDateInstance();
+    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
     private final String USER_NAME = "root";
 	private final String PASSWORD = "password";
     Connection conn;
     Statement st;
     ResultSet rs;
-    
+    int hoursSize = 0;
+    int minSize = 0;
     
   
     /**
@@ -412,16 +413,17 @@ public class Screenings extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //String Date = df.format(jDateChooser1.getDate()) ;
-    //  System.out.println(Date);
+        String selectedDate = df.format(jDateChooser1.getDate()) ;
         Boolean check = false;
         Date isDateEmpty = jDateChooser1.getDate();
-        int hoursSize = hours.getText().length();
-        int minSize = min.getText().length();
+        System.out.println("Date - " + isDateEmpty);
+        int timeHr =0, timeMin = 0;
         String hoursString = hours.getText();
         String minString = min.getText();
         String filmName=(String)filmComboBox.getSelectedItem();
         String theatreSelected=(String)theatreComboBox.getSelectedItem();
+        int theatre = Integer.parseInt(theatreSelected);
+        Boolean timeCheck = isTimeFree(timeHr, timeMin, filmName, theatre, selectedDate);
         
         if(screeningNumTf.getText().equals("Number"))
         {
@@ -431,6 +433,19 @@ public class Screenings extends javax.swing.JFrame {
         else {
         int screeningNum = Integer.parseInt(screeningNumTf.getText());
         check = isNumberFree(screeningNum);
+        
+        
+        
+        if(hoursString.equals("--") || minString.equals("--"))
+        {
+        	
+        }
+        else
+        {
+             timeHr = Integer.parseInt(hours.getText());
+             timeMin = Integer.parseInt(min.getText());
+            
+        }
         
      
          if(check == false) {
@@ -455,6 +470,10 @@ public class Screenings extends javax.swing.JFrame {
 			JOptionPane.showMessageDialog(null,  "Select a film for the screening");
 
        }
+        else if(timeCheck == false) {
+			JOptionPane.showMessageDialog(null,  "INVAILD TIME\nA screening is already scheduled in that theatre\n that colides with the selected time");
+
+        }
      }
         
         
@@ -475,6 +494,91 @@ public class Screenings extends javax.swing.JFrame {
          Window win = SwingUtilities.getWindowAncestor(comp);
          win.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+    
+    public Boolean isTimeFree(int startHr, int startMin, String filmName, int theareNum, String date) {
+    	int filmLength = 0;
+    	int endHr = 0;
+    	int endMin = 0;
+    	int remainder = 0;
+    	try {
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema?autoReconnect=true&useSSL=false", USER_NAME, PASSWORD);
+			st = conn.createStatement();
+			String s = "Select Duration from cinema.film where Name = '"+filmName+"';";
+			rs = st.executeQuery(s);
+			while(rs.next()) {
+				filmLength = rs.getInt(1);
+			}
+			
+			endHr = filmLength / 60;
+			endMin = filmLength % 60;
+
+			
+			endHr = endHr +startHr;
+			if(endHr > 23) {
+				endHr = endHr - 24;
+			}
+			endMin = endMin + startMin ;
+			if(endMin > 59) {
+				endMin = endMin % 60;
+				endHr = endHr + (endMin / 60);
+				if(endHr > 23) {
+					endHr = endHr - 24;
+				}
+			}
+			
+			//hr2 & min2 = film end time
+			System.out.println(endHr + "   " + endMin);
+			
+			String t = "Select Time from screening where Date = '"+date+"' And TheatreNum = "+theareNum+";";
+			String time;
+			char checkHrChar= '0', checkHr2Char='0';
+			char checkMinChar= '0', checkMin2Char='0';
+			String checkHrString ="", checkMinString = "";
+			int checkHr = 0, checkMin = 0;
+			int count = 0; 
+			rs = st.executeQuery(t);
+			while(rs.next()) {
+				time = rs.getString(1);
+				
+				checkHrChar = time.charAt(0);
+				checkHr2Char = time.charAt(1);
+				checkMinChar = time.charAt(3);
+				checkMin2Char = time.charAt(4);
+				checkHrString = ""+checkHrChar+""+checkHr2Char;
+				checkMinString = ""+checkMinChar+""+checkMin2Char;
+				checkHr=	Integer.parseInt(checkHrString);
+				checkMin = Integer.parseInt(checkMinString);
+				
+				if(startHr < checkHr && endHr > checkHr) {
+					count++;
+				}
+					
+				
+			}
+			
+			
+			if(count !=0) {
+				return false;
+			}
+			else
+				return true;
+		}
+		catch (Exception b) {
+		JOptionPane.showMessageDialog(null,  "Error");
+		return false;
+		}finally {
+			try {
+				st.close();
+				rs.close();
+				conn.close();
+				
+			}catch(Exception b) {
+	    		JOptionPane.showMessageDialog(null,  "Error Close");
+
+			}
+		}
+    }
+    
     
     public Boolean isNumberFree(int num) {
     	int databaseNum = 0;
@@ -545,6 +649,8 @@ public class Screenings extends javax.swing.JFrame {
     		e.consume();
 
     	}
+    	else
+    	hoursSize=hours.getText().length();	
     	
     }
     
@@ -573,6 +679,8 @@ public class Screenings extends javax.swing.JFrame {
     	if(y > 5 &&  min.getText().length() == 0){
     		e.consume();
     	}
+    	else
+    	minSize = min.getText().length();	
     	
     }
     
