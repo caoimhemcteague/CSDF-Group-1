@@ -70,12 +70,12 @@ public class ViewTrailers extends javax.swing.JFrame {
 
         jLabel1.setText("Film Trailers");
         jLabel1.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 50));
-        jLabel1.setForeground(Color.cyan);
+        jLabel1.setForeground(new Color(0, 204, 204));
         
 
         closeButton.setText("Close");
-        closeButton.setBackground(Color.RED);
-        closeButton.setFont(new Font("sansserif", Font.BOLD, 16));
+        closeButton.setBackground(new Color(204, 51, 51));
+        closeButton.setFont(new Font("SansSerif", Font.BOLD, 24));
         closeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -124,27 +124,30 @@ public class ViewTrailers extends javax.swing.JFrame {
         		.addGroup(layout.createSequentialGroup()
         			.addContainerGap(163, Short.MAX_VALUE)
         			.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        				.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
-        					.addComponent(closeButton)
-        					.addContainerGap())
         				.addGroup(layout.createSequentialGroup()
-        					.addGroup(layout.createParallelGroup(Alignment.TRAILING, false)
-        						.addComponent(filmName, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        						.addComponent(jLabel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        					.addGap(159, 159, Short.MAX_VALUE))))
+        					.addComponent(jLabel1)
+        					.addGap(159, 159, Short.MAX_VALUE))
+        				.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+        					.addComponent(closeButton, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
+        					.addContainerGap())))
+        		.addGroup(Alignment.LEADING, layout.createSequentialGroup()
+        			.addGap(82)
+        			.addComponent(filmName, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        			.addGap(87))
         );
         layout.setVerticalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
         		.addGroup(layout.createSequentialGroup()
         			.addGap(15)
         			.addComponent(jLabel1)
-        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addGap(45)
         			.addComponent(filmName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-        			.addComponent(closeButton))
+        			.addPreferredGap(ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+        			.addComponent(closeButton, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
+        			.addContainerGap())
         );
         getContentPane().setLayout(layout);
-        getContentPane().setBackground(Color.WHITE);
+        getContentPane().setBackground(new Color(153, 0, 0));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

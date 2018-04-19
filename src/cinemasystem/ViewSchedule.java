@@ -70,11 +70,11 @@ public class ViewSchedule extends javax.swing.JFrame {
 
         jLabel1.setText("Film Schedule");
         jLabel1.setBorder(line2);
-        jLabel1.setFont(new Font("Lucida Grande", Font.ITALIC, 39));
-        jLabel1.setForeground(Color.CYAN);
+        jLabel1.setFont(new Font("Lucida Grande", Font.BOLD, 39));
+        jLabel1.setForeground(new Color(51, 204, 204));
 
         closeButton.setText("close");
-        closeButton.setBackground(Color.RED);
+        closeButton.setBackground(new Color(204, 51, 51));
         closeButton.setFont(new Font("sansserif", Font.BOLD, 16));
         closeButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -118,8 +118,8 @@ public class ViewSchedule extends javax.swing.JFrame {
         	}
         });
         previousBT.setText("Pervious Day");
-        previousBT.setFont(new Font("SansSerif", Font.BOLD, 16));
-        previousBT.setBackground(Color.RED);
+        previousBT.setFont(new Font("SansSerif", Font.BOLD, 24));
+        previousBT.setBackground(new Color(102, 204, 0));
         
         followingBT.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -128,8 +128,8 @@ public class ViewSchedule extends javax.swing.JFrame {
         });
         
         followingBT.setText("Following Day");
-        followingBT.setFont(new Font("SansSerif", Font.BOLD, 16));
-        followingBT.setBackground(Color.RED);
+        followingBT.setFont(new Font("SansSerif", Font.BOLD, 24));
+        followingBT.setBackground(new Color(102, 204, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(
@@ -137,7 +137,7 @@ public class ViewSchedule extends javax.swing.JFrame {
         		.addGroup(layout.createSequentialGroup()
         			.addGap(546)
         			.addComponent(jLabel1)
-        			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        			.addContainerGap(35, Short.MAX_VALUE))
         		.addGroup(layout.createSequentialGroup()
         			.addGap(92)
         			.addGroup(layout.createParallelGroup(Alignment.LEADING)
@@ -145,11 +145,11 @@ public class ViewSchedule extends javax.swing.JFrame {
         					.addComponent(previousBT)
         					.addGap(27)
         					.addComponent(followingBT)
-        					.addPreferredGap(ComponentPlacement.RELATED, 300, Short.MAX_VALUE)
-        					.addComponent(closeButton, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)
+        					.addPreferredGap(ComponentPlacement.RELATED, 289, Short.MAX_VALUE)
+        					.addComponent(closeButton, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
         					.addGap(27))
         				.addGroup(layout.createSequentialGroup()
-        					.addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 654, Short.MAX_VALUE)
+        					.addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
         					.addGap(67))))
         );
         layout.setVerticalGroup(
@@ -167,7 +167,7 @@ public class ViewSchedule extends javax.swing.JFrame {
         			.addGap(19))
         );
         getContentPane().setLayout(layout);
-        getContentPane().setBackground(Color.WHITE);
+        getContentPane().setBackground(new Color(153, 0, 0));
         
 
         pack();

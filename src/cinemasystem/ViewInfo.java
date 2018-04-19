@@ -109,6 +109,7 @@ public class ViewInfo extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         closeJButton = new javax.swing.JButton();
         filmName = new javax.swing.JComboBox<>();
+        filmName.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
         JLabel lblDirector = new JLabel("Directed By:");
         lblDirector.setFont(new Font("SansSerif", Font.BOLD, 20));
         lblDirector.setForeground(Color.YELLOW);
