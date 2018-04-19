@@ -124,7 +124,7 @@ public class TicketBooking extends javax.swing.JFrame{
         
 
         closeJButton.setText("Close");
-        closeJButton.setBackground(Color.RED);
+        closeJButton.setBackground(new Color(204, 51, 51));
         closeJButton.setFont(new Font("sansserif", Font.BOLD, 16));
         closeJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,7 +133,7 @@ public class TicketBooking extends javax.swing.JFrame{
         });
 
         acceptJButton.setText("Accept");
-        acceptJButton.setBackground(Color.GREEN);
+        acceptJButton.setBackground(new Color(102, 204, 0));
         acceptJButton.setFont(new Font("sansserif", Font.BOLD, 16));
         acceptJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,24 +142,24 @@ public class TicketBooking extends javax.swing.JFrame{
         });
         
         
-        jLabel3.setFont(new Font("Lucida Grande", Font.PLAIN, 39)); // NOI18N
-        jLabel3.setForeground(Color.PINK);
+        jLabel3.setFont(new Font("Dialog", Font.BOLD, 44)); // NOI18N
+        jLabel3.setForeground(new Color(51, 204, 204));
         jLabel3.setText("Ticket Booking");
 
         jLabel4.setText("Theatre Adult Ticket €" + adultPrice + " Amount");
-        jLabel4.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
+        jLabel4.setFont(new Font("Dialog", Font.BOLD, 39));
         jLabel4.setForeground(Color.YELLOW);
 
         jLabel5.setText("Theatre Child Tickets €" + childPrice + " Amount");
-        jLabel5.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
+        jLabel5.setFont(new Font("Dialog", Font.BOLD, 39));
         jLabel5.setForeground(Color.YELLOW);
 
         jLabel6.setText("Theatre Student/OAP Tickets €" + student_OAP_Price + " Amount");
-        jLabel6.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
+        jLabel6.setFont(new Font("Dialog", Font.BOLD, 39));
         jLabel6.setForeground(Color.YELLOW);
 
         jLabel7.setText("Please Select Quantity of Tickets:");
-        jLabel7.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
+        jLabel7.setFont(new Font("Dialog", Font.BOLD, 39));
         jLabel7.setForeground(Color.YELLOW);
 
         adultBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
@@ -184,17 +184,17 @@ public class TicketBooking extends javax.swing.JFrame{
             }
         });
         jLabel8.setText("You Are Viewing:");
-        jLabel8.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
+        jLabel8.setFont(new Font("Dialog", Font.BOLD, 39));
 
         jLabel9.setText("Date:");
-        jLabel9.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
+        jLabel9.setFont(new Font("Dialog", Font.BOLD, 39));
 
         filmDateLabel.setText(frame.getDate());
         filmDateLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
 
         
         jLabel11.setText("Time:");
-        jLabel11.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
+        jLabel11.setFont(new Font("Dialog", Font.BOLD, 39));
 
         filmTimeLabel.setText(frame.getTime());
         filmTimeLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 39));
@@ -297,7 +297,7 @@ public class TicketBooking extends javax.swing.JFrame{
         			.addContainerGap())
         );
         getContentPane().setLayout(layout);
-        getContentPane().setBackground(Color.GRAY);
+        getContentPane().setBackground(new Color(153, 0, 0));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

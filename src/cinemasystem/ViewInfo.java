@@ -147,10 +147,10 @@ public class ViewInfo extends javax.swing.JFrame {
 
         jLabel1.setText("View Film Info");
         jLabel1.setFont(new Font("sansserif", Font.BOLD, 24));
-        jLabel1.setForeground(Color.PINK);
+        jLabel1.setForeground(new Color(51, 204, 204));
 
         closeJButton.setText("Close");
-        closeJButton.setBackground(new Color(0, 191, 255));
+        closeJButton.setBackground(new Color(204, 51, 51));
         closeJButton.setFont(new Font("sansserif", Font.BOLD, 16));
         closeJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -244,7 +244,7 @@ public class ViewInfo extends javax.swing.JFrame {
    		}
         
         viewTrailerBt = new JButton("View Trailer");
-        viewTrailerBt.setBackground(new Color(0, 191, 255));
+        viewTrailerBt.setBackground(new Color(102, 204, 0));
         viewTrailerBt.setFont(new Font("sansserif", Font.BOLD, 16));
         viewTrailerBt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

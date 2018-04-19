@@ -69,7 +69,7 @@ public class ViewTrailers extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Film Trailers");
-        jLabel1.setFont(new Font("Lucida Grande", Font.ITALIC, 39));
+        jLabel1.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 50));
         jLabel1.setForeground(Color.cyan);
         
 
