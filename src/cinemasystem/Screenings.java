@@ -1,11 +1,20 @@
 package cinemasystem;
 
 import java.awt.Window;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
@@ -23,6 +32,7 @@ import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Color;
+import javax.swing.JTextField;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -84,7 +94,7 @@ public class Screenings extends javax.swing.JFrame {
         cancelButton = new javax.swing.JButton();
         cancelButton.setBackground(new Color(204, 51, 51));
         screeningNumTf = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        hours = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -158,7 +168,16 @@ public class Screenings extends javax.swing.JFrame {
 		}
 
         jDateChooser1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jDateChooser1.setDateFormatString("yyyy-MM-dd");
+        Date currentDate= new Date();
+        jDateChooser1.setMinSelectableDate(currentDate);
+        Calendar c = Calendar.getInstance();
+        c.setTime(currentDate);
+        c.add(Calendar.MONTH, 2);
+        Date newDate = c.getTime();
+        jDateChooser1.setMaxSelectableDate(newDate);
 
+        
         saveButton.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
         saveButton.setText("Save");
         saveButton.addActionListener(new java.awt.event.ActionListener() {
@@ -180,9 +199,73 @@ public class Screenings extends javax.swing.JFrame {
         screeningNumTf.setDocument(new JTextFieldLimit(6));
         screeningNumTf.setText("Number");
 
-        jTextField2.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField2.setText("TIME");
+        screeningNumTf.addFocusListener(new FocusListener() {
+        	public void focusGained(FocusEvent e) {
+        		screeningNumTffocusGained(e);
+        
+        	}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				screeningNumTffocusLost(e);
+				
+			}
+        });
+        
+        screeningNumTf.addKeyListener(new KeyListener() {
+        	public void keyTyped(KeyEvent e) {
+        		screeningNumTfkeyTyped(e);
+        	}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+        });
+        
+        hours.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
+        hours.setForeground(new java.awt.Color(204, 204, 204));
+        hours.setDocument(new JTextFieldLimit(2));
+        hours.setText("--");
+        
+        hours.addFocusListener(new FocusListener() {
+        	public void focusGained(FocusEvent e) {
+        		hoursfocusGained(e);
+        
+        	}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				hoursfocusLost(e);
+				
+			}
+        });
+        
+        hours.addKeyListener(new KeyListener() {
+        	public void keyTyped(KeyEvent e) {
+        		hourskeyTyped(e);
+        	}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+        });
+
         
         JLabel lblNewLabel = new JLabel("Screen Days");
         lblNewLabel.setForeground(Color.RED);
@@ -191,6 +274,53 @@ public class Screenings extends javax.swing.JFrame {
         JComboBox comboBox = new JComboBox();
         comboBox.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"}));
         comboBox.setFont(new Font("Lucida Grande", Font.PLAIN, 32));
+        
+        JLabel lblMinutes = new JLabel();
+        lblMinutes.setText("Minutes:");
+        lblMinutes.setForeground(Color.RED);
+        lblMinutes.setFont(new Font("Dialog", Font.BOLD, 32));
+        
+        lblHour = new JLabel();
+        lblHour.setText("Hour:");
+        lblHour.setForeground(Color.RED);
+        lblHour.setFont(new Font("Dialog", Font.BOLD, 32));
+        
+        min = new JTextField();
+        min.setDocument(new JTextFieldLimit(2));
+        min.setText("--");
+        min.setForeground(new Color(204, 204, 204));
+        min.setFont(new Font("Dialog", Font.PLAIN, 32));
+        
+        min.addFocusListener(new FocusListener() {
+        	public void focusGained(FocusEvent e) {
+        		minfocusGained(e);
+        
+        	}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				minfocusLost(e);
+				
+			}
+        });
+        
+        min.addKeyListener(new KeyListener() {
+        	public void keyTyped(KeyEvent e) {
+        		minkeyTyped(e);
+        	}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(
@@ -217,10 +347,21 @@ public class Screenings extends javax.swing.JFrame {
         								.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         								.addGroup(layout.createParallelGroup(Alignment.LEADING)
         									.addComponent(filmComboBox, 0, 584, Short.MAX_VALUE)
-        									.addComponent(jDateChooser1, GroupLayout.PREFERRED_SIZE, 270, GroupLayout.PREFERRED_SIZE)
-        									.addComponent(jTextField2)
         									.addComponent(theatreComboBox, 0, 584, Short.MAX_VALUE)
-        									.addComponent(screeningNumTf, GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE))))))
+        									.addComponent(screeningNumTf, GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
+        									.addGroup(layout.createSequentialGroup()
+        										.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
+        											.addComponent(jDateChooser1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        											.addGroup(layout.createSequentialGroup()
+        												.addPreferredGap(ComponentPlacement.RELATED)
+        												.addComponent(lblHour, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
+        												.addPreferredGap(ComponentPlacement.RELATED)
+        												.addComponent(hours, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)))
+        										.addPreferredGap(ComponentPlacement.UNRELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        										.addComponent(lblMinutes, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE)
+        										.addPreferredGap(ComponentPlacement.UNRELATED)
+        										.addComponent(min, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE)
+        										.addGap(8)))))))
         				.addGroup(layout.createSequentialGroup()
         					.addGap(489)
         					.addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 258, GroupLayout.PREFERRED_SIZE)))
@@ -240,15 +381,17 @@ public class Screenings extends javax.swing.JFrame {
         				.addComponent(jLabel3)
         				.addComponent(theatreComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         			.addPreferredGap(ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-        			.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
-        				.addComponent(jDateChooser1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        				.addComponent(jLabel4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addComponent(jDateChooser1, GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+        				.addComponent(jLabel4, Alignment.TRAILING))
         			.addGap(30, 30, Short.MAX_VALUE)
         			.addGroup(layout.createParallelGroup(Alignment.LEADING)
         				.addComponent(jLabel5)
-        				.addGroup(layout.createSequentialGroup()
-        					.addPreferredGap(ComponentPlacement.RELATED)
-        					.addComponent(jTextField2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+        				.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        					.addComponent(hours, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        					.addComponent(lblMinutes, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
+        					.addComponent(lblHour, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
+        					.addComponent(min, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)))
         			.addPreferredGap(ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
         				.addComponent(jLabel6)
@@ -269,18 +412,50 @@ public class Screenings extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
- //       String Date = df.format(jDateChooser1.getDate()) ;
- //       System.out.println(Date);
+        //String Date = df.format(jDateChooser1.getDate()) ;
+    //  System.out.println(Date);
+        Boolean check = false;
+        Date isDateEmpty = jDateChooser1.getDate();
+        int hoursSize = hours.getText().length();
+        int minSize = min.getText().length();
+        String hoursString = hours.getText();
+        String minString = min.getText();
+        String filmName=(String)filmComboBox.getSelectedItem();
+        String theatreSelected=(String)theatreComboBox.getSelectedItem();
+        
+        if(screeningNumTf.getText().equals("Number"))
+        {
+        	JOptionPane.showMessageDialog(null,  "Enter a Screening Number");
+
+        }
+        else {
         int screeningNum = Integer.parseInt(screeningNumTf.getText());
-        Boolean check = isNumberFree(screeningNum);
-      //  String filmName=(String)filmComboBox.getSelectedItem();
-        //String theatreSelected=(String)theatreComboBox.getSelectedItem();
-        System.out.println(check);
-        if(check == false) {
+        check = isNumberFree(screeningNum);
+        
+     
+         if(check == false) {
 			JOptionPane.showMessageDialog(null,  "This Screening Number is already in use");
         	
         }
-        
+        else if(theatreSelected.equals("Select Theatre")) {
+			JOptionPane.showMessageDialog(null,  "Select a Theatre to host the screening");
+        	
+        }
+        else if(isDateEmpty == null)
+        {
+			JOptionPane.showMessageDialog(null,  "Select a vaild Date");
+        }
+        else if(hoursSize < 1 || minSize < 1 || hoursString.equals("--") || minString.equals("--")) {
+        	
+			JOptionPane.showMessageDialog(null,  "Select a vaild Time in the following format\n00:00");
+
+        }
+        else if(filmName.equals("Select Film")) {
+         
+			JOptionPane.showMessageDialog(null,  "Select a film for the screening");
+
+       }
+     }
         
         
     	/*if(filmName.equals("Select Film")||theatreSelected.equals("Select Theatre")) 
@@ -332,6 +507,92 @@ public class Screenings extends javax.swing.JFrame {
 			}
 		}
     }
+    
+    private void screeningNumTffocusGained(FocusEvent e) {
+    	if(screeningNumTf.getText().equals("Number")) {
+    		screeningNumTf.setText("");
+    	}
+    	
+    }
+    
+    private void screeningNumTffocusLost(FocusEvent e) {
+    	if(screeningNumTf.getText().equals("")) {
+    		screeningNumTf.setText("Number");
+    	}
+    	
+    }
+    
+    private void screeningNumTfkeyTyped(KeyEvent e) {
+    	char c = e.getKeyChar();
+    	if(!(Character.isDigit(c)) || c==KeyEvent.VK_BACK_SPACE || c==KeyEvent.VK_DELETE) {
+    		e.consume();
+    	}
+    	
+    }
+    
+    private void hourskeyTyped(KeyEvent e) {
+    	char c = e.getKeyChar();
+    	if(!(Character.isDigit(c)) || c==KeyEvent.VK_BACK_SPACE || c==KeyEvent.VK_DELETE) {
+    		e.consume();
+    	}
+    	
+    	int y = c-'0';
+    	
+    	if(y > 2 &&  hours.getText().length() == 0){
+    		e.consume();
+    	}
+    	else if(hours.getText().length() == 1 && hours.getText().charAt(0) =='2' && y > 3) {
+    		e.consume();
+
+    	}
+    	
+    }
+    
+    private void hoursfocusGained(FocusEvent e) {
+    	if(hours.getText().equals("--")) {
+    		hours.setText("");
+    	}
+    	
+    }
+    
+    private void hoursfocusLost(FocusEvent e) {
+    	if(hours.getText().equals("")) {
+    		hours.setText("--");
+    	}
+    	
+    }
+    
+    private void minkeyTyped(KeyEvent e) {
+    	char c = e.getKeyChar();
+    	if(!(Character.isDigit(c)) || c==KeyEvent.VK_BACK_SPACE || c==KeyEvent.VK_DELETE) {
+    		e.consume();
+    	}
+    	
+    	int y = c-'0';
+    	
+    	if(y > 5 &&  min.getText().length() == 0){
+    		e.consume();
+    	}
+    	
+    }
+    
+    private void minfocusGained(FocusEvent e) {
+    	if(min.getText().equals("--")) {
+    		min.setText("");
+    	}
+    	
+    }
+    
+    private void minfocusLost(FocusEvent e) {
+    	if(min.getText().equals("")) {
+    		min.setText("--");
+    	}
+    	
+    }
+    
+  //  Boolean checkVaildTime(String time) {
+    	
+  //  }
 
     /**
      * @param args the command line arguments
@@ -385,5 +646,7 @@ public class Screenings extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField screeningNumTf;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField hours;
+    private JLabel lblHour;
+    private JTextField min;
 }
