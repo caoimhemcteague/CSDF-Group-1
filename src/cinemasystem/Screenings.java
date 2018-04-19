@@ -268,7 +268,7 @@ public class Screenings extends javax.swing.JFrame {
         });
 
         
-        JLabel lblNewLabel = new JLabel("Screen Days");
+        JLabel lblNewLabel = new JLabel("Screen Days:");
         lblNewLabel.setForeground(Color.RED);
         lblNewLabel.setFont(new Font("Lucida Grande", Font.BOLD, 32));
         
@@ -422,8 +422,8 @@ public class Screenings extends javax.swing.JFrame {
         String minString = min.getText();
         String filmName=(String)filmComboBox.getSelectedItem();
         String theatreSelected=(String)theatreComboBox.getSelectedItem();
+        String numOfDays=(String)filmComboBox.getSelectedItem();
         int theatre = Integer.parseInt(theatreSelected);
-        Boolean timeCheck = isTimeFree(timeHr, timeMin, filmName, theatre, selectedDate);
         
         if(screeningNumTf.getText().equals("Number"))
         {
@@ -447,7 +447,8 @@ public class Screenings extends javax.swing.JFrame {
             
         }
         
-     
+        Boolean timeCheck = isTimeFree(timeHr, timeMin, filmName, theatre, selectedDate);
+
          if(check == false) {
 			JOptionPane.showMessageDialog(null,  "Screening Number is already in use");
         	
@@ -474,6 +475,11 @@ public class Screenings extends javax.swing.JFrame {
 			JOptionPane.showMessageDialog(null,  "INVAILD TIME\nA screening is already scheduled in that theatre\n that colides with the selected time");
 
         }
+        else
+        {
+        	
+        }
+        
      }
         
         
@@ -499,7 +505,6 @@ public class Screenings extends javax.swing.JFrame {
     	int filmLength = 0;
     	int endHr = 0;
     	int endMin = 0;
-    	int remainder = 0;
     	try {
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema?autoReconnect=true&useSSL=false", USER_NAME, PASSWORD);
 			st = conn.createStatement();
@@ -540,6 +545,7 @@ public class Screenings extends javax.swing.JFrame {
 			while(rs.next()) {
 				time = rs.getString(1);
 				
+				System.out.println();
 				checkHrChar = time.charAt(0);
 				checkHr2Char = time.charAt(1);
 				checkMinChar = time.charAt(3);
@@ -549,13 +555,19 @@ public class Screenings extends javax.swing.JFrame {
 				checkHr=	Integer.parseInt(checkHrString);
 				checkMin = Integer.parseInt(checkMinString);
 				
-				if(startHr < checkHr && endHr > checkHr) {
+				System.out.println("st " + startHr);
+				System.out.println("end " + endHr);
+				System.out.println("current " + checkHr);
+				System.out.println();
+
+				
+				if(((startHr < checkHr) && (endHr > checkHr)) || (startHr == checkHr) || (endHr == checkHr)){
 					count++;
 				}
 					
 				
 			}
-			
+			System.out.println("count " + count);
 			
 			if(count !=0) {
 				return false;

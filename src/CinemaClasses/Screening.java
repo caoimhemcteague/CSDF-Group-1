@@ -8,17 +8,19 @@ public class Screening extends JDBCcinema{
 	
 	//private static int counter=0;
 	public int screeningNum=0; 
-	private Theatre theatre; 
-	public Film film;
-	private int ticketsBooked;
+	int theatreNum =0; 
+	String film = "";
+	String date = "";
+	String time = "";
 	//public Date date; 
 	//public time;
 	
-	public Screening(Theatre theatre, Film film) {
+	public Screening(int theatreNum, String film, String date, String time) {
+		//this.screeningNum=screeningNum++;
+		this.theatreNum = theatreNum;
 		this.film=film;
-		this.screeningNum=screeningNum++;
-		this.theatre = theatre;
-		ticketsBooked=0;
+		this.date=date;
+		this.time=time;
 	}
 	
 	public Screening() {
@@ -30,10 +32,23 @@ public class Screening extends JDBCcinema{
 		return screeningNum;
 	}
 	
-	public int getTicketsBooked()
-	{
-		return ticketsBooked;
-	}
+	
+		public void addBookingToDB()
+		{
+		
+			String booking = "INSERT INTO screening VALUES ('" + screeningNum +"', " +
+						  "'" + theatreNum + "' ," +
+						  "'" + date + "' ," +
+						  "'" + time + "' ," +
+						  "'" + film + "') "; 
+			JDBCcinema database = new JDBCcinema();
+			database.insertIntoDatabase(booking);
+			Ticket ticket = new Ticket();
+			
+			
+			
+			
+		}
 	
 	public void getFilmScreening(String filmName) {
 		
