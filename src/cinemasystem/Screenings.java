@@ -434,7 +434,7 @@ public class Screenings extends javax.swing.JFrame {
         
      
          if(check == false) {
-			JOptionPane.showMessageDialog(null,  "This Screening Number is already in use");
+			JOptionPane.showMessageDialog(null,  "Screening Number is already in use");
         	
         }
         else if(theatreSelected.equals("Select Theatre")) {
