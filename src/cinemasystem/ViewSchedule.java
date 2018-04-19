@@ -75,7 +75,7 @@ public class ViewSchedule extends javax.swing.JFrame {
 
         closeButton.setText("close");
         closeButton.setBackground(new Color(204, 51, 51));
-        closeButton.setFont(new Font("sansserif", Font.BOLD, 16));
+        closeButton.setFont(new Font("SansSerif", Font.BOLD, 24));
         closeButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);

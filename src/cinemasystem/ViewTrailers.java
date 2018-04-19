@@ -7,6 +7,7 @@ package cinemasystem;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,8 +28,10 @@ import chrriis.dj.nativeswing.swtimpl.NativeInterface;
 import chrriis.dj.nativeswing.swtimpl.components.JWebBrowser;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.Border;
+import javax.swing.JLabel;
 
 /**
  *
@@ -117,34 +120,46 @@ public class ViewTrailers extends javax.swing.JFrame {
 
 			}
 		}
+        
+        JLabel lblNewLabel = new JLabel();
+        Image imgLogo = new ImageIcon(this.getClass().getResource("/logo.jpg")).getImage();
+        lblNewLabel.setIcon(new ImageIcon(imgLogo));
+        Border line = BorderFactory.createLineBorder(Color.black, 5);
+        lblNewLabel.setBorder(line);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(
         	layout.createParallelGroup(Alignment.TRAILING)
-        		.addGroup(layout.createSequentialGroup()
-        			.addContainerGap(163, Short.MAX_VALUE)
-        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        				.addGroup(layout.createSequentialGroup()
-        					.addComponent(jLabel1)
-        					.addGap(159, 159, Short.MAX_VALUE))
-        				.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
-        					.addComponent(closeButton, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
-        					.addContainerGap())))
         		.addGroup(Alignment.LEADING, layout.createSequentialGroup()
-        			.addGap(82)
-        			.addComponent(filmName, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        			.addGap(87))
+        			.addGap(172)
+        			.addComponent(filmName, 0, 880, Short.MAX_VALUE)
+        			.addGap(181))
+        		.addGroup(layout.createSequentialGroup()
+        			.addContainerGap(391, Short.MAX_VALUE)
+        			.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+        				.addGroup(layout.createSequentialGroup()
+        					.addPreferredGap(ComponentPlacement.RELATED, 74, GroupLayout.PREFERRED_SIZE)
+        					.addComponent(jLabel1)
+        					.addGap(56))
+        				.addComponent(lblNewLabel))
+        			.addGap(383))
+        		.addGroup(layout.createSequentialGroup()
+        			.addContainerGap(1097, Short.MAX_VALUE)
+        			.addComponent(closeButton, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
+        			.addGap(37))
         );
         layout.setVerticalGroup(
-        	layout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(layout.createSequentialGroup()
-        			.addGap(15)
+        	layout.createParallelGroup(Alignment.TRAILING)
+        		.addGroup(Alignment.LEADING, layout.createSequentialGroup()
+        			.addGap(21)
+        			.addComponent(lblNewLabel)
+        			.addGap(18)
         			.addComponent(jLabel1)
-        			.addGap(45)
+        			.addGap(67)
         			.addComponent(filmName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+        			.addPreferredGap(ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
         			.addComponent(closeButton, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
-        			.addContainerGap())
+        			.addGap(28))
         );
         getContentPane().setLayout(layout);
         getContentPane().setBackground(new Color(153, 0, 0));
@@ -235,5 +250,4 @@ public class ViewTrailers extends javax.swing.JFrame {
     private javax.swing.JButton closeButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JComboBox<String> filmName;
-    // End of variables declaration//GEN-END:variables
 }
