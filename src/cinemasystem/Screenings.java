@@ -54,6 +54,8 @@ public class Screenings extends javax.swing.JFrame {
     ResultSet rs;
     int hoursSize = 0;
     int minSize = 0;
+    int num = 101;
+    Boolean test = false;
     
   
     /**
@@ -197,8 +199,10 @@ public class Screenings extends javax.swing.JFrame {
 
         screeningNumTf.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
         screeningNumTf.setForeground(new java.awt.Color(204, 204, 204));
-        screeningNumTf.setDocument(new JTextFieldLimit(6));
-        screeningNumTf.setText("Number");
+        screeningNumTf.setDocument(new JTextFieldLimit(6));      
+        setNum();
+        screeningNumTf.setText(""+num);
+        screeningNumTf.setEditable(false);
 
         screeningNumTf.addFocusListener(new FocusListener() {
         	public void focusGained(FocusEvent e) {
@@ -422,19 +426,8 @@ public class Screenings extends javax.swing.JFrame {
         String minString = min.getText();
         String filmName=(String)filmComboBox.getSelectedItem();
         String theatreSelected=(String)theatreComboBox.getSelectedItem();
-        String numOfDays=(String)filmComboBox.getSelectedItem();
-        int theatre = Integer.parseInt(theatreSelected);
-        
-        if(screeningNumTf.getText().equals("Number"))
-        {
-        	JOptionPane.showMessageDialog(null,  "Enter a Screening Number");
-
-        }
-        else {
-        int screeningNum = Integer.parseInt(screeningNumTf.getText());
-        check = isNumberFree(screeningNum);
-        
-        
+        String numOfDaysString=(String)filmComboBox.getSelectedItem();
+        int theatre = Integer.parseInt(theatreSelected);   
         
         if(hoursString.equals("--") || minString.equals("--"))
         {
@@ -449,11 +442,7 @@ public class Screenings extends javax.swing.JFrame {
         
         Boolean timeCheck = isTimeFree(timeHr, timeMin, filmName, theatre, selectedDate);
 
-         if(check == false) {
-			JOptionPane.showMessageDialog(null,  "Screening Number is already in use");
-        	
-        }
-        else if(theatreSelected.equals("Select Theatre")) {
+        if(theatreSelected.equals("Select Theatre")) {
 			JOptionPane.showMessageDialog(null,  "Select a Theatre to host the screening");
         	
         }
@@ -478,22 +467,18 @@ public class Screenings extends javax.swing.JFrame {
         else
         {
         	
+        	String time = timeHr + "." + timeMin;
+        	int theatre1 = Integer.parseInt(theatreSelected);
+        	Screening newScreening = new Screening(num, theatre1, filmName, selectedDate, time);
+	   		newScreening.addScreeningToDB();
+	   		setNum();
+	        screeningNumTf.setText(""+num);
+	   		
+        	}
+	   		JOptionPane.showMessageDialog(null,  "Screening sucessfull added");
         }
         
-     }
-        
-        
-    	/*if(filmName.equals("Select Film")||theatreSelected.equals("Select Theatre")) 
-    	{
-    		 filmComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Film"}));
-    		 theatreComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Theatre"}));
-    	}
-    	else {
-        Film film = new Film();
-        Screening screening = new Screening();
-    	}*/
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    //GEN-LAST:event_jButton1ActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         JComponent comp = (JComponent) evt.getSource();
@@ -664,6 +649,51 @@ public class Screenings extends javax.swing.JFrame {
     	else
     	hoursSize=hours.getText().length();	
     	
+    }
+    public Boolean getFreeScreeningNum() {  
+    	try {
+    	conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema?autoReconnect=true&useSSL=false", USER_NAME, PASSWORD);
+		st = conn.createStatement();
+			String s = "    	Select Screening_Num from screening where Screening_Num = "+num+";";
+			
+		
+			rs = st.executeQuery(s);
+			while(rs.next()) {
+					if(num == rs.getInt(1)) {
+						return false;
+						
+				}
+			
+			
+
+			}
+			return true;
+		}
+		catch (Exception b) {
+		JOptionPane.showMessageDialog(null,  "Error");
+		return false;
+		
+
+		}finally {
+			try {
+				st.close();
+				rs.close();
+				conn.close();
+				
+			}catch(Exception b) {
+	    		JOptionPane.showMessageDialog(null,  "Error Close");
+
+			}
+		}
+    }
+    
+    public void setNum() {
+    	do{
+            test = getFreeScreeningNum();
+            	if(test==false) {
+            		num++;
+            	}
+    	}while(test!=true);
     }
     
     private void hoursfocusGained(FocusEvent e) {
