@@ -17,6 +17,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import java.awt.Color;
 import java.awt.Font;
 
 /*
@@ -66,11 +67,13 @@ public class EditAdmin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        administratorsLabel.setFont(new java.awt.Font("Lucida Grande", 0, 39)); // NOI18N
         administratorsLabel.setText("Administrators");
+        administratorsLabel.setFont(new Font("American Typewriter", Font.BOLD, 50));
+        administratorsLabel.setForeground(Color.RED);
 
         deleteButton.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
-        deleteButton.setText("Delete");
+        deleteButton.setText("Delete Admin");
+        deleteButton.setBackground(new Color(204, 51, 51));
         deleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteButtonActionPerformed(evt);
@@ -79,6 +82,7 @@ public class EditAdmin extends javax.swing.JFrame {
 
         addButton.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
         addButton.setText("Add");
+        addButton.setBackground(new Color(102, 204, 0));
         addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addButtonActionPerformed(evt);
@@ -111,70 +115,76 @@ public class EditAdmin extends javax.swing.JFrame {
 			}
 		}
 
-        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
+        
         jLabel2.setText("    Please Select Administrator Delete");
+        jLabel2.setFont(new Font("SansSerif", Font.BOLD, 30));
+        jLabel2.setForeground(Color.RED);
 
         closeButton.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
         closeButton.setText("Close");
+        closeButton.setBackground(new Color(204, 51, 51));
         closeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
 
-        adminNameLabel.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
+        
         adminNameLabel.setText("User Name:");
+        adminNameLabel.setFont(new Font("SansSerif", Font.BOLD, 30));
+        adminNameLabel.setForeground(Color.RED);
 
-        passwordLabel.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
+        
         passwordLabel.setText("Password:");
+        passwordLabel.setFont(new Font("SansSerif", Font.BOLD, 30));
+        passwordLabel.setForeground(Color.RED);
+
 
         jTextField1.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(204, 204, 204));
 
         jPasswordField1.setFont(new java.awt.Font("Lucida Grande", 0, 32)); // NOI18N
         
-        JLabel lblNewLabel = new JLabel("Please fill in fields below to add new administrator");
-        lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 32));
+        JLabel lblNewLabel = new JLabel("Please fill in fields below to add a new administrator");
+        lblNewLabel.setFont(new Font("SansSerif", Font.BOLD, 30));
+        lblNewLabel.setForeground(Color.RED);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
         		.addGroup(layout.createSequentialGroup()
-        			.addGap(65)
+        			.addContainerGap(65, Short.MAX_VALUE)
         			.addComponent(closeButton, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.RELATED, 1557, Short.MAX_VALUE)
+        			.addGap(1748)
         			.addComponent(addButton, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
         			.addGap(65))
         		.addGroup(layout.createSequentialGroup()
-        			.addGap(333)
-        			.addComponent(adminCBox, GroupLayout.PREFERRED_SIZE, 580, GroupLayout.PREFERRED_SIZE)
-        			.addGap(331))
-        		.addGroup(layout.createSequentialGroup()
         			.addGap(473)
-        			.addComponent(administratorsLabel, GroupLayout.PREFERRED_SIZE, 293, GroupLayout.PREFERRED_SIZE)
-        			.addContainerGap())
+        			.addComponent(administratorsLabel)
+        			.addContainerGap(1330, Short.MAX_VALUE))
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(191)
+        			.addComponent(adminCBox, 0, 580, Short.MAX_VALUE)
+        			.addGap(79)
+        			.addComponent(deleteButton, GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+        			.addGap(1067))
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(366)
+        			.addComponent(jLabel2, GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
+        			.addGap(1229))
         		.addGroup(layout.createSequentialGroup()
         			.addGap(250)
         			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 766, GroupLayout.PREFERRED_SIZE)
         				.addGroup(layout.createSequentialGroup()
-        					.addComponent(jLabel2, GroupLayout.DEFAULT_SIZE, 1213, Short.MAX_VALUE)
-        					.addContainerGap(504, Short.MAX_VALUE))
-        				.addGroup(layout.createSequentialGroup()
-        					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
-        						.addComponent(deleteButton, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
-        						.addGroup(layout.createSequentialGroup()
-        							.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        								.addComponent(adminNameLabel)
-        								.addComponent(passwordLabel))
-        							.addGap(40)
-        							.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        								.addComponent(jPasswordField1, 545, 545, 545)
-        								.addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, 545, GroupLayout.PREFERRED_SIZE))))
-        					.addContainerGap(953, Short.MAX_VALUE))))
-        		.addGroup(layout.createSequentialGroup()
-        			.addGap(239)
-        			.addComponent(lblNewLabel)
-        			.addContainerGap(944, Short.MAX_VALUE))
+        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        						.addComponent(adminNameLabel)
+        						.addComponent(passwordLabel))
+        					.addGap(40)
+        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        						.addComponent(jPasswordField1, 545, 545, 545)
+        						.addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, 545, GroupLayout.PREFERRED_SIZE))))
+        			.addContainerGap(1142, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
@@ -182,12 +192,12 @@ public class EditAdmin extends javax.swing.JFrame {
         			.addGap(21)
         			.addComponent(administratorsLabel)
         			.addGap(18)
-        			.addComponent(adminCBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(jLabel2)
-        			.addGap(32)
-        			.addComponent(deleteButton)
-        			.addGap(55)
+        			.addGap(11)
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(adminCBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(deleteButton))
+        			.addGap(130)
         			.addComponent(lblNewLabel)
         			.addGap(18)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
@@ -204,6 +214,7 @@ public class EditAdmin extends javax.swing.JFrame {
         			.addGap(14))
         );
         getContentPane().setLayout(layout);
+        getContentPane().setBackground(new Color(0, 204, 204));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
