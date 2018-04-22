@@ -167,28 +167,6 @@ public class ViewInfo extends javax.swing.JFrame {
         	}
         });
 
-        try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema?autoReconnect=true&useSSL=false", USER_NAME, PASSWORD);
-			st = conn.createStatement();
-			String s = "Select Name from film";
-			rs = st.executeQuery(s);
-			while(rs.next()) {
-				filmName.addItem(rs.getString(1));
-			}
-		}
-		catch (Exception b) {
-		JOptionPane.showMessageDialog(null,  "Error");
-		}finally {
-			try {
-				st.close();
-				rs.close();
-				conn.close();
-				
-			}catch(Exception b) {
-	    		JOptionPane.showMessageDialog(null,  "Error Close");
-
-			}
-		}
         
         String value=(String)filmName.getSelectedItem();
         synopsisTextArea = new JTextArea();
@@ -363,11 +341,12 @@ public class ViewInfo extends javax.swing.JFrame {
     
     private void fetch() {
     	
-    //	filmName.setModel(new DefaultComboBoxModel<>(new String[] {"Select Film"}));
+    //	filmName.setModel(new DefaultComboBoxModel<>(new String[] {""}));
 
         try {
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema?autoReconnect=true&useSSL=false", USER_NAME, PASSWORD);
 			st = conn.createStatement();
+			//filmName.removeAllItems();
 			String s = "Select Name from film";
 			rs = st.executeQuery(s);
 			while(rs.next()) {
