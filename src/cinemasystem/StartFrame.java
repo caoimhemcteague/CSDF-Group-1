@@ -6,6 +6,7 @@
 
 package cinemasystem;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,6 +14,7 @@ import java.awt.event.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.Border;
+import java.util.Date;
 
 import java.awt.GraphicsEnvironment;
 import java.awt.GraphicsDevice;
@@ -24,14 +26,16 @@ import java.awt.GraphicsDevice;
 //TestpushToGithub
 public class StartFrame extends javax.swing.JFrame {
 
-	private final String USER_NAME = "root";
-	private final String PASSWORD = "password";
-    Connection conn;
-    Statement st;
-    ResultSet rs;
+	private final static String USER_NAME = "root";
+	private final static String PASSWORD = "password";
+    static Connection conn;
+    static Statement st;
+    static ResultSet rs;
     static String film;
     static String time;
     static String date;
+ 
+
    
 	
     /**
@@ -422,9 +426,35 @@ public class StartFrame extends javax.swing.JFrame {
             frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
             
             frame.setVisible(true);
-                   
-            }
-        });
+            
+            String currentDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());   
+            
+        	try {
+    			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema", USER_NAME, PASSWORD);
+    			st = conn.createStatement();
+    			String s = "Delete from screening where screening.Date < '"+currentDate+"';";
+    			st.executeUpdate(s);
+    			
+    		}
+    		catch (Exception a) {
+    			System.out.println("\n" + a);
+    			JOptionPane.showMessageDialog(null,  "Error here");
+    			System.out.println("\n" + a);
+    		}finally {
+    			try {
+    				st.close();
+    				rs.close();
+    				conn.close();
+    				
+    			}catch(Exception a) {
+    	    		JOptionPane.showMessageDialog(null,  "Error Close");
+
+    			}
+    	     }
+           }
+       
+        		
+          });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

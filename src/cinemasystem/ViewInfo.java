@@ -422,7 +422,6 @@ public class ViewInfo extends javax.swing.JFrame {
 				ImageIcon newImage2 = new ImageIcon(myImg2);
 				posterLabel.setIcon(newImage);
 				poster2.setIcon(newImage2);
-				System.out.println(poster2.getWidth() +""+ poster2.getHeight());
 
 			}
 			else {

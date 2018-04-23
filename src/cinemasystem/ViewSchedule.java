@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.table.JTableHeader;
 import javax.swing.*;
@@ -35,6 +37,7 @@ public class ViewSchedule extends javax.swing.JFrame {
     String minDate = "";
     String maxDate = "";
     String dateForChecking = "";
+    String date1 = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         
         
         
@@ -178,7 +181,7 @@ public class ViewSchedule extends javax.swing.JFrame {
     	try {
     		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema", USER_NAME, PASSWORD);
  			st = conn.createStatement();
- 			String s = "Select MIN(Date) AS Date, FilmName, Time from screening Group by Time ORDER BY FilmName, Time;";
+ 			String s = "Select DISTINCT MIN(Date) AS Date, FilmName, Time from screening Group by Time ORDER BY FilmName, Date, Time;";
  			rs = st.executeQuery(s);
  			
  			table.setModel(DbUtils.resultSetToTableModel(rs));
@@ -257,7 +260,10 @@ public class ViewSchedule extends javax.swing.JFrame {
     	getMinDate();
     	getMaxDate();
     	count--;
+    	
     	getDateForChecking();
+    	System.out.printf(dateForChecking, maxDate, minDate);
+
     	if(checkDate(dateForChecking, maxDate, minDate) == true) {
     	String query = "Select date_add(\"" + minDate + "\", INTERVAL "+ count +" DAY) AS Date, FilmName, Time from screening Group by Time ORDER BY FilmName, Time";
     	fetch(query);
@@ -272,6 +278,7 @@ public class ViewSchedule extends javax.swing.JFrame {
     	getMaxDate();
     	count++;
     	getDateForChecking();
+    	System.out.printf(dateForChecking, maxDate, minDate);
     	if(checkDate(dateForChecking, maxDate, minDate) == true) {
     	String query = "Select date_add(\"" + minDate + "\", INTERVAL "+ count +" DAY) AS Date, FilmName, Time from screening Group by Time ORDER BY FilmName, Time";
     	fetch(query);

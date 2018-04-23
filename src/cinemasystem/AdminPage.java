@@ -96,7 +96,7 @@ public class AdminPage extends javax.swing.JFrame {
         jLabel1.setFont(new Font("American Typewriter", Font.BOLD, 50));
         jLabel1.setForeground(Color.RED);
 
-        jLabel2.setText("Please select a film to remove ");
+        jLabel2.setText("Please select a film to Remove/Edit ");
         jLabel2.setFont(new Font("SansSerif", Font.BOLD, 30));
         jLabel2.setForeground(Color.RED);
 
