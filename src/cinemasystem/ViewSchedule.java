@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.table.JTableHeader;
@@ -37,7 +38,8 @@ public class ViewSchedule extends javax.swing.JFrame {
     String minDate = "";
     String maxDate = "";
     String dateForChecking = "";
-    String date1 = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+    Date currentDate = new Date();
+    String date1 = new SimpleDateFormat("yyyy-MM-dd").format(currentDate);
         
         
         
@@ -181,7 +183,7 @@ public class ViewSchedule extends javax.swing.JFrame {
     	try {
     		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema", USER_NAME, PASSWORD);
  			st = conn.createStatement();
- 			String s = "Select DISTINCT MIN(Date) AS Date, FilmName, Time from screening Group by Time ORDER BY FilmName, Date, Time;";
+ 			String s = "Select DISTINCT MIN(Date) AS Date, FilmName, Time from screening Group by Time having min(Date) <= '"+date1+"'ORDER BY FilmName, Date, Time;";
  			rs = st.executeQuery(s);
  			
  			table.setModel(DbUtils.resultSetToTableModel(rs));
@@ -262,10 +264,14 @@ public class ViewSchedule extends javax.swing.JFrame {
     	count--;
     	
     	getDateForChecking();
-    	System.out.printf(dateForChecking, maxDate, minDate);
-
+    	
+    	Calendar c = Calendar.getInstance();
+        c.setTime(currentDate);
+        c.add(Calendar.DATE, count);
+        Date newDate = c.getTime();
+        date1 = new SimpleDateFormat("yyyy-MM-dd").format(newDate);
     	if(checkDate(dateForChecking, maxDate, minDate) == true) {
-    	String query = "Select date_add(\"" + minDate + "\", INTERVAL "+ count +" DAY) AS Date, FilmName, Time from screening Group by Time ORDER BY FilmName, Time";
+    	String query = "Select date_add('"+minDate+"', INTERVAL "+count+" DAY) AS Date, FilmName, Time from screening where Date = '"+date1+"' Group by Time ORDER BY FilmName, Time;";
     	fetch(query);
     	}
     	else
@@ -278,9 +284,13 @@ public class ViewSchedule extends javax.swing.JFrame {
     	getMaxDate();
     	count++;
     	getDateForChecking();
-    	System.out.printf(dateForChecking, maxDate, minDate);
+    	Calendar c = Calendar.getInstance();
+        c.setTime(currentDate);
+        c.add(Calendar.DATE, count);
+        Date newDate = c.getTime();
+        date1 = new SimpleDateFormat("yyyy-MM-dd").format(newDate);
     	if(checkDate(dateForChecking, maxDate, minDate) == true) {
-    	String query = "Select date_add(\"" + minDate + "\", INTERVAL "+ count +" DAY) AS Date, FilmName, Time from screening Group by Time ORDER BY FilmName, Time";
+    	String query = "Select date_add('"+minDate+"', INTERVAL "+count+" DAY) AS Date, FilmName, Time from screening where Date = '"+date1+"' Group by Time ORDER BY FilmName, Time;";
     	fetch(query);
     	}
     	else

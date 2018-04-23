@@ -187,6 +187,10 @@ public class AdminLogIn extends javax.swing.JFrame {
   	         AdminPage page = new AdminPage();
   	         page.setExtendedState(JFrame.MAXIMIZED_BOTH);  
   	         page.setVisible(true);
+  	         
+  	       JComponent comp = (JComponent) evt.getSource();
+           Window win = SwingUtilities.getWindowAncestor(comp);
+           win.dispose(); 
   	        }  			
   		}
   		catch (Exception a) {

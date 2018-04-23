@@ -478,12 +478,34 @@ public class Payment extends javax.swing.JFrame {
     }
     
     private void dateTFkeyTyped(KeyEvent e) {
+    	if(dateTF.getText().length() == 2) {
+    		dateTF.setText(dateTF.getText() + "/");
+    	}
+    	
     	char c = e.getKeyChar();
     	if(c == '/')
     	{
     		//Do nothing
     	}
     	else if(!(Character.isDigit(c)) || c==KeyEvent.VK_BACK_SPACE || c==KeyEvent.VK_DELETE) {
+    		e.consume();
+    	}
+    	
+    	int y = c-'0';
+    	
+    	if(y > 1 &&  dateTF.getText().length() == 0){
+    		e.consume();
+    	}
+    	else if(y > 2 &&  dateTF.getText().length() == 1 && dateTF.getText().charAt(0) == '0') {
+    		
+    	}
+    	else if(y > 2 &&  dateTF.getText().length() == 1){
+    		e.consume();
+    	}
+    	else if(y > 2 &&  dateTF.getText().length() == 3){
+    		e.consume();
+    	}
+    	else if(y <8 &&  dateTF.getText().length() == 4 && dateTF.getText().charAt(3) == '1'){
     		e.consume();
     	}
     	

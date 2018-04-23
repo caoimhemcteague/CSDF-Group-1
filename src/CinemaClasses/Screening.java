@@ -72,7 +72,6 @@ public class Screening extends JDBCcinema{
 			{	
 				
 					 data = result.getString(1) + ", " + result.getString(2) + ", " + result.getString(3); 
-					 System.out.println(data);
 			
 			}
 		   }

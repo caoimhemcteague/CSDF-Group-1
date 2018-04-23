@@ -420,7 +420,6 @@ public class Screenings extends javax.swing.JFrame {
         String selectedDate = df.format(jDateChooser1.getDate()) ;
         Boolean check = false;
         Date isDateEmpty = jDateChooser1.getDate();
-        System.out.println("Date - " + isDateEmpty);
         int timeHr =0, timeMin = 0;
         String hoursString = hours.getText();
         String minString = min.getText();
@@ -473,9 +472,10 @@ public class Screenings extends javax.swing.JFrame {
 	   		newScreening.addScreeningToDB();
 	   		setNum();
 	        screeningNumTf.setText(""+num);
-	   		
-        	}
 	   		JOptionPane.showMessageDialog(null,  "Screening sucessfull added");
+	   		
+
+        	}
         }
         
     //GEN-LAST:event_jButton1ActionPerformed
@@ -517,7 +517,6 @@ public class Screenings extends javax.swing.JFrame {
 			}
 			
 			//hr2 & min2 = film end time
-			System.out.println(endHr + "   " + endMin);
 			
 			String t = "Select Time from screening where Date = '"+date+"' And TheatreNum = "+theareNum+";";
 			String time;
@@ -539,11 +538,7 @@ public class Screenings extends javax.swing.JFrame {
 				checkMinString = ""+checkMinChar+""+checkMin2Char;
 				checkHr=	Integer.parseInt(checkHrString);
 				checkMin = Integer.parseInt(checkMinString);
-				
-				System.out.println("st " + startHr);
-				System.out.println("end " + endHr);
-				System.out.println("current " + checkHr);
-				System.out.println();
+			
 
 				
 				if(((startHr < checkHr) && (endHr > checkHr)) || (startHr == checkHr) || (endHr == checkHr)){
@@ -552,7 +547,6 @@ public class Screenings extends javax.swing.JFrame {
 					
 				
 			}
-			System.out.println("count " + count);
 			
 			if(count !=0) {
 				return false;

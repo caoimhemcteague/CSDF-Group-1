@@ -40,11 +40,11 @@ import java.awt.event.ActionListener;
  */
 public class AdminPage extends javax.swing.JFrame {
 	
-	private final String USER_NAME = "root";
-	private final String PASSWORD = "password";
-    Connection conn;
-    Statement st;
-    ResultSet rs;
+	private final static String USER_NAME = "root";
+	private final static String PASSWORD = "password";
+    static Connection conn;
+    static Statement st;
+    static ResultSet rs;
     static String filmName;
     /**
      * Creates new form AdminPage
@@ -266,7 +266,7 @@ public class AdminPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void fetch() {
+    static void fetch() {
       	 
     	try {
     		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema", USER_NAME, PASSWORD);
@@ -510,9 +510,9 @@ public class AdminPage extends javax.swing.JFrame {
     private javax.swing.JButton addFilmJButton;
     private javax.swing.JButton closeJButton;
     private javax.swing.JButton editFilmJButton;
-    private javax.swing.JComboBox<String> jComboBox1;
+    static javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable table;
+    private static javax.swing.JTable table;
 }

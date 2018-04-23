@@ -363,7 +363,6 @@ public class StartFrame extends javax.swing.JFrame {
     			while(rs.next()) {
     				
     				double timeDouble = rs.getDouble("Time");
-    				//System.out.print("????????????" + timeDouble);
     				String timeString = String.valueOf(timeDouble);
     				if(timeString.length()<5) {
     					timeString = timeString+ "0";
@@ -372,9 +371,7 @@ public class StartFrame extends javax.swing.JFrame {
     			}
     		}
     		catch (Exception a) {
-    			System.out.println("\n" + a);
     			JOptionPane.showMessageDialog(null,  "Error here");
-    			System.out.println("\n" + a);
     		}finally {
     			try {
     				st.close();
@@ -437,9 +434,7 @@ public class StartFrame extends javax.swing.JFrame {
     			
     		}
     		catch (Exception a) {
-    			System.out.println("\n" + a);
     			JOptionPane.showMessageDialog(null,  "Error here");
-    			System.out.println("\n" + a);
     		}finally {
     			try {
     				st.close();

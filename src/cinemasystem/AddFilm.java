@@ -485,6 +485,40 @@ public class AddFilm extends javax.swing.JFrame {
     		ps.setBlob(8,  is);
     		ps.setString(9,  synopsis);
     		ps.executeUpdate();
+    		
+    		 AdminPage.jComboBox1.setModel(new DefaultComboBoxModel<>(new String[] {"Select Film"}));
+
+    	        try {
+    				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema?autoReconnect=true&useSSL=false", USER_NAME, PASSWORD);
+    				st = conn.createStatement();
+    				String s = "Select Name from film";
+    				rs = st.executeQuery(s);
+    				while(rs.next()) {
+    					AdminPage.jComboBox1.addItem(rs.getString(1));
+    				}
+    			}
+    			catch (Exception b) {
+    			JOptionPane.showMessageDialog(null,  "Error");
+    			}finally {
+    				try {
+    					st.close();
+    					rs.close();
+    					conn.close();
+    					
+    				}catch(Exception b) {
+    		    		JOptionPane.showMessageDialog(null,  "Error Close");
+
+    				}
+    				
+    				AdminPage.fetch();
+    			}
+    	        
+    		
+    		JComponent comp = (JComponent) evt.getSource();
+            Window win = SwingUtilities.getWindowAncestor(comp);
+            win.dispose(); 
+            
+            
 
  		}
  		catch (Exception a) {
