@@ -414,6 +414,12 @@ private void addBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
 	   		newFilm.addFilmToDB();
 	   		
 	   		JOptionPane.showMessageDialog(null,  "Film sucessfull edited");
+	   		
+	   		AdminPage.fetch();
+	   		
+	   	  JComponent comp = (JComponent) evt.getSource();
+	      Window win = SwingUtilities.getWindowAncestor(comp);
+	      win.dispose();
 	   	   }
 	   }
 
